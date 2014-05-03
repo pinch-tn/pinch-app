@@ -7,4 +7,7 @@ from django.http import HttpResponse
 def create_project(request):
     return render(request, "create_project.html")
 
+def big_idea(request):
+    return render(request, "big_idea.html")
+
 
