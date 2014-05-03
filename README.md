@@ -27,6 +27,13 @@ Install requirements:
 pip install -r requirements/local.txt
 ```
 
+Setup Database:
+
+```
+pinch/manage.py syncdb
+pinch/manage.py migrate
+```
+
 Run server:
 
 ```
