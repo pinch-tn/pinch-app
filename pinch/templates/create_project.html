@@ -1,7 +1,27 @@
 {% extends "base.html" %}
 
   {% block content %}
-      <h1>{% block page_title %}Create Project{% endblock page_title %}</h1>
-      <p>Who got a project?  Now you do!</p>
+
+      <div class="row">
+
+        <div class="col-md-1">Icon</div>
+
+        <div class="col-md-8">
+
+          <h1>{% block page_title %}Start a new project{% endblock page_title %}</h1>
+          <form role="form">
+            <div class="form-group">
+              <label for="projectName">Project name</label>
+              <input type="text" class="form-control" id="projectName" placeholder="Project name">
+            </div>
+            <button type="submit" class="btn btn-default">Get started</button>
+          </form>
+
+        </div>
+
+        <div class="col-md-3">Info bar</div>
+
+      </div>
+
   {% endblock content %}
 
