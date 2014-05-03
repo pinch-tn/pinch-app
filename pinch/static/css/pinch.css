@@ -7595,11 +7595,41 @@ button.close {
   }
 }
 /* line 5, sass/pinch.scss */
-body {
-  background: #fff;
+.float-right {
+  float: right;
 }
 
-/* line 8, sass/pinch.scss */
+/* line 9, sass/pinch.scss */
+body {
+  background: #f8f7f7;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+}
+
+/* line 15, sass/pinch.scss */
+h1 {
+  font-weight: 300;
+}
+/* line 17, sass/pinch.scss */
 h1 span {
   font-size: .4em;
+}
+
+/* line 20, sass/pinch.scss */
+h2 {
+  font-size: 1.5em;
+  font-style: italic;
+  font-weight: 300;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
+/* line 23, sass/pinch.scss */
+form label {
+  font-weight: 300;
+}
+/* line 24, sass/pinch.scss */
+form input[type="text"] {
+  font-size: 21px;
+  padding: 25px 15px;
 }
