@@ -1,9 +1,11 @@
 import re
 from django.db import models
+from django_extensions.db.fields import AutoSlugField
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=200, db_index=True, unique=True, validators=[lambda value: re.match(r"^[A-Za-z0-9_-]+$", value)])
+    name = models.CharField(max_length=200, db_index=True, unique=True)
+    slug = AutoSlugField(populate_from="name")
     created = models.DateTimeField(auto_now_add=True)
     started = models.DateTimeField(blank=True, null=True, editable=False)
     ended = models.DateTimeField(blank=True, null=True, editable=False)
@@ -24,6 +26,7 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.name
+
 
 class Mvp(models.Model):
     project = models.OneToOneField(Project, primary_key=True)
