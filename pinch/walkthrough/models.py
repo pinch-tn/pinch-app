@@ -35,11 +35,10 @@ class Workstream(models.Model):
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
     name = models.TextField()
-    owner = models.TextField()
-
+    owner = models.TextField(blank=True)
 
 class Ticket(models.Model):
     workstream = models.ForeignKey(Workstream, primary_key=True)
-    content = models.TextField()
+    content = models.TextField(blank=True)
     status = models.CharField(max_length=20)
 
