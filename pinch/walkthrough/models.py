@@ -13,11 +13,16 @@ class Project(models.Model):
     validate_value_prop = models.TextField(blank=True)
 
 class Mvp(models.Model):
-    project = models.OneToOneField(Project)
-    statement_text = models.TextField()
+    project = models.OneToOneField(Project, primary_key=True)
+    original_statement = models.TextField(blank=True)
 
 class MvpRedaction(models.Model):
-    mvp = models.ForeignKey(Mvp)
+    mvp = models.ForeignKey(Mvp, primary_key=True)
     start = models.IntegerField()
     end = models.IntegerField()
 
+class MvpHighlights(models.Model):
+    mvp = models.ForeignKey(Mvp, primary_key=True)
+    start = models.IntegerField()
+    end = models.IntegerField()
+    name = models.TextField()

@@ -7,7 +7,7 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('project_name', 'created', 'started', 'ended')
 
 class MvpAdmin(admin.ModelAdmin):
-    list_display = ["statement_text"]
+    list_display = ("project", "statement_text")
 
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Mvp, MvpAdmin)
