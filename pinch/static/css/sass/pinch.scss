@@ -76,6 +76,15 @@ form {
 				background-size:64px 65px;
 			}
 		}
+		&.validate {
+			background:url('/static/images/validate.png') no-repeat 0 0;
+			width:64px;
+			height:40px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/validate@2x.png');
+				background-size:64px 40px;
+			}
+		}
 	}
 }
 

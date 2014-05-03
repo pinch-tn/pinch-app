@@ -7729,8 +7729,39 @@ form textarea.form-control {
     background-size: 64px 65px;
   }
 }
+/* line 79, sass/pinch.scss */
+.step-icon div.validate {
+  background: url("/static/images/validate.png") no-repeat 0 0;
+  width: 64px;
+  height: 40px;
+  /*  Using retina image support
+   *  #my-element {
+   *    background:url('http://link.to/low-res-image.png');
+   *    @include respond-to(retina-display) {
+   *      background:url('http://link.to/high-res-image.png');
+   *      background-size:202px 27px; <-- Size of the low-res image
+   *  }
+   */
+  /*  @else if $media == wide-screens {
+      @media only screen and (min-width: $break-large) { @content; }
+    }*/
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
+  /* line 79, sass/pinch.scss */
+  .step-icon div.validate {
+    background: url("/static/images/validate@2x.png");
+    background-size: 64px 40px;
+  }
+}
+@media (min-resolution: 192dpi) {
+  /* line 79, sass/pinch.scss */
+  .step-icon div.validate {
+    background: url("/static/images/validate@2x.png");
+    background-size: 64px 40px;
+  }
+}
 
-/* line 86, sass/pinch.scss */
+/* line 95, sass/pinch.scss */
 .info-panel {
   background-color: #feebc5;
   font-size: 18px;
