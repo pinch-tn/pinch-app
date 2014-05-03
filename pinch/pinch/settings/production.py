@@ -92,5 +92,5 @@ STATICFILES_DIRS = (
     os.path.join(os.path.join(os.path.join(BASE_DIR, '..'), '..'), 'static'),
 )
 
-print " ******** STATIC_DIRS = % ******** " % STATICFILES_DIRS
+print " ******** STATIC_DIRS = %s ******** " % STATICFILES_DIRS
 
