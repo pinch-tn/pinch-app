@@ -12,6 +12,7 @@ button[type="submit"] {
 	float:right;
 	font-size:21px;
 	font-weight:300;
+	margin-bottom:40px;
 	&.btn {
 		border-radius:0;
 	}
@@ -53,7 +54,9 @@ form {
 // Info panel
 
 .info-panel {
-	background-color:$color-border-color;
+	background-color:$color-bg-panel;
+	font-size:18px;
+	padding:10px 20px 20px 20px;
 }
 
 // Venn diagram
