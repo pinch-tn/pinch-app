@@ -4,9 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def poll(request):
-    return HttpResponse("Hello, world. You're at the poll index.")
+def create_project(request):
+    return render(request, "create_project.html")
 
-
-# def create_project(request):
 
