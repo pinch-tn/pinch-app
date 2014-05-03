@@ -10,7 +10,7 @@
 
           <h1>{% block page_title %}Start a new project{% endblock page_title %}</h1>
           <form role="form" method="post">
-              {% csrf_token %}
+            {% csrf_token %}
             <div class="form-group">
               <label for="projectName">Project name</label>
               <input type="text" class="form-control" name="projectName" id="projectName" placeholder="Project name">
