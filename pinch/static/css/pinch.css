@@ -7605,13 +7605,14 @@ button[type="submit"] {
   float: right;
   font-size: 21px;
   font-weight: 300;
+  margin-bottom: 40px;
 }
-/* line 15, sass/pinch.scss */
+/* line 16, sass/pinch.scss */
 button[type="submit"].btn {
   border-radius: 0;
 }
 
-/* line 20, sass/pinch.scss */
+/* line 21, sass/pinch.scss */
 body {
   background: #f8f7f7;
   color: #333333;
@@ -7619,16 +7620,16 @@ body {
   font-weight: 300;
 }
 
-/* line 27, sass/pinch.scss */
+/* line 28, sass/pinch.scss */
 h1 {
   font-weight: 300;
 }
-/* line 29, sass/pinch.scss */
+/* line 30, sass/pinch.scss */
 h1 span {
   font-size: .4em;
 }
 
-/* line 32, sass/pinch.scss */
+/* line 33, sass/pinch.scss */
 h2 {
   font-size: 1.5em;
   font-style: italic;
@@ -7636,33 +7637,35 @@ h2 {
   margin-top: 5px;
   margin-bottom: 30px;
 }
-/* line 33, sass/pinch.scss */
+/* line 34, sass/pinch.scss */
 h2 span {
   font-weight: normal;
 }
 
-/* line 37, sass/pinch.scss */
+/* line 38, sass/pinch.scss */
 form label {
   font-weight: 300;
 }
-/* line 38, sass/pinch.scss */
+/* line 39, sass/pinch.scss */
 form input[type="text"], form textarea.form-control {
   border: 1px solid #dddfe0;
   border-radius: 0;
   box-shadow: none;
   font-size: 21px;
 }
-/* line 44, sass/pinch.scss */
+/* line 45, sass/pinch.scss */
 form input[type="text"] {
   padding: 25px 15px;
 }
-/* line 47, sass/pinch.scss */
+/* line 48, sass/pinch.scss */
 form textarea.form-control {
   padding: 10px 15px;
   height: 10em;
 }
 
-/* line 55, sass/pinch.scss */
+/* line 56, sass/pinch.scss */
 .info-panel {
-  background-color: #dddfe0;
+  background-color: #feebc5;
+  font-size: 18px;
+  padding: 10px 20px 20px 20px;
 }
