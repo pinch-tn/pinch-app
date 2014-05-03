@@ -1,23 +1,33 @@
 from django.shortcuts import render, redirect
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from models import Project
+
+
+class RootProjectView(View):
+
+    def get(self, request, *args, **kwargs):
+        project_name = kwargs["name"]
+        project = Project.objects.get(name=project_name)
+        if not project.idea:
+            return redirect("big_idea", name=project_name)
+        elif not (project.validate_customer and project.validate_offering and project.validate_value_prop):
+            return redirect("validate", name=project_name)
+        else:
+            # Do more ifs once the data model is more complete
+            return redirect("create_mvp", name=project_name)
+
 
 
 class CreateProjectView(TemplateView):
     template_name = "create_project.html"
-
-    def get(self, request, *args, **kwargs):
-        return super(CreateProjectView, self).get(request, *args, **kwargs)
-
 
     def post(self, request, *args, **kwargs):
         project = Project.objects.create(name=request.POST.get("projectName", ""))
         project.started = project.created
         project.save()
         return redirect("big_idea", name=project.name)
-
 
 
 class BigIdeaView(TemplateView):
@@ -27,6 +37,13 @@ class BigIdeaView(TemplateView):
         return {
             "project": Project.objects.get(name=kwargs["name"])
         }
+
+    def post(self, request, *args, **kwargs):
+        project_name = kwargs["name"]
+        project = Project.objects.get(name=project_name)
+        project.idea = request.POST.get("bigIdea", "")
+        project.save()
+        return redirect("validate", name=project_name)
 
 
 class CreateMvpView(TemplateView):
