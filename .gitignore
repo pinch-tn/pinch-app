@@ -38,3 +38,6 @@ tramp
 Thumbs.db
 Desktop.ini
 
+# IntelliJ Files
+*.iml
+
