@@ -2,8 +2,19 @@
 @import "variables";
 @import "bootstrap";
 
-.float-right {
+button[type="submit"] {
+	background-color:$color-primary;
+	border-top:none;
+	border-right:none;
+	border-bottom:2px solid $color-button-border;
+	border-left:2px solid $color-button-border;
+	color:#fff;
 	float:right;
+	font-size:21px;
+	font-weight:300;
+	&.btn {
+		border-radius:0;
+	}
 }
 
 body {
@@ -22,6 +33,9 @@ h2 { font-size:1.5em; font-style:italic; font-weight:300; margin-top:5px; margin
 form {
 	label { font-weight:300; }
 	input[type="text"] {
+		border:none;
+		border-radius:0;
+		box-shadow:none;
 		font-size:21px;
 		padding:25px 15px;
 	}
