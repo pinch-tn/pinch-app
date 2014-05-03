@@ -1,12 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView
 from models import Project
 
 
 class CreateProjectView(TemplateView):
     template_name = "create_project.html"
+
+    def get(self, request, *args, **kwargs):
+        return super(CreateProjectView, self).get(request, *args, **kwargs)
+
+
+    def post(self, request, *args, **kwargs):
+        project = Project.objects.create(name=request.POST.get("projectName", ""))
+        project.started = project.created
+        project.save()
+        return redirect("big_idea", name=project.name)
+
 
 
 class BigIdeaView(TemplateView):
