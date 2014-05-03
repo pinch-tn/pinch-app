@@ -8,6 +8,7 @@ class Project(models.Model):
     ended = models.DateTimeField(blank=True, null=True, editable=False)
 
     idea = models.TextField(blank=True)
+    tools = models.TextField(blank=True)
     validate_customer = models.TextField(blank=True)
     validate_offering = models.TextField(blank=True)
     validate_value_prop = models.TextField(blank=True)
@@ -18,11 +19,19 @@ class Mvp(models.Model):
 
 class MvpRedaction(models.Model):
     mvp = models.ForeignKey(Mvp, primary_key=True)
-    start = models.IntegerField()
-    end = models.IntegerField()
+    statement_start = models.IntegerField()
+    statement_end = models.IntegerField()
 
-class MvpHighlights(models.Model):
+class Workstream(models.Model):
     mvp = models.ForeignKey(Mvp, primary_key=True)
-    start = models.IntegerField()
-    end = models.IntegerField()
+    statement_start = models.IntegerField()
+    statement_end = models.IntegerField()
     name = models.TextField()
+    owner = models.TextField()
+
+
+class Ticket(models.Model):
+    workstream = models.ForeignKey(Workstream, primary_key=True)
+    content = models.TextField()
+    status = models.CharField(max_length=20)
+
