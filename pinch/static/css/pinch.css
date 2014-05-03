@@ -7647,7 +7647,7 @@ form label {
 }
 /* line 38, sass/pinch.scss */
 form input[type="text"], form textarea.form-control {
-  border: none;
+  border: 1px solid #dddfe0;
   border-radius: 0;
   box-shadow: none;
   font-size: 21px;
@@ -7660,4 +7660,9 @@ form input[type="text"] {
 form textarea.form-control {
   padding: 10px 15px;
   height: 10em;
+}
+
+/* line 55, sass/pinch.scss */
+.info-panel {
+  background-color: #dddfe0;
 }
