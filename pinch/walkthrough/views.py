@@ -14,9 +14,11 @@ class RootProjectView(View):
             return redirect("big_idea", name=project_name)
         elif not (project.validate_customer and project.validate_offering and project.validate_value_prop):
             return redirect("validate", name=project_name)
-        else:
+        elif (not project.has_mvp) or not project.mvp.original_statement:
             # Do more ifs once the data model is more complete
             return redirect("create_mvp", name=project_name)
+        else:
+            return redirect("minify_mvp", name=project_name)
 
 
 class CreateProjectView(TemplateView):
