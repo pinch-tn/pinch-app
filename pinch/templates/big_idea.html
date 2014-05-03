@@ -3,7 +3,9 @@
   {% block content %}
       <div class="row">
 
-        <div class="col-md-1">Icon</div>
+        <div class="col-md-1 step-icon">
+          <div class="big-idea"></div>
+        </div>
 
         <div class="col-md-8">
           <small>{{ project.name }}</small>
@@ -28,7 +30,7 @@
               <textarea class="form-control" rows="3" name="bigIdea" id="bigIdea" placeholder="I want to build a product that does...">{{ project.idea }}</textarea>
             </div>
             <div class="clearfix">
-              <button type="submit" class="btn btn-default">Next</button>
+              <button type="submit" class="btn btn-default">next</button>
             </div>
           </form>
 

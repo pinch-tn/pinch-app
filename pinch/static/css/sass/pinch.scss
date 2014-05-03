@@ -51,6 +51,27 @@ form {
 	}
 }
 
+
+
+// Step icons
+
+.step-icon {
+	div {
+		margin-top:28px;
+		&.big-idea {
+			background:url('/static/images/icon-big-idea.png') no-repeat 0 0;
+			width:64px;
+			height:97px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/icon-big-idea@2x.png');
+				background-size:64px 97px;
+			}
+		}
+	}
+}
+
+
+
 // Info panel
 
 .info-panel {
@@ -58,6 +79,8 @@ form {
 	font-size:18px;
 	padding:10px 20px 20px 20px;
 }
+
+
 
 // Venn diagram
 
