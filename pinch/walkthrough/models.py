@@ -11,3 +11,11 @@ class Project(models.Model):
     validate_customer = models.TextField()
     validate_offering = models.TextField()
     validate_value_prop = models.TextField()
+
+class Mvp(models.Model):
+    statement_text = models.TextField()
+
+class MvpRedaction(models.Model):
+    mvp = models.ForeignKey(Mvp)
+    start = models.IntegerField()
+    end = models.IntegerField()
