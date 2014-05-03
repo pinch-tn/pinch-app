@@ -47,6 +47,22 @@ class BigIdeaView(TemplateView):
         return redirect("validate", slug=project_slug)
 
 
+class SelectTechView(TemplateView):
+    template_name = "select_tech.html"
+
+    def get_context_data(self, **kwargs):
+        return {
+            "project": Project.objects.get(slug=kwargs["slug"])
+        }
+
+    def post(self, request, *args, **kwargs):
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
+        project.tools = request.POST.get("tech", "")
+        project.save()
+        return redirect("gravity_board", slug=project_slug)
+
+
 class ValidateView(TemplateView):
     template_name = "validate.html"
 

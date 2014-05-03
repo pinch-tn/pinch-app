@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+  {% block content %}
+      <div class="row">
+
+        <div class="col-md-1">Icon</div>
+
+        <div class="col-md-8">
+          <small>{{ project.name }}</small>
+
+          <h1>{% block page_title %}Technology and Tools{% endblock page_title %} <span>5-15 Minutes</span></h1>
+          <h2><span>"How are we doing this?"</span> Everything is shaping up with the plan, now we need to look at what we are building and make the best decisions possible about the technology and tools we will use based off of what's available to us, the teams experience with popular tools/languages, and what's best for our product.</h2>
+          <form role="form" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <textarea class="form-control" rows="3" name="tech" id="tech" placeholder="I want to build my product on...">{{ project.tech }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Next</button>
+          </form>
+
+        </div>
+
+        <div class="col-md-3">
+          <div class="info-panel">
+            <p>Placeholder</p>
+              <p>Placeholder 2</p>
+            <ul>
+              <li>2-10 Working Days is the recommended timebox for Pinch. Longer projects will benefit from more robust planning.</li>
+            </ul>
+            <p>Choose some tools!</p>
+          </div>
+        </div>
+
+      </div>
+  {% endblock content %}
