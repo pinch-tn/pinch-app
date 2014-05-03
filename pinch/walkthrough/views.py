@@ -1,13 +1,13 @@
 from django.shortcuts import render
 
-## Create your views here.
 from django.http import HttpResponse
+from django.views.generic import TemplateView
 
 
-def create_project(request):
-    return render(request, "create_project.html")
+class CreateProjectView(TemplateView):
+    template_name = "create_project.html"
 
-def big_idea(request):
-    return render(request, "big_idea.html")
+class BigIdeaView(TemplateView):
+    template_name = "big_idea.html"
 
 
