@@ -7596,5 +7596,10 @@ button.close {
 }
 /* line 5, sass/pinch.scss */
 body {
-  background: #fbf;
+  background: #fff;
+}
+
+/* line 8, sass/pinch.scss */
+h1 span {
+  font-size: .4em;
 }
