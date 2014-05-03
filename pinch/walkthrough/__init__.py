@@ -11,6 +11,6 @@ urls = patterns('',
                 url("^(?P<slug>[A-Za-z0-9_-]+)/gravity_board/$", views.GravityBoardView.as_view(), name="gravity_board"),
                 url("^(?P<slug>[A-Za-z0-9_-]+)/minify_mvp/$", views.MinifyMvpView.as_view(), name="minify_mvp"),
                 url("^(?P<slug>[A-Za-z0-9_-]+)/validate/$", views.ValidateView.as_view(), name="validate"),
-                url("^(?P<slug>[A-Za-z0-9_-]+)/select_tech/$", views.SelectTechView.as_view(), name="select_tech"),
+                url("^(?P<slug>[A-Za-z0-9_-]+)/select_tools/$", views.SelectToolsView.as_view(), name="select_tech"),
                 url("^(?P<slug>[A-Za-z0-9_-]+)/$", views.RootProjectView.as_view(), name="root_project"),
                 )
