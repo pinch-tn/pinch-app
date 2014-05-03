@@ -7,10 +7,10 @@
 
         <div class="col-md-8">
 
-          <h1>{% block page_title %}The Big Idea{% endblock page_title %} <span>5-15 Minutes</span></h1>
+          <h1>{% block page_title %}{{ project.name }} - The Big Idea{% endblock page_title %} <span>5-15 Minutes</span></h1>
           <form role="form">
             <div class="form-group">
-              <textarea class="form-control" rows="3" id="bigIdea" placeholder="What are we doing?"></textarea>
+              <textarea class="form-control" rows="3" id="bigIdea" placeholder="What are we doing?">{{ project.idea }}</textarea>
             </div>
             <button type="submit" class="btn btn-default">Next</button>
           </form>

@@ -2,23 +2,34 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from django.views.generic import TemplateView
+from models import Project
 
 
 class CreateProjectView(TemplateView):
     template_name = "create_project.html"
 
+
 class BigIdeaView(TemplateView):
     template_name = "big_idea.html"
 
-def create_mvp(request):
-    return render(request, "create_mvp.html")
+    def get_context_data(self, **kwargs):
+        return {
+            "project": Project.objects.get(name=kwargs["name"])
+        }
 
-def gravity_board(request):
-    return render(request, "gravity_board.html")
 
-def minify_mvp(request):
-    return render(request, "minify_mvp.html")
+class CreateMvpView(TemplateView):
+    template_name = "create_mvp.html"
 
-def validate(request):
-    return render(request, "validate.html")
-    
+
+class GravityBoardView(TemplateView):
+    template_name = "gravity_board.html"
+
+
+class MinifyMvpView(TemplateView):
+    template_name = "minify_mvp.html"
+
+
+class ValidateView(TemplateView):
+    template_name = "validate.html"
+
