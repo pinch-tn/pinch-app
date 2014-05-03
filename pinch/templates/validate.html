@@ -3,12 +3,26 @@
   {% block content %}
         <div class="row">
 
-        <div class="col-md-1">Icon</div>
+        <div class="col-md-1 step-icon">
+          <div class="validate"></div>
+        </div>
 
         <div class="col-md-8">
-
+          <small>&nbsp;</small>
           <h1>{% block page_title %}Validate{% endblock page_title %} <span>5-15 Minutes</span></h1>
           <h2><span>"Is this a project or a product?"</span> While all projects and products start with an idea, products actually have to be valuable to some identifiable market. If you want to build a product, you owe it to yourselves to find your value proposition.</h2>
+        </div>
+
+        <div class="col-md-3"></div>
+
+      </div>
+
+
+      <div class="row">
+
+        <div class="col-md-1"></div>
+
+        <div class="col-md-8">
           <form role="form venn" method="post">
             {% csrf_token %}
             <div class="row">
@@ -25,9 +39,31 @@
             <button type="submit" class="btn btn-default">Next</button>
           </form>
 
-          </div>
+        </div>
 
-        <div class="col-md-3">Info bar</div>
+        <div class="col-md-3">
+          <div class="info-panel">
+            <h3>Tips</h3>
+            <p>Start thinking about your potential customers. Who are they?</p>
+            <ul>
+              <li>What problems do they have? What benefits do they want?</li>
+              <li>How will what you are building be valuable to these customers?</li>
+            </ul>
+            <p>Find your value proposition.</p>
+            <ul>
+              <li>Draw two intersecting circles (venn diagram).</li>
+              <li>In the right circle, define your customer.<br>ex. "Tech Savvy Entrepreneurs"</li>
+
+              <li>In the left circle, define what you intend to offer the customer.<br>ex. "Theory and framework that expedites planning and delivery of products"</li>
+
+              <li>Once complete, find your value proposition by matching your customers to what you are offering.</li>
+            </ul>
+            <p>Value Propositions can be simply worded at first:</p>
+            <ul>
+              <li>"Our product helps tech savvy entrepreneurs plan and deliver working products quickly."</li>
+            </ul>
+          </div>
+        </div>
 
       </div>
   {% endblock content %}
