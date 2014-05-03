@@ -34,6 +34,12 @@ pinch/manage.py syncdb
 pinch/manage.py migrate
 ```
 
+Add Test Data:
+
+```
+pinch/manage.py loaddata walkthrough/fixtures/test_data.json
+```
+
 Run server:
 
 ```
