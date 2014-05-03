@@ -1,8 +1,9 @@
+import re
 from django.db import models
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=200, db_index=True, unique=True)
+    name = models.CharField(max_length=200, db_index=True, unique=True, validators=[lambda value: re.match(r"^[A-Za-z0-9_-]+$", value)])
     created = models.DateTimeField(auto_now_add=True)
     started = models.DateTimeField(blank=True, null=True, editable=False)
     ended = models.DateTimeField(blank=True, null=True, editable=False)
@@ -21,6 +22,9 @@ class Project(models.Model):
         except:
             return False
 
+    def __unicode__(self):
+        return self.name
+
 class Mvp(models.Model):
     project = models.OneToOneField(Project, primary_key=True)
     original_statement = models.TextField(blank=True)
@@ -35,11 +39,10 @@ class Workstream(models.Model):
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
     name = models.TextField()
-    owner = models.TextField()
-
+    owner = models.TextField(blank=True)
 
 class Ticket(models.Model):
     workstream = models.ForeignKey(Workstream, primary_key=True)
-    content = models.TextField()
+    content = models.TextField(blank=True)
     status = models.CharField(max_length=20)
 

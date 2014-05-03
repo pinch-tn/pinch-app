@@ -7595,27 +7595,40 @@ button.close {
   }
 }
 /* line 5, sass/pinch.scss */
-.float-right {
+button[type="submit"] {
+  background-color: #f8bf51;
+  border-top: none;
+  border-right: none;
+  border-bottom: 2px solid #8d9497;
+  border-left: 2px solid #8d9497;
+  color: #fff;
   float: right;
+  font-size: 21px;
+  font-weight: 300;
+}
+/* line 15, sass/pinch.scss */
+button[type="submit"].btn {
+  border-radius: 0;
 }
 
-/* line 9, sass/pinch.scss */
+/* line 20, sass/pinch.scss */
 body {
   background: #f8f7f7;
+  color: #333333;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
 }
 
-/* line 15, sass/pinch.scss */
+/* line 27, sass/pinch.scss */
 h1 {
   font-weight: 300;
 }
-/* line 17, sass/pinch.scss */
+/* line 29, sass/pinch.scss */
 h1 span {
   font-size: .4em;
 }
 
-/* line 20, sass/pinch.scss */
+/* line 32, sass/pinch.scss */
 h2 {
   font-size: 1.5em;
   font-style: italic;
@@ -7623,13 +7636,28 @@ h2 {
   margin-top: 5px;
   margin-bottom: 30px;
 }
+/* line 33, sass/pinch.scss */
+h2 span {
+  font-weight: normal;
+}
 
-/* line 23, sass/pinch.scss */
+/* line 37, sass/pinch.scss */
 form label {
   font-weight: 300;
 }
-/* line 24, sass/pinch.scss */
-form input[type="text"] {
+/* line 38, sass/pinch.scss */
+form input[type="text"], form textarea.form-control {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   font-size: 21px;
+}
+/* line 44, sass/pinch.scss */
+form input[type="text"] {
   padding: 25px 15px;
+}
+/* line 47, sass/pinch.scss */
+form textarea.form-control {
+  padding: 10px 15px;
+  height: 10em;
 }
