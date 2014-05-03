@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, RedirectView, View
-from models import Project
+from models import Project, Mvp
 
 
 class RootProjectView(View):
@@ -65,6 +65,23 @@ class ValidateView(TemplateView):
 
 class CreateMvpView(TemplateView):
     template_name = "create_mvp.html"
+
+    def get_context_data(self, **kwargs):
+        project = Project.objects.get(name=kwargs["name"])
+        return {
+            "project": project,
+        }
+
+    def post(self, request, *args, **kwargs):
+        project_name = kwargs["name"]
+        project = Project.objects.get(name=project_name)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+        mvp.original_statement = request.POST.get("original_statement", "")
+        mvp.save()
+        return redirect("minify_mvp", name=project_name)
 
 
 class GravityBoardView(TemplateView):

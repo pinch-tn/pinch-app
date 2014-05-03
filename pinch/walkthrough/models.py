@@ -12,6 +12,14 @@ class Project(models.Model):
     validate_offering = models.TextField(blank=True)
     validate_value_prop = models.TextField(blank=True)
 
+    @property
+    def has_mvp(self):
+        try:
+            self.mvp
+            return True
+        except:
+            return False
+
 class Mvp(models.Model):
     project = models.OneToOneField(Project, primary_key=True)
     original_statement = models.TextField(blank=True)
