@@ -19,7 +19,6 @@ class RootProjectView(View):
             return redirect("create_mvp", name=project_name)
 
 
-
 class CreateProjectView(TemplateView):
     template_name = "create_project.html"
 
@@ -46,6 +45,24 @@ class BigIdeaView(TemplateView):
         return redirect("validate", name=project_name)
 
 
+class ValidateView(TemplateView):
+    template_name = "validate.html"
+
+    def get_context_data(self, **kwargs):
+        return {
+            "project": Project.objects.get(name=kwargs["name"])
+        }
+
+    def post(self, request, *args, **kwargs):
+        project_name = kwargs["name"]
+        project = Project.objects.get(name=project_name)
+        project.validate_offering = request.POST.get("offering", "")
+        project.validate_customer = request.POST.get("customer", "")
+        project.validate_value_prop = request.POST.get("valueProp", "")
+        project.save()
+        return redirect("create_mvp", name=project_name)
+
+
 class CreateMvpView(TemplateView):
     template_name = "create_mvp.html"
 
@@ -57,7 +74,4 @@ class GravityBoardView(TemplateView):
 class MinifyMvpView(TemplateView):
     template_name = "minify_mvp.html"
 
-
-class ValidateView(TemplateView):
-    template_name = "validate.html"
 
