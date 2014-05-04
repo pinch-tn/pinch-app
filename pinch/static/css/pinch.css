@@ -55,11 +55,23 @@
   text-transform: uppercase;
 }
 /* line 45, sass/_gravity_board.scss */
-#gravity-board .lane .task-columns li .task-header h4 {
-  margin: 0;
-  padding: 0;
+#gravity-board .lane .task-columns li .task-header button {
+  background-color: #f8bf51;
+  border: 0;
+  color: #333333;
+  float: left;
+  display: block;
+  line-height: 20px;
+  padding: 3px 8px;
+  margin-right: 10px;
 }
-/* line 50, sass/_gravity_board.scss */
+/* line 55, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li .task-header h4 {
+  display: inline-block;
+  margin: 0;
+  padding: 2px 0 0 0;
+}
+/* line 61, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns li .ticket {
   background-color: #feebc5;
   float: left;
@@ -70,15 +82,24 @@
   width: 100px;
   height: 75px;
 }
-/* line 59, sass/_gravity_board.scss */
+/* line 70, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li .ticket:hover .trash {
+  display: block;
+}
+/* line 73, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns li .ticket .trash {
-  background-color: red;
+  background-color: #f6b1ae;
+  border-radius: 100px;
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  display: none;
+  margin-top: 30px;
+  margin-left: 69px;
+  padding: 3px 8px;
+  position: absolute;
+  text-align: center;
 }
 
-/* line 66, sass/_gravity_board.scss */
+/* line 90, sass/_gravity_board.scss */
 .modal-dialog {
   left: 0 !important;
 }

@@ -42,9 +42,20 @@
 				.task-header {
 					padding:5px;
 					text-transform:uppercase;
+					button {
+						background-color:$color-primary;
+						border:0;
+						color:$color-text;
+						float:left;
+						display:block;
+						line-height:20px;
+						padding:3px 8px;
+						margin-right:10px;
+					}
 					h4 {
+						display:inline-block;
 						margin:0;
-						padding:0;
+						padding:2px 0 0 0;
 					}
 				}
 				.ticket {
@@ -56,7 +67,20 @@
 					white-space:normal;
 					width:100px;
 					height:75px;
-					.trash { background-color:red; cursor:pointer; width:20px; height:20px; }
+					&:hover .trash {
+						display:block;
+					}
+					.trash {
+						background-color:#f6b1ae;
+						border-radius:100px;
+						cursor:pointer;
+						display:none;
+						margin-top:30px;
+						margin-left:69px;
+						padding:3px 8px;
+						position:absolute;
+						text-align:center;
+					}
 				}
 			}
 		}
