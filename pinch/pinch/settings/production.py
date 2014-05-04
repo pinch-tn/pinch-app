@@ -82,9 +82,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
-from os.path import dirname, join
+from os.path import dirname, join, abspath
 
-BASE_DIR = dirname(dirname(dirname(os.path.abspath(__file__))))
+BASE_DIR = dirname(dirname(dirname(abspath(__file__))))
 print " ******** BASE_DIR = %s ******** " % BASE_DIR
 STATIC_ROOT = join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
