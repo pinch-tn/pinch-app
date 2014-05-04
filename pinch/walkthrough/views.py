@@ -103,7 +103,6 @@ class CreateMvpView(TemplateView):
         return redirect("minify_mvp", slug=project_slug)
 
 
-
 class MinifyMvpView(TemplateView):
     template_name = "minify_mvp.html"
 
@@ -114,8 +113,8 @@ class MinifyMvpView(TemplateView):
         }
 
     def post(self, request, **kwargs):
-        project_slug = kwargs["name"]
-        project = Project.objects.get(name=project_slug)
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
         if project.has_mvp:
             mvp = project.mvp
         else:
@@ -137,8 +136,8 @@ class BreakdownMvpView(TemplateView):
             }
 
     def post(self, request, **kwargs):
-        project_slug = kwargs["name"]
-        project = Project.objects.get(name=project_slug)
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
         if project.has_mvp:
             mvp = project.mvp
         else:
