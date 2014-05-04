@@ -108,8 +108,13 @@ class MinifyMvpView(TemplateView):
 
     def get_context_data(self, **kwargs):
         project = Project.objects.get(slug=kwargs["slug"])
+        if project.has_mvp:
+            current_selection = [{"statement_start": r.statement_start, "statement_end": r.statement_end} for r in project.mvp.mvpredaction_set.all()]
+        else:
+            current_selection = []
         return {
             "project": project,
+            "selectionJson": json.dumps(current_selection)
         }
 
     def post(self, request, **kwargs):
