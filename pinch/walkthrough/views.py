@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, redirect
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -29,6 +30,7 @@ class CreateProjectView(TemplateView):
     def post(self, request, *args, **kwargs):
         project = Project.objects.create(name=request.POST.get("projectName", ""))
         project.started = project.created
+        project.ended = project.started + datetime.timedelta(days=14)
         project.save()
         return redirect("big_idea", slug=project.slug)
 
@@ -161,6 +163,10 @@ class BreakdownMvpView(TemplateView):
             mvp = project.mvp
         else:
             mvp = Mvp.objects.create(project=project)
+
+        for workstream in mvp.workstream_set.all():
+            workstream.delete()
+
         for add_workstream in json.loads(request.POST.get("workstreams","[]")):
             line = add_workstream["line"]
             start = add_workstream["statement_start"]

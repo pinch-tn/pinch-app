@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
 
@@ -24,6 +25,12 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def is_frozen(self):
+        return datetime.datetime.now() > self.ended
+
+    def is_workstream_frozen(self):
+        return self.has_mvp and self.mvp.workstream_set
 
 
 class Mvp(models.Model):
