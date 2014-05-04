@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+	{% block content %}
+
+		<div class="lane doing">
+      		<div class="header">
+      			<h3>Doing</h3>
+      		</div>
+  			<ul class="task-columns">
+  				<li>
+  					<div class="task-header">
+  						<h4>Make coffee</h4>
+  					</div>
+  					<div class="ticket">This is my task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Cook breakfast</h4>
+  					</div>
+  					<ul class="limited_drop_targets">
+	  					<li class="ticket">This is my other task</li>
+	  					<li class="ticket">This is my other task</li>
+	  					<li class="ticket">This is my other task</li>
+	  				</ul>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Clean house</h4>
+  					</div>
+  					<div class="ticket">This is my final task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Watch TV</h4>
+  					</div>
+  					<ul class="limited_drop_targets">
+  						<li class="ticket">This is my final task</li>
+  					</ul>
+  				</li>
+  			</ul>
+      	</div>
+
+	{% endblock content %}
+
+
+
+

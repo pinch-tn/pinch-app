@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block step %}minify-mvp{% endblock step %}
   {% block content %}
   
   <div class="row">
@@ -23,6 +23,11 @@
           <div class="col-md-1"></div>
 
           <div class="col-md-8">
+<<<<<<< HEAD
+=======
+              <h1>{% block page_title %}Minify MVP{% endblock page_title %} <span>5-15 Minutes</span></h1>
+
+>>>>>>> FETCH_HEAD
               <form id="main_form" role="form" method="post">
                   {% csrf_token %}
                   <input type="hidden" name="redactions" id="selections" value="{{ selectionJson }}">

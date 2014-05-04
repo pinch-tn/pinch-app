@@ -13,6 +13,8 @@
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,200italic,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/codemirror.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jquery.gridly.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jquery-ui-1.10.4.min.css' %}" rel="stylesheet">
 
     <style>
       body {
@@ -33,7 +35,7 @@
     {% block extra_css %}{% endblock extra_css %}
   </head>
 
-  <body>
+  <body class="{% block step %}{% endblock step %}">
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -43,7 +45,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">pinch</a>
+          <a class="navbar-brand" href="/">pinch</a>
         </div>
         <div class="collapse navbar-collapse">
           <!-- <ul class="nav navbar-nav">
@@ -56,6 +58,44 @@
     </div>
 
     <div class="container">
+      <div class="row steps">
+        <div class="col-md-2"></div>
+        <div class="col-md-1 step create">
+          <p>Create</p>
+          <div class="hover">
+            {{ project.name }}
+          </div>
+        </div>
+        <div class="col-md-1 step big-idea">
+          <p>Big Idea</p>
+          <div class="hover">
+            {{ project.idea }}
+          </div>
+        </div>
+        <div class="col-md-1 step validate">
+          <p>Validate</p>
+          <div class="hover">
+            {{ project.validate_value_prop }}
+          </div>
+        </div>
+        <div class="col-md-1 step create-mvp">
+          <p>MVP</p>
+          <div class="hover">
+            {{ project.mvp.original_statement }}
+          </div>
+        </div>
+        <div class="col-md-1 step minify-mvp">
+          <p>Minify</p>
+          <div class="hover">
+            {{ project.mvp.statement }}
+          </div>
+        </div>
+        <div class="col-md-1 step breakdown-mvp">
+          <p>Breakdown</p>
+        </div>
+        <div class="col-md-1 step gravity-board">Gravity</div>
+        <div class="col-md-3"></div>
+      </div>
 
       {% block content %}
       {% endblock content %}
@@ -85,6 +125,8 @@
     <script src="{% static 'js/jquery-sortable.js' %}"></script>
     <script src="{% static 'js/codemirror.js' %}"></script>
     <script src="{% static 'js/underscore.js' %}"></script>
+    <script src="{% static 'js/jquery.gridly.js' %}"></script>
+    <script src="{% static 'js/jquery-ui-1.10.4.min.js' %}"></script>
 
     <!-- place project specific Javascript in this file -->
     <script src="{% static 'js/pinch.js' %}"></script>
