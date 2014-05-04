@@ -34,28 +34,29 @@
 }
 /* line 31, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns .drag_list {
+  list-style-type: none;
   padding: 0;
   min-width: 100px;
   min-height: 75px;
 }
-/* line 36, sass/_gravity_board.scss */
-#gravity-board .lane .task-columns li {
+/* line 37, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns > li {
   border-left: 1px solid #dddfe0;
   display: table-cell;
   padding: 10px 0;
   width: 350px;
 }
-/* line 41, sass/_gravity_board.scss */
-#gravity-board .lane .task-columns li:first-child {
+/* line 42, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns > li:first-child {
   border-left: 0;
 }
-/* line 42, sass/_gravity_board.scss */
-#gravity-board .lane .task-columns li .task-header {
+/* line 43, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns > li .task-header {
   padding: 5px;
   text-transform: uppercase;
 }
-/* line 45, sass/_gravity_board.scss */
-#gravity-board .lane .task-columns li .task-header button {
+/* line 46, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns > li .task-header button {
   background-color: #f8bf51;
   border: 0;
   color: #333333;
@@ -65,14 +66,14 @@
   padding: 3px 8px;
   margin-right: 10px;
 }
-/* line 55, sass/_gravity_board.scss */
-#gravity-board .lane .task-columns li .task-header h4 {
+/* line 56, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns > li .task-header h4 {
   display: inline-block;
   margin: 0;
   padding: 2px 0 0 0;
 }
-/* line 61, sass/_gravity_board.scss */
-#gravity-board .lane .task-columns li .ticket {
+/* line 62, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns > li .ticket {
   background-color: #feebc5;
   float: left;
   line-height: 15px;
@@ -82,12 +83,12 @@
   width: 100px;
   height: 75px;
 }
-/* line 70, sass/_gravity_board.scss */
-#gravity-board .lane .task-columns li .ticket:hover .trash {
+/* line 71, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns > li .ticket:hover .trash {
   display: block;
 }
-/* line 73, sass/_gravity_board.scss */
-#gravity-board .lane .task-columns li .ticket .trash {
+/* line 74, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns > li .ticket .trash {
   background-color: #f6b1ae;
   border-radius: 100px;
   cursor: pointer;
@@ -99,9 +100,15 @@
   text-align: center;
 }
 
-/* line 90, sass/_gravity_board.scss */
+/* line 91, sass/_gravity_board.scss */
 .modal-dialog {
   left: 0 !important;
+}
+/* line 93, sass/_gravity_board.scss */
+.modal-dialog .ticket-input {
+  font-size: 21px;
+  padding: 10px 5px;
+  width: 100%;
 }
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
