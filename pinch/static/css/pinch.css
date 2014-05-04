@@ -16,27 +16,53 @@
 }
 /* line 17, sass/_gravity_board.scss */
 #gravity-board .lane .header {
+  background-color: #dddfe0;
   border-bottom: 1px solid #dddfe0;
   overflow: hidden;
+  padding: 5px 5px 5px 15px;
+  text-transform: uppercase;
 }
-/* line 21, sass/_gravity_board.scss */
-#gravity-board .lane .task-columns {
+/* line 23, sass/_gravity_board.scss */
+#gravity-board .lane .header h3 {
   margin: 0;
   padding: 0;
 }
-/* line 24, sass/_gravity_board.scss */
+/* line 28, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns {
+  margin: 0;
+  padding: 0 10px;
+}
+/* line 31, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns li {
-  background: #ccc;
-  display: inline-block;
+  border-left: 1px solid #dddfe0;
+  display: table-cell;
+  padding: 10px 0;
   width: 350px;
 }
-/* line 28, sass/_gravity_board.scss */
+/* line 36, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li:first-child {
+  border-left: 0;
+}
+/* line 37, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li .task-header {
+  padding: 5px;
+  text-transform: uppercase;
+}
+/* line 40, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li .task-header h4 {
+  margin: 0;
+  padding: 0;
+}
+/* line 45, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns li .ticket {
   background-color: #feebc5;
   float: left;
+  line-height: 15px;
   margin: 5px;
-  width: 150px;
-  height: 100px;
+  padding: 5px;
+  white-space: normal;
+  width: 100px;
+  height: 75px;
 }
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */

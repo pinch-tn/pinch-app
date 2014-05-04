@@ -72,14 +72,13 @@ $(document).ready(function() {
 			atomic: false
 		}
 	});
-});
 
 
-// remove
-// turn span's into variables
-
-// var clear = editor.doc.getAllMarks().remove();  
 // loop over array and call .remove() on each element
+// var $ticket = $('<div class="task-header"><textarea></textarea></div>');
+// $button_name.click(function() {
+
+// });
 
 
 
@@ -88,14 +87,11 @@ $(document).ready(function() {
 
 
 
+	// Drag and Drop sticky notes
+	var adjustment
+	var item			// Needed???  For each sticky note
 
-
-
-// Drag and Drop sticky notes
-var adjustment
-var item			// Needed???  For each sticky note
-
-	$(".workstream-column").sortable({
+	$(".task-columns").sortable({
 	  group: 'column',
 	  pullPlaceholder: false,
 	  // animation on drop
@@ -129,4 +125,4 @@ var item			// Needed???  For each sticky note
 	    })
 	  }
 	});
-
+});
