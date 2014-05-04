@@ -128,7 +128,10 @@ class MinifyMvpView(TemplateView):
         for redaction in mvp.mvpredaction_set.all():
             redaction.delete()
 
-        for add_redaction in json.loads(request.POST.get("redactions","[]")):
+        raw_redactions = json.loads(request.POST.get("redactions", "[]"))
+        # deduplicate
+        redactions = [dict(t) for t in set([tuple(d.items()) for d in raw_redactions])]
+        for add_redaction in redactions:
             redaction = MvpRedaction.objects.create(mvp=mvp,statement_start=add_redaction["statement_start"],statement_end=add_redaction["statement_end"])
             redaction.save()
         return redirect("breakdown_mvp", slug=project_slug)
