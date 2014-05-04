@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, RedirectView, View
+
 from django.views.decorators.csrf import csrf_exempt
 from models import Project, Mvp, MvpRedaction, Workstream
 import json
@@ -179,5 +180,49 @@ class GravityBoardView(TemplateView):
             "project": project,
         }
 
+class TicketView(View):
+    def get_context_data(self, **kwargs):
+        project = Project.objects.get(slug=kwargs["slug"])
+        return {
+            "project": project,
+        }
 
+    def get(self, request, **kwargs):
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+        print json.loads(request.body)
 
+    def post(self, request, **kwargs):
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+        print json.loads(request.body)
+
+    def patch(self, request, **kwargs):
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+        print json.loads(request.body)
+
+    def post(self, request, **kwargs):
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+        print json.loads(request.body)
+
+    @csrf_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(TicketView, self).dispatch(*args, **kwargs)
