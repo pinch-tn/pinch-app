@@ -103,5 +103,67 @@ form {
 // Venn diagram
 
 .venn {
-
+	background:url('/static/images/venn-diagram.png') no-repeat center 0;
+	background-size:contain;
+	min-height:800px;
+	textarea {
+		background:transparent;
+		border:none;
+		font-size:21px;
+		font-weight:normal;
+		height:300px;
+		margin-top:115px;
+		overflow:hidden;
+		resize:none;
+		text-align:center;
+		vertical-align:bottom;
+		width:100%;
+		&:focus {
+			outline:none;
+		}
+		&#offering { padding-left:30px; }
+		&#valueProp { padding-right:30px; padding-left:30px; }
+		&#customer { padding-right:30px; }
+		
+	}
+	@media only screen and (max-width:1200px) {
+		textarea {
+			margin-top:90px;
+			height:245px;
+		}
+	}
+	@media only screen and (max-width:990px) {
+		textarea {
+			height:300px;
+			margin-top:115px;
+		}
+		.form-group.col-md-4 {
+			float:left;
+			width:33%;
+		}
+	}
+	@media only screen and (max-width:650px) {
+		textarea {
+			font-size:18px;
+			margin-top:90px;
+			height:245px;
+		}
+	}
+	@media only screen and (max-width:530px) {
+		textarea {
+			font-size:15px;
+			margin-top:75px;
+			height:180px;
+		}
+	}
+	@media only screen and (max-width:500px) {
+		textarea {
+			font-size:15px;
+			margin-top:55px;
+			height:160px;
+		}
+	}
+	.validate-action {
+		margin-top:100px;
+	}
 }
