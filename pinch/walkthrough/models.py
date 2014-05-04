@@ -1,4 +1,3 @@
-import re
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
 
@@ -19,9 +18,8 @@ class Project(models.Model):
     @property
     def has_mvp(self):
         try:
-            self.mvp
-            return True
-        except:
+            return self.mvp is not None
+        except Mvp.DoesNotExist:
             return False
 
     def __unicode__(self):
@@ -32,10 +30,12 @@ class Mvp(models.Model):
     project = models.OneToOneField(Project, primary_key=True)
     original_statement = models.TextField(blank=True)
 
+
 class MvpRedaction(models.Model):
     mvp = models.ForeignKey(Mvp, primary_key=True)
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
+
 
 class Workstream(models.Model):
     mvp = models.ForeignKey(Mvp, primary_key=True)
@@ -43,6 +43,7 @@ class Workstream(models.Model):
     statement_end = models.IntegerField()
     name = models.TextField()
     owner = models.TextField(blank=True)
+
 
 class Ticket(models.Model):
     workstream = models.ForeignKey(Workstream, primary_key=True)
