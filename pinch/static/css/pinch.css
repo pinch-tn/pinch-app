@@ -7661,7 +7661,41 @@ button.close {
     display: none !important;
   }
 }
-/* line 6, sass/pinch.scss */
+/* line 7, sass/pinch.scss */
+.navbar-header a {
+  background: url("/static/images/pinch-logo.png") no-repeat 15px 16px;
+  background-size: 25px 20px;
+  padding-left: 50px;
+  /*  Using retina image support
+   *  #my-element {
+   *    background:url('http://link.to/low-res-image.png');
+   *    @include respond-to(retina-display) {
+   *      background:url('http://link.to/high-res-image.png');
+   *      background-size:202px 27px; <-- Size of the low-res image
+   *  }
+   */
+  /*  @else if $media == wide-screens {
+      @media only screen and (min-width: $break-large) { @content; }
+    }*/
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
+  /* line 7, sass/pinch.scss */
+  .navbar-header a {
+    background: url("/static/images/pinch-logo@2x.png") 15px 16px;
+    background-repeat: no-repeat;
+    background-size: 25px 20px;
+  }
+}
+@media (min-resolution: 192dpi) {
+  /* line 7, sass/pinch.scss */
+  .navbar-header a {
+    background: url("/static/images/pinch-logo@2x.png") 15px 16px;
+    background-repeat: no-repeat;
+    background-size: 25px 20px;
+  }
+}
+
+/* line 19, sass/pinch.scss */
 button[type="submit"] {
   background-color: #f8bf51;
   border-top: none;
@@ -7674,29 +7708,63 @@ button[type="submit"] {
   font-weight: 300;
   margin-bottom: 40px;
 }
-/* line 17, sass/pinch.scss */
+/* line 30, sass/pinch.scss */
 button[type="submit"].btn {
   border-radius: 0;
 }
 
-/* line 22, sass/pinch.scss */
+/* line 35, sass/pinch.scss */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* line 40, sass/pinch.scss */
 body {
   background: #f8f7f7;
   color: #333333;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
+  /* Set the fixed height of the footer here */
+  margin-bottom: 110px;
 }
 
-/* line 29, sass/pinch.scss */
+/* line 51, sass/pinch.scss */
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-top: 15px;
+  /* Set the fixed height of the footer here */
+  min-height: 85px;
+  padding: 10px;
+  background-color: #FFF;
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
+}
+/* line 62, sass/pinch.scss */
+#footer img {
+  margin: 5px 15px 5px 5px;
+}
+
+/* line 67, sass/pinch.scss */
+.clear {
+  clear: both;
+  height: 0px;
+  line-height: 0px;
+  font-size: 0px;
+}
+
+/* line 71, sass/pinch.scss */
 h1 {
   font-weight: 300;
 }
-/* line 31, sass/pinch.scss */
+/* line 73, sass/pinch.scss */
 h1 span {
   font-size: .4em;
 }
 
-/* line 34, sass/pinch.scss */
+/* line 76, sass/pinch.scss */
 h2 {
   font-size: 1.5em;
   font-style: italic;
@@ -7704,37 +7772,37 @@ h2 {
   margin-top: 5px;
   margin-bottom: 30px;
 }
-/* line 35, sass/pinch.scss */
+/* line 77, sass/pinch.scss */
 h2 span {
   font-weight: normal;
 }
 
-/* line 39, sass/pinch.scss */
+/* line 81, sass/pinch.scss */
 form label {
   font-weight: 300;
 }
-/* line 40, sass/pinch.scss */
+/* line 82, sass/pinch.scss */
 form input[type="text"], form textarea.form-control {
   border: 1px solid #dddfe0;
   border-radius: 0;
   box-shadow: none;
   font-size: 21px;
 }
-/* line 46, sass/pinch.scss */
+/* line 88, sass/pinch.scss */
 form input[type="text"] {
   padding: 25px 15px;
 }
-/* line 49, sass/pinch.scss */
+/* line 91, sass/pinch.scss */
 form textarea.form-control {
   padding: 10px 15px;
   height: 10em;
 }
 
-/* line 60, sass/pinch.scss */
+/* line 102, sass/pinch.scss */
 .step-icon div {
   margin-top: 28px;
 }
-/* line 62, sass/pinch.scss */
+/* line 104, sass/pinch.scss */
 .step-icon div.big-idea {
   background: url("/static/images/icon-big-idea.png") no-repeat 0 0;
   width: 64px;
@@ -7752,20 +7820,20 @@ form textarea.form-control {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 62, sass/pinch.scss */
+  /* line 104, sass/pinch.scss */
   .step-icon div.big-idea {
     background: url("/static/images/icon-big-idea@2x.png");
     background-size: 64px 97px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 62, sass/pinch.scss */
+  /* line 104, sass/pinch.scss */
   .step-icon div.big-idea {
     background: url("/static/images/icon-big-idea@2x.png");
     background-size: 64px 97px;
   }
 }
-/* line 71, sass/pinch.scss */
+/* line 113, sass/pinch.scss */
 .step-icon div.create-project {
   background: url("/static/images/create-project.png") no-repeat 0 0;
   width: 64px;
@@ -7783,20 +7851,20 @@ form textarea.form-control {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 71, sass/pinch.scss */
+  /* line 113, sass/pinch.scss */
   .step-icon div.create-project {
     background: url("/static/images/create-project@2x.png");
     background-size: 64px 65px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 71, sass/pinch.scss */
+  /* line 113, sass/pinch.scss */
   .step-icon div.create-project {
     background: url("/static/images/create-project@2x.png");
     background-size: 64px 65px;
   }
 }
-/* line 80, sass/pinch.scss */
+/* line 122, sass/pinch.scss */
 .step-icon div.validate {
   background: url("/static/images/validate.png") no-repeat 0 0;
   width: 64px;
@@ -7814,34 +7882,51 @@ form textarea.form-control {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 80, sass/pinch.scss */
+  /* line 122, sass/pinch.scss */
   .step-icon div.validate {
     background: url("/static/images/validate@2x.png");
     background-size: 64px 40px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 80, sass/pinch.scss */
+  /* line 122, sass/pinch.scss */
   .step-icon div.validate {
     background: url("/static/images/validate@2x.png");
     background-size: 64px 40px;
   }
 }
 
-/* line 96, sass/pinch.scss */
+/* line 138, sass/pinch.scss */
 .info-panel {
   background-color: #feebc5;
-  font-size: 18px;
-  padding: 10px 20px 20px 20px;
+  font-size: 16px;
+  padding: 15px;
+}
+/* line 142, sass/pinch.scss */
+.info-panel h3 {
+  padding-top: 0px;
+  margin-top: 0px;
+}
+/* line 143, sass/pinch.scss */
+.info-panel p {
+  margin-bottom: 5px;
+}
+/* line 144, sass/pinch.scss */
+.info-panel p.example {
+  font-size: 12px;
+  font-style: italic;
+  font-weight: bold;
+  line-height: 13px;
+  margin-bottom: 15px;
 }
 
-/* line 106, sass/pinch.scss */
+/* line 151, sass/pinch.scss */
 .venn {
   background: url("/static/images/venn-diagram.png") no-repeat center 0;
   background-size: contain;
   min-height: 800px;
 }
-/* line 110, sass/pinch.scss */
+/* line 155, sass/pinch.scss */
 .venn textarea {
   background: transparent;
   border: none;
@@ -7855,44 +7940,44 @@ form textarea.form-control {
   vertical-align: bottom;
   width: 100%;
 }
-/* line 122, sass/pinch.scss */
+/* line 167, sass/pinch.scss */
 .venn textarea:focus {
   outline: none;
 }
-/* line 125, sass/pinch.scss */
+/* line 170, sass/pinch.scss */
 .venn textarea#offering {
   padding-left: 30px;
 }
-/* line 126, sass/pinch.scss */
+/* line 171, sass/pinch.scss */
 .venn textarea#valueProp {
   padding-right: 30px;
   padding-left: 30px;
 }
-/* line 127, sass/pinch.scss */
+/* line 172, sass/pinch.scss */
 .venn textarea#customer {
   padding-right: 30px;
 }
 @media only screen and (max-width: 1200px) {
-  /* line 131, sass/pinch.scss */
+  /* line 176, sass/pinch.scss */
   .venn textarea {
     margin-top: 90px;
     height: 245px;
   }
 }
 @media only screen and (max-width: 990px) {
-  /* line 137, sass/pinch.scss */
+  /* line 182, sass/pinch.scss */
   .venn textarea {
     height: 300px;
     margin-top: 115px;
   }
-  /* line 141, sass/pinch.scss */
+  /* line 186, sass/pinch.scss */
   .venn .form-group.col-md-4 {
     float: left;
     width: 33%;
   }
 }
 @media only screen and (max-width: 650px) {
-  /* line 147, sass/pinch.scss */
+  /* line 192, sass/pinch.scss */
   .venn textarea {
     font-size: 18px;
     margin-top: 90px;
@@ -7900,7 +7985,7 @@ form textarea.form-control {
   }
 }
 @media only screen and (max-width: 530px) {
-  /* line 154, sass/pinch.scss */
+  /* line 199, sass/pinch.scss */
   .venn textarea {
     font-size: 15px;
     margin-top: 75px;
@@ -7908,14 +7993,14 @@ form textarea.form-control {
   }
 }
 @media only screen and (max-width: 500px) {
-  /* line 161, sass/pinch.scss */
+  /* line 206, sass/pinch.scss */
   .venn textarea {
     font-size: 15px;
     margin-top: 55px;
     height: 160px;
   }
 }
-/* line 167, sass/pinch.scss */
+/* line 212, sass/pinch.scss */
 .venn .validate-action {
   margin-top: 100px;
 }

@@ -117,9 +117,10 @@ class MinifyMvpView(TemplateView):
             "selectionJson": json.dumps(current_selection)
         }
 
-    def post(self, request, **kwargs):
+    def post(self, request, *args, **kwargs):
         project_slug = kwargs["slug"]
         project = Project.objects.get(slug=project_slug)
+
         if project.has_mvp:
             mvp = project.mvp
         else:
