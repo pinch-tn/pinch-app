@@ -33,27 +33,33 @@
   padding: 0 10px;
 }
 /* line 31, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns .drag_list {
+  padding: 0;
+  min-width: 100px;
+  min-height: 75px;
+}
+/* line 36, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns li {
   border-left: 1px solid #dddfe0;
   display: table-cell;
   padding: 10px 0;
   width: 350px;
 }
-/* line 36, sass/_gravity_board.scss */
+/* line 41, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns li:first-child {
   border-left: 0;
 }
-/* line 37, sass/_gravity_board.scss */
+/* line 42, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns li .task-header {
   padding: 5px;
   text-transform: uppercase;
 }
-/* line 40, sass/_gravity_board.scss */
+/* line 45, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns li .task-header h4 {
   margin: 0;
   padding: 0;
 }
-/* line 45, sass/_gravity_board.scss */
+/* line 50, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns li .ticket {
   background-color: #feebc5;
   float: left;
