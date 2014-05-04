@@ -21,12 +21,21 @@ function setup_highlighting(text_selector, button_selector, field_name, options_
 			console.log("marking selection", lastSel.head.ch, lastSel.anchor.ch);
 			var options = options_callback();
 			var sel = lastSel;
+			console.log("Recording selection", sel)
 			if (sel.head.ch > sel.anchor.ch) {
 				editor.doc.markText(sel.anchor, sel.head, options);
 			} else {
 				editor.doc.markText(sel.head, sel.anchor, options);
 			}
 		});
+
+		var currentSelections = JSON.parse($("#selections").val());
+		for (var i = 0; i < currentSelections.length; i++)
+		{
+			var currentSelection = currentSelections[i];
+			var options = options_callback();
+			editor.doc.markText({line: 0, ch: currentSelection.statement_start}, {line:0, ch: currentSelection.statement_end}, options)
+		}
 
 		// Delete all struckthrough text
 		$(button_selector).click( function() {
