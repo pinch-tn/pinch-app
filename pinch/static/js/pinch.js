@@ -98,10 +98,19 @@ $(document).ready(function() {
 	// Drag and Drop sticky notes
 	var adjustment
 
+	$.ajax("tickets/", {type:"get", dataType:"json", success: function(data) {
+		console.log("Ticket", data);
+	}
+	});
+
 	$("ul.drag_list").sortable({
 	  group: '.drag_list',
 	  connectWith: '.drag_list',
 	  pullPlaceholder: false,
+
+		receive: function (event, ui) {
+			console.log("receive", ui.item)
+		},
 
 	  // animation on drop
 	  onDrop: function  (item, targetContainer, _super) {
@@ -114,6 +123,7 @@ $(document).ready(function() {
 	      _super(item)
 	    })
 	  },
+
 
 	  // set item relative to cursor position
 	  onDragStart: function ($item, container, _super) {
