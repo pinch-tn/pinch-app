@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block step %}big-idea{% endblock step %}
   {% block content %}
       <div class="row">
 
@@ -8,8 +8,6 @@
         </div>
 
         <div class="col-md-8">
-          <small>{{ project.name }}</small>
-
           <h1>{% block page_title %}The Big Idea{% endblock page_title %} <span>5-15 Minutes</span></h1>
           <h2><span>"What are we doing?"</span> Let's get everyone on the same page and announce what the intention of our build is going to be.</h2>
         </div>

@@ -1,12 +1,11 @@
 {% extends "base.html" %}
-
+{% block step %}minify-mvp{% endblock step %}
   {% block content %}
       <div class="row">
 
           <div class="col-md-1">Icon</div>
 
           <div class="col-md-8">
-              <small>{{ project.name }}</small>
               <h1>{% block page_title %}Minify MVP{% endblock page_title %} <span>5-15 Minutes</span></h1>
 
               <form id="main_form" role="form" method="post">
