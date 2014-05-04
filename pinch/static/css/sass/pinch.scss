@@ -12,6 +12,7 @@ button[type="submit"] {
 	float:right;
 	font-size:21px;
 	font-weight:300;
+	margin-bottom:40px;
 	&.btn {
 		border-radius:0;
 	}
@@ -19,6 +20,7 @@ button[type="submit"] {
 
 body {
 	background:$color-bg;
+	color:$color-text;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight:300;
 }
@@ -28,18 +30,75 @@ h1 {
 	span { font-size:.4em; }
 }
 
-h2 { font-size:1.5em; font-style:italic; font-weight:300; margin-top:5px; margin-bottom:30px; }
+h2 { font-size:1.5em; font-style:italic; font-weight:300; margin-top:5px; margin-bottom:30px;
+	span { font-weight:normal; }
+}
 
 form {
 	label { font-weight:300; }
-	input[type="text"] {
-		border:none;
+	input[type="text"], textarea.form-control {
+		border:1px solid $color-border-color;
 		border-radius:0;
 		box-shadow:none;
 		font-size:21px;
+	}
+	input[type="text"] {
 		padding:25px 15px;
 	}
+	textarea.form-control {
+		padding:10px 15px;
+		height:10em;
+	}
 }
+
+
+
+// Step icons
+
+.step-icon {
+	div {
+		margin-top:28px;
+		&.big-idea {
+			background:url('/static/images/icon-big-idea.png') no-repeat 0 0;
+			width:64px;
+			height:97px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/icon-big-idea@2x.png');
+				background-size:64px 97px;
+			}
+		}
+		&.create-project {
+			background:url('/static/images/create-project.png') no-repeat 0 0;
+			width:64px;
+			height:65px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/create-project@2x.png');
+				background-size:64px 65px;
+			}
+		}
+		&.validate {
+			background:url('/static/images/validate.png') no-repeat 0 0;
+			width:64px;
+			height:40px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/validate@2x.png');
+				background-size:64px 40px;
+			}
+		}
+	}
+}
+
+
+
+// Info panel
+
+.info-panel {
+	background-color:$color-bg-panel;
+	font-size:18px;
+	padding:10px 20px 20px 20px;
+}
+
+
 
 // Venn diagram
 

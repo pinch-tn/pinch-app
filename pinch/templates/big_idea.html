@@ -3,22 +3,50 @@
   {% block content %}
       <div class="row">
 
-        <div class="col-md-1">Icon</div>
+        <div class="col-md-1 step-icon">
+          <div class="big-idea"></div>
+        </div>
 
         <div class="col-md-8">
+          <small>{{ project.name }}</small>
 
-          <h1>{% block page_title %}{{ project.name }} - The Big Idea{% endblock page_title %} <span>5-15 Minutes</span></h1>
+          <h1>{% block page_title %}The Big Idea{% endblock page_title %} <span>5-15 Minutes</span></h1>
+          <h2><span>"What are we doing?"</span> Let's get everyone on the same page and announce what the intention of our build is going to be.</h2>
+        </div>
+
+        <div class="col-md-3"></div>
+
+      </div>
+
+
+      <div class="row">
+
+        <div class="col-md-1"></div>
+
+        <div class="col-md-8">
           <form role="form" method="post">
             {% csrf_token %}
             <div class="form-group">
-              <textarea class="form-control" rows="3" name="bigIdea" id="bigIdea" placeholder="What are we doing?">{{ project.idea }}</textarea>
+              <textarea class="form-control" rows="3" name="bigIdea" id="bigIdea" placeholder="I want to build a product that does...">{{ project.idea }}</textarea>
             </div>
-            <button type="submit" class="btn btn-default">Next</button>
+            <div class="clearfix">
+              <button type="submit" class="btn btn-default">next</button>
+            </div>
           </form>
 
         </div>
 
-        <div class="col-md-3">Info bar</div>
+        <div class="col-md-3">
+          <div class="info-panel">
+            <h3>Tips</h3>
+            <p>Share your idea with the team, get some buy-in.</p>
+            <p>Timebox your effort, there should be a short deadline.</p>
+            <ul>
+              <li>2-10 Working Days is the recommended timebox for Pinch. Longer projects will benefit from more robust planning.</li>
+            </ul>
+            <p>Choose someone in the team to facilitate Pinch.</p>
+          </div>
+        </div>
 
       </div>
   {% endblock content %}
