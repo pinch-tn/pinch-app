@@ -112,8 +112,15 @@ class GravityBoardView(TemplateView):
             "project": project,
         }
 
+
 class MinifyMvpView(TemplateView):
     template_name = "minify_mvp.html"
+
+    def get_context_data(self, **kwargs):
+        project = Project.objects.get(slug=kwargs["slug"])
+        return {
+            "project": project,
+        }
 
 
 class MvpRedactionsView(View):
