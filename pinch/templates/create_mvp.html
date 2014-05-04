@@ -26,7 +26,7 @@
               <form role="form" method="post">
                   {% csrf_token %}
                   <div class="form-group">
-                      <textarea class="form-control" rows="3" name="original_statement" id="original_statement" placeholder="A user will be able to do this, and then that, and then finally end up here."> {{ project.mvp.original_statement }} </textarea>
+                      <textarea class="form-control" rows="3" name="original_statement" id="original_statement" placeholder="A user will be able to do this, and then that, and then finally end up here.">{{ project.mvp.original_statement }}</textarea>
                   </div>
                   <button type="submit" class="btn btn-default">Next</button>
               </form>

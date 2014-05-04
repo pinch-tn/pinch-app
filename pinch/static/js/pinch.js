@@ -123,7 +123,7 @@ $(document).ready(function() {
 			status: $current_list.parent().attr("status")
 		};
 		$.ajax("tickets/", {type:"post", contentType: "application/json", data: JSON.stringify(ticket_info), dataType:"json", success: function(data) {
-			var $new_task = $("<li id='" + data.pk + "' class='ticket'>" + new_task_text + "<div class='trash'></div></li>");
+			var $new_task = $("<li id='" + data.pk + "' class='ticket'>" + new_task_text + "<div class='trash'>x</div></li>");
 			$current_list.append($new_task);
 			$(".modal-body input").removeAttr('value');
 			$(".trash").click(deleteFunction);
