@@ -1,0 +1,127 @@
+//
+//   Gravity Board
+//
+
+#gravity-board {
+	border-top:1px solid $color-border-color;
+	top:50px;
+	right:0;
+	bottom:0;
+	left:0;
+	overflow:auto;
+	position:absolute;
+	.lane {
+		width:100%;
+		overflow:visible;
+		white-space:nowrap;
+		.header {
+			background-color:lighten($color-button-border, 30%);
+			border-bottom:1px solid $color-border-color;
+			overflow:hidden;
+			padding:5px 5px 5px 15px;
+			text-transform:uppercase;
+			h3 {
+				margin:0;
+				padding:0;
+			}
+		}
+		.task-columns {
+			margin:0;
+			padding:0 10px;
+			li {
+				border-left:1px solid $color-border-color;
+				display:table-cell;
+				padding:10px 0;
+				width:350px;
+				&:first-child { border-left:0; }
+				.task-header {
+					padding:5px;
+					text-transform:uppercase;
+					h4 {
+						margin:0;
+						padding:0;
+					}
+				}
+				.ticket {
+					background-color:$color-bg-panel;
+					float:left;
+					line-height:15px;
+					margin:5px;
+					padding:5px;
+					white-space:normal;
+					width:100px;
+					height:75px;
+				}
+			}
+		}
+	}
+}
+
+// #gravity-board {
+// 	a { border:0; text-decoration:underline; }
+// 	.columns-container {
+// 		border-top:1px solid $color-border-color;
+// 		top:50px;
+// 		right:0;
+// 		bottom:0;
+// 		left:0;
+// 		overflow-y:hidden;
+// 		overflow-x:auto;
+// 		position:absolute;
+// 		.columns-container-scroller {
+// 			height:100%;
+// 			overflow:visible;
+// 			white-space:nowrap;
+// 			.column {
+// 				background-color:white;
+// 				border-right:1px solid $color-border-color;
+// 				display:inline-block;
+// 				overflow:hidden;
+// 				vertical-align:top;
+// 				width:326px;
+// 				height:100%;
+// 				.column-header {
+// 					border-bottom:1px solid $color-border-color;
+// 					padding:.25em;
+// 					h3 { display:block; margin:0; padding:0;
+// 						span {
+// 							color:lighten(#444, 50%);
+// 							cursor:pointer;
+// 							display:block;
+// 							float:right;
+// 							padding-top:.15em;
+// 							&:hover {
+// 								color:#444;
+// 							}
+// 						}
+// 					}
+// 				}
+// 				.column-scroller {
+// 					position:absolute;
+// 					top:33px;
+// 					bottom:0;
+// 					overflow-y:auto;
+// 					overflow-x:hidden;
+// 					width:325px;
+// 					.lane-header {
+// 						border-top:1px solid $color-border-color;
+// 						border-bottom:1px solid $color-border-color;
+// 					}
+// 					.ticket {
+// 						background-color:$color-bg-panel;
+// 						float:left;
+// 						margin:5px;
+// 						width:150px;
+// 						height:100px;
+// 					}
+// 					// .column-content {
+// 					// 	width:325px;
+// 					// 	.ticket {
+							
+// 					// 	}
+// 					// }
+// 				}
+// 			}
+// 		}
+// 	}
+// }

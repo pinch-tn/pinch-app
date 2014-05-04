@@ -1,3 +1,70 @@
+/* line 5, sass/_gravity_board.scss */
+#gravity-board {
+  border-top: 1px solid #dddfe0;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  position: absolute;
+}
+/* line 13, sass/_gravity_board.scss */
+#gravity-board .lane {
+  width: 100%;
+  overflow: visible;
+  white-space: nowrap;
+}
+/* line 17, sass/_gravity_board.scss */
+#gravity-board .lane .header {
+  background-color: #dddfe0;
+  border-bottom: 1px solid #dddfe0;
+  overflow: hidden;
+  padding: 5px 5px 5px 15px;
+  text-transform: uppercase;
+}
+/* line 23, sass/_gravity_board.scss */
+#gravity-board .lane .header h3 {
+  margin: 0;
+  padding: 0;
+}
+/* line 28, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns {
+  margin: 0;
+  padding: 0 10px;
+}
+/* line 31, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li {
+  border-left: 1px solid #dddfe0;
+  display: table-cell;
+  padding: 10px 0;
+  width: 350px;
+}
+/* line 36, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li:first-child {
+  border-left: 0;
+}
+/* line 37, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li .task-header {
+  padding: 5px;
+  text-transform: uppercase;
+}
+/* line 40, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li .task-header h4 {
+  margin: 0;
+  padding: 0;
+}
+/* line 45, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li .ticket {
+  background-color: #feebc5;
+  float: left;
+  line-height: 15px;
+  margin: 5px;
+  padding: 5px;
+  white-space: normal;
+  width: 100px;
+  height: 75px;
+}
+
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /* line 9, ../../../../../../Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.1.1.1/vendor/assets/stylesheets/bootstrap/_normalize.scss */
 html {
@@ -7891,7 +7958,7 @@ button.close {
     display: none !important;
   }
 }
-/* line 5, sass/pinch.scss */
+/* line 6, sass/pinch.scss */
 button[type="submit"] {
   background-color: #f8bf51;
   border-top: none;
@@ -7904,18 +7971,18 @@ button[type="submit"] {
   font-weight: 300;
   margin-bottom: 40px;
 }
-/* line 16, sass/pinch.scss */
+/* line 17, sass/pinch.scss */
 button[type="submit"].btn {
   border-radius: 0;
 }
 
-/* line 21, sass/pinch.scss */
+/* line 22, sass/pinch.scss */
 html {
   position: relative;
   min-height: 100%;
 }
 
-/* line 26, sass/pinch.scss */
+/* line 27, sass/pinch.scss */
 body {
   background: #f8f7f7;
   color: #333333;
@@ -7925,7 +7992,7 @@ body {
   margin-bottom: 110px;
 }
 
-/* line 37, sass/pinch.scss */
+/* line 38, sass/pinch.scss */
 #footer {
   position: absolute;
   bottom: 0;
@@ -7938,12 +8005,12 @@ body {
   border-top: 1px solid #EEE;
   border-bottom: 1px solid #EEE;
 }
-/* line 48, sass/pinch.scss */
+/* line 49, sass/pinch.scss */
 #footer img {
   margin: 5px 15px 5px 5px;
 }
 
-/* line 53, sass/pinch.scss */
+/* line 54, sass/pinch.scss */
 .clear {
   clear: both;
   height: 0px;
@@ -7951,16 +8018,16 @@ body {
   font-size: 0px;
 }
 
-/* line 57, sass/pinch.scss */
+/* line 58, sass/pinch.scss */
 h1 {
   font-weight: 300;
 }
-/* line 59, sass/pinch.scss */
+/* line 60, sass/pinch.scss */
 h1 span {
   font-size: .4em;
 }
 
-/* line 62, sass/pinch.scss */
+/* line 63, sass/pinch.scss */
 h2 {
   font-size: 1.5em;
   font-style: italic;
@@ -7968,37 +8035,37 @@ h2 {
   margin-top: 5px;
   margin-bottom: 30px;
 }
-/* line 63, sass/pinch.scss */
+/* line 64, sass/pinch.scss */
 h2 span {
   font-weight: normal;
 }
 
-/* line 67, sass/pinch.scss */
+/* line 68, sass/pinch.scss */
 form label {
   font-weight: 300;
 }
-/* line 68, sass/pinch.scss */
+/* line 69, sass/pinch.scss */
 form input[type="text"], form textarea.form-control {
   border: 1px solid #dddfe0;
   border-radius: 0;
   box-shadow: none;
   font-size: 21px;
 }
-/* line 74, sass/pinch.scss */
+/* line 75, sass/pinch.scss */
 form input[type="text"] {
   padding: 25px 15px;
 }
-/* line 77, sass/pinch.scss */
+/* line 78, sass/pinch.scss */
 form textarea.form-control {
   padding: 10px 15px;
   height: 10em;
 }
 
-/* line 88, sass/pinch.scss */
+/* line 89, sass/pinch.scss */
 .step-icon div {
   margin-top: 28px;
 }
-/* line 90, sass/pinch.scss */
+/* line 91, sass/pinch.scss */
 .step-icon div.big-idea {
   background: url("/static/images/icon-big-idea.png") no-repeat 0 0;
   width: 64px;
@@ -8016,20 +8083,20 @@ form textarea.form-control {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 90, sass/pinch.scss */
+  /* line 91, sass/pinch.scss */
   .step-icon div.big-idea {
     background: url("/static/images/icon-big-idea@2x.png");
     background-size: 64px 97px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 90, sass/pinch.scss */
+  /* line 91, sass/pinch.scss */
   .step-icon div.big-idea {
     background: url("/static/images/icon-big-idea@2x.png");
     background-size: 64px 97px;
   }
 }
-/* line 99, sass/pinch.scss */
+/* line 100, sass/pinch.scss */
 .step-icon div.create-project {
   background: url("/static/images/create-project.png") no-repeat 0 0;
   width: 64px;
@@ -8047,20 +8114,20 @@ form textarea.form-control {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 99, sass/pinch.scss */
+  /* line 100, sass/pinch.scss */
   .step-icon div.create-project {
     background: url("/static/images/create-project@2x.png");
     background-size: 64px 65px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 99, sass/pinch.scss */
+  /* line 100, sass/pinch.scss */
   .step-icon div.create-project {
     background: url("/static/images/create-project@2x.png");
     background-size: 64px 65px;
   }
 }
-/* line 108, sass/pinch.scss */
+/* line 109, sass/pinch.scss */
 .step-icon div.validate {
   background: url("/static/images/validate.png") no-repeat 0 0;
   width: 64px;
@@ -8078,36 +8145,36 @@ form textarea.form-control {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 108, sass/pinch.scss */
+  /* line 109, sass/pinch.scss */
   .step-icon div.validate {
     background: url("/static/images/validate@2x.png");
     background-size: 64px 40px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 108, sass/pinch.scss */
+  /* line 109, sass/pinch.scss */
   .step-icon div.validate {
     background: url("/static/images/validate@2x.png");
     background-size: 64px 40px;
   }
 }
 
-/* line 124, sass/pinch.scss */
+/* line 125, sass/pinch.scss */
 .info-panel {
   background-color: #feebc5;
   font-size: 16px;
   padding: 15px;
 }
-/* line 128, sass/pinch.scss */
+/* line 129, sass/pinch.scss */
 .info-panel h3 {
   padding-top: 0px;
   margin-top: 0px;
 }
-/* line 129, sass/pinch.scss */
+/* line 130, sass/pinch.scss */
 .info-panel p {
   margin-bottom: 5px;
 }
-/* line 130, sass/pinch.scss */
+/* line 131, sass/pinch.scss */
 .info-panel p.example {
   font-size: 12px;
   font-style: italic;
@@ -8116,13 +8183,13 @@ form textarea.form-control {
   margin-bottom: 15px;
 }
 
-/* line 137, sass/pinch.scss */
+/* line 138, sass/pinch.scss */
 .venn {
   background: url("/static/images/venn-diagram.png") no-repeat center 0;
   background-size: contain;
   min-height: 800px;
 }
-/* line 141, sass/pinch.scss */
+/* line 142, sass/pinch.scss */
 .venn textarea {
   background: transparent;
   border: none;
@@ -8136,44 +8203,44 @@ form textarea.form-control {
   vertical-align: bottom;
   width: 100%;
 }
-/* line 153, sass/pinch.scss */
+/* line 154, sass/pinch.scss */
 .venn textarea:focus {
   outline: none;
 }
-/* line 156, sass/pinch.scss */
+/* line 157, sass/pinch.scss */
 .venn textarea#offering {
   padding-left: 30px;
 }
-/* line 157, sass/pinch.scss */
+/* line 158, sass/pinch.scss */
 .venn textarea#valueProp {
   padding-right: 30px;
   padding-left: 30px;
 }
-/* line 158, sass/pinch.scss */
+/* line 159, sass/pinch.scss */
 .venn textarea#customer {
   padding-right: 30px;
 }
 @media only screen and (max-width: 1200px) {
-  /* line 162, sass/pinch.scss */
+  /* line 163, sass/pinch.scss */
   .venn textarea {
     margin-top: 90px;
     height: 245px;
   }
 }
 @media only screen and (max-width: 990px) {
-  /* line 168, sass/pinch.scss */
+  /* line 169, sass/pinch.scss */
   .venn textarea {
     height: 300px;
     margin-top: 115px;
   }
-  /* line 172, sass/pinch.scss */
+  /* line 173, sass/pinch.scss */
   .venn .form-group.col-md-4 {
     float: left;
     width: 33%;
   }
 }
 @media only screen and (max-width: 650px) {
-  /* line 178, sass/pinch.scss */
+  /* line 179, sass/pinch.scss */
   .venn textarea {
     font-size: 18px;
     margin-top: 90px;
@@ -8181,7 +8248,7 @@ form textarea.form-control {
   }
 }
 @media only screen and (max-width: 530px) {
-  /* line 185, sass/pinch.scss */
+  /* line 186, sass/pinch.scss */
   .venn textarea {
     font-size: 15px;
     margin-top: 75px;
@@ -8189,14 +8256,14 @@ form textarea.form-control {
   }
 }
 @media only screen and (max-width: 500px) {
-  /* line 192, sass/pinch.scss */
+  /* line 193, sass/pinch.scss */
   .venn textarea {
     font-size: 15px;
     margin-top: 55px;
     height: 160px;
   }
 }
-/* line 198, sass/pinch.scss */
+/* line 199, sass/pinch.scss */
 .venn .validate-action {
   margin-top: 100px;
 }
