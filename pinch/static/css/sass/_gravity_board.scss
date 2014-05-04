@@ -28,6 +28,11 @@
 		.task-columns {
 			margin:0;
 			padding:0 10px;
+			.drag_list {
+				padding:0;
+				min-width:100px;
+				min-height:75px;
+			}
 			li {
 				border-left:1px solid $color-border-color;
 				display:table-cell;
@@ -57,71 +62,6 @@
 	}
 }
 
-// #gravity-board {
-// 	a { border:0; text-decoration:underline; }
-// 	.columns-container {
-// 		border-top:1px solid $color-border-color;
-// 		top:50px;
-// 		right:0;
-// 		bottom:0;
-// 		left:0;
-// 		overflow-y:hidden;
-// 		overflow-x:auto;
-// 		position:absolute;
-// 		.columns-container-scroller {
-// 			height:100%;
-// 			overflow:visible;
-// 			white-space:nowrap;
-// 			.column {
-// 				background-color:white;
-// 				border-right:1px solid $color-border-color;
-// 				display:inline-block;
-// 				overflow:hidden;
-// 				vertical-align:top;
-// 				width:326px;
-// 				height:100%;
-// 				.column-header {
-// 					border-bottom:1px solid $color-border-color;
-// 					padding:.25em;
-// 					h3 { display:block; margin:0; padding:0;
-// 						span {
-// 							color:lighten(#444, 50%);
-// 							cursor:pointer;
-// 							display:block;
-// 							float:right;
-// 							padding-top:.15em;
-// 							&:hover {
-// 								color:#444;
-// 							}
-// 						}
-// 					}
-// 				}
-// 				.column-scroller {
-// 					position:absolute;
-// 					top:33px;
-// 					bottom:0;
-// 					overflow-y:auto;
-// 					overflow-x:hidden;
-// 					width:325px;
-// 					.lane-header {
-// 						border-top:1px solid $color-border-color;
-// 						border-bottom:1px solid $color-border-color;
-// 					}
-// 					.ticket {
-// 						background-color:$color-bg-panel;
-// 						float:left;
-// 						margin:5px;
-// 						width:150px;
-// 						height:100px;
-// 					}
-// 					// .column-content {
-// 					// 	width:325px;
-// 					// 	.ticket {
-							
-// 					// 	}
-// 					// }
-// 				}
-// 			}
-// 		}
-// 	}
-// }
+.modal-dialog {
+		left:0 !important;
+	}

@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, RedirectView, View
+from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
-from models import Project, Mvp, MvpRedaction, Workstream
+from models import Project, Mvp, MvpRedaction, Workstream, Ticket
 import json
 
 class RootProjectView(View):
@@ -166,7 +167,10 @@ class BreakdownMvpView(TemplateView):
         for workstream in mvp.workstream_set.all():
             workstream.delete()
 
-        for add_workstream in json.loads(request.POST.get("workstreams","[]")):
+        raw_workstreams = json.loads(request.POST.get("workstreams", "[]"))
+        workstreams = [dict(t) for t in set([tuple(d.items()) for d in raw_workstreams])]
+
+        for add_workstream in workstreams:
             line = add_workstream["line"]
             start = add_workstream["statement_start"]
             end = add_workstream["statement_end"]
@@ -185,5 +189,66 @@ class GravityBoardView(TemplateView):
             "project": project,
         }
 
+class TicketView(View):
+    def get_context_data(self, **kwargs):
+        project = Project.objects.get(slug=kwargs["slug"])
+        return {
+            "project": project,
+        }
 
+    def get(self, request, **kwargs):
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+        tickets = Ticket.objects.all().filter(mvp=mvp)
+        return HttpResponse(serializers.serialize("json",list(tickets)),mimetype='application/json')
 
+    def post(self, request, **kwargs):
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+
+        create_ticket = json.loads(request.body)
+        workstream = Workstream.objects.get(name=create_ticket['workstream'])
+        ticket = Ticket.objects.create(mvp=mvp,content=create_ticket['content'],status=create_ticket['status'],workstream=workstream)
+        ticket.save()
+        return HttpResponse(serializers.serialize("json",ticket),mimetype='application/json')
+
+    def patch(self, request, **kwargs):
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+
+        update_ticket = json.loads(request.body)
+        workstream = Workstream.objects.get(name=update_ticket['workstream'])
+        ticket = Ticket.objects.get(id-update_ticket['id'])
+        ticket.workstream=workstream
+        ticket.content=update_ticket['content']
+        ticket.status=update_ticket['status']
+        ticket.save()
+        return HttpResponse("ok")
+
+    def delete(self, request, **kwargs):
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+
+        delete_ticket = json.loads(request.body)
+        Ticket.objects.get(id=delete_ticket['id']).delete()
+        return HttpResponse("ok")
+
+    @csrf_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(TicketView, self).dispatch(*args, **kwargs)
