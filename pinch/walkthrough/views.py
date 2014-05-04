@@ -123,6 +123,15 @@ class MinifyMvpView(TemplateView):
         }
 
 
+class BreakdownMvpView(TemplateView):
+    template_name = "breakdown_mvp.html"
+
+    def get_context_data(self, **kwargs):
+        project = Project.objects.get(slug=kwargs["slug"])
+        return {
+            "project": project,
+            }
+
 class MvpRedactionsView(View):
     def post(self, request, **kwargs):
         project_name = kwargs["name"]
