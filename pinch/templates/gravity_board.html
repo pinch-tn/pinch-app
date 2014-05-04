@@ -1,6 +1,108 @@
 {% extends "base.html" %}
 
   {% block content %}
-      <h1>{% block page_title %}Gravity Board{% endblock page_title %}</h1>
-      <p></p>
+      <div id="gravity-board">
+      	<!-- READY -->
+      	<div class="lane ready">
+      		<div class="header">
+      			<h3>Ready</h3>
+      		</div>
+  			<ul class="task-columns">
+  				<li>
+  					<div class="task-header">
+  						<h4>Make coffee</h4>
+  					</div>
+  					<div class="ticket">This is my task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Cook breakfast</h4>
+  					</div>
+  					<div class="ticket">This is my other task</div>
+  					<div class="ticket">This is my other task</div>
+  					<div class="ticket">This is my other task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Clean house</h4>
+  					</div>
+  					<div class="ticket">This is my final task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Watch TV</h4>
+  					</div>
+  					<div class="ticket">This is my final task</div>
+  				</li>
+  			</ul>
+      	</div>
+      	<!-- DOING -->
+      	<div class="lane doing">
+      		<div class="header">
+      			<h3>Doing</h3>
+      		</div>
+  			<ul class="task-columns">
+  				<li>
+  					<div class="task-header">
+  						<h4>Make coffee</h4>
+  					</div>
+  					<div class="ticket">This is my task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Cook breakfast</h4>
+  					</div>
+  					<div class="ticket">This is my other task</div>
+  					<div class="ticket">This is my other task</div>
+  					<div class="ticket">This is my other task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Clean house</h4>
+  					</div>
+  					<div class="ticket">This is my final task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Watch TV</h4>
+  					</div>
+  					<div class="ticket">This is my final task</div>
+  				</li>
+  			</ul>
+      	</div>
+      	<!-- DONE! -->
+      	<div class="lane done">
+      		<div class="header">
+      			<h3>Done</h3>
+      		</div>
+  			<ul class="task-columns">
+  				<li>
+  					<div class="task-header">
+  						<h4>Make coffee</h4>
+  					</div>
+  					<div class="ticket">This is my task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Cook breakfast</h4>
+  					</div>
+  					<div class="ticket">This is my other task</div>
+  					<div class="ticket">This is my other task</div>
+  					<div class="ticket">This is my other task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Clean house</h4>
+  					</div>
+  					<div class="ticket">This is my final task</div>
+  				</li>
+  				<li>
+  					<div class="task-header">
+  						<h4>Watch TV</h4>
+  					</div>
+  					<div class="ticket">This is my final task</div>
+  				</li>
+  			</ul>
+      	</div>
+      </div>
   {% endblock content %}
