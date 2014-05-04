@@ -3,6 +3,10 @@
 @import "gravity_board";
 @import "bootstrap";
 
+.home-row {
+	margin-top:40px;
+}
+
 .navbar-header {
 	a {
 		background:url('/static/images/pinch-logo.png') no-repeat 15px 16px;
@@ -254,13 +258,22 @@ form {
 				background-size:64px 46px;
 			}
 		}
-		&.cminify-mvp {
+		&.minify-mvp {
 			background:url('/static/images/icon-minify-mvp.png') no-repeat 0 0;
 			width:64px;
-			height:46px;
+			height:42px;
 			@include respond-to(retina-display) {
 				background:url('/static/images/icon-minify-mvp@2x.png');
-				background-size:64px 46px;
+				background-size:64px 42px;
+			}
+		}
+		&.breakdown-mvp {
+			background:url('/static/images/icon-breakdown-mvp.png') no-repeat 0 0;
+			width:64px;
+			height:47px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/icon-breakdown-mvp@2x.png');
+				background-size:64px 47px;
 			}
 		}
 	}
