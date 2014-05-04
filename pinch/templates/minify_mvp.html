@@ -8,14 +8,11 @@
           <div class="col-md-8">
 
               <h1>{% block page_title %}{{ project.name }} - Minify MVP{% endblock page_title %} <span>5-15 Minutes</span></h1>
-              <form role="form" method="post">
-                  {% csrf_token %}
-                  <div class="form-group">
-                      <textarea class="form-control" rows="3" name="original_statement" id="original_statement" placeholder="">{{ project.mvp.original_statement }}</textarea>
-                  </div>
-                  <button type="submit" class="btn btn-default">Next</button>
-              </form>
-
+              <div>
+                  <textarea readonly id="strike_statement" rows="3" name="strike_statement">{{ project.mvp.original_statement }}</textarea>
+              </div>
+              <button id="clear" type="button" class="btn btn-default">Clear</button>
+              <button id="minify_next" type="submit" class="btn btn-default">Next</button>
           </div>
 
           <div class="col-md-3">Info bar</div>
