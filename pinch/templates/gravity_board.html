@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block step %}gravity-board{% endblock step %}
+
   {% block content %}
 
 
@@ -12,7 +12,7 @@
   			<ul class="task-columns">
   				<li>
   					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  						<button class="btn btn-primary btn-lg add" data-toggle="modal" data-target="#myModal">
   +
 </button><h4>Make coffee</h4>
   					</div>
@@ -22,7 +22,7 @@
   				</li>
   				<li>
   					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  						<button class="btn btn-primary btn-lg add" data-toggle="modal" data-target="#myModal">
   +
 </button><h4>Cook breakfast</h4>
   					</div>
@@ -34,7 +34,7 @@
   				</li>
   				<li>
   					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  						<button class="btn btn-primary btn-lg add" data-toggle="modal" data-target="#myModal">
   +
 </button><h4>Clean house</h4>
   					</div>
@@ -44,7 +44,7 @@
   				</li>
   				<li>
   					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  						<button class="btn btn-primary btn-lg add" data-toggle="modal" data-target="#myModal">
   +
 </button><h4>Watch TV</h4>
   					</div>
@@ -149,11 +149,11 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        <input type="text" />
+        <input type="text" placeholder="New Task Item..."/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary save" data-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>
