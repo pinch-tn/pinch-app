@@ -108,8 +108,13 @@ class MinifyMvpView(TemplateView):
 
     def get_context_data(self, **kwargs):
         project = Project.objects.get(slug=kwargs["slug"])
+        if project.has_mvp:
+            current_selection = [{"statement_start": r.statement_start, "statement_end": r.statement_end} for r in project.mvp.mvpredaction_set.all()]
+        else:
+            current_selection = []
         return {
             "project": project,
+            "selectionJson": json.dumps(current_selection)
         }
 
     def post(self, request, **kwargs):
@@ -120,7 +125,13 @@ class MinifyMvpView(TemplateView):
         else:
             mvp = Mvp.objects.create(project=project)
 
-        for add_redaction in json.loads(request.POST.get("redactions","[]")):
+        for redaction in mvp.mvpredaction_set.all():
+            redaction.delete()
+
+        raw_redactions = json.loads(request.POST.get("redactions", "[]"))
+        # deduplicate
+        redactions = [dict(t) for t in set([tuple(d.items()) for d in raw_redactions])]
+        for add_redaction in redactions:
             redaction = MvpRedaction.objects.create(mvp=mvp,statement_start=add_redaction["statement_start"],statement_end=add_redaction["statement_end"])
             redaction.save()
         return redirect("breakdown_mvp", slug=project_slug)

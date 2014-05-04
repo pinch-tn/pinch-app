@@ -11,6 +11,7 @@
 
               <form id="main_form" role="form" method="post">
                   {% csrf_token %}
+                  <input type="hidden" name="workstreams" id="selections" value="{{ selectionJson }}">
                   <div>
                       <textarea id="highlight_statement">{{ project.mvp.original_statement }}</textarea>
                   </div>
