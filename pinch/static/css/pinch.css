@@ -56,7 +56,7 @@
 /* line 45, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns li .ticket {
   background-color: #feebc5;
-  float: left;
+  /*float: left;*/
   line-height: 15px;
   margin: 5px;
   padding: 5px;
