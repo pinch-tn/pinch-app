@@ -20,7 +20,7 @@ def get_env_setting(setting):
         raise ImproperlyConfigured(error_msg)
 
 
-#DEBUG=True
+DEBUG=True
 
 ########## HOST CONFIGURATION
 # See: https://docs.djangoproject.com/en/1.5/releases/1.5/#allowed-hosts-required-in-production
@@ -88,7 +88,6 @@ ALLOWED_HOSTS = ['*']
 from os.path import dirname, join, abspath
 
 BASE_DIR = dirname(abspath(__file__))
-print " ******** BASE_DIR = %s ******** " % BASE_DIR
 STATIC_ROOT = join(BASE_DIR, '../../assets')
 STATIC_URL = '/static/'
 
@@ -96,6 +95,4 @@ STATICFILES_DIRS = (
     join(BASE_DIR, '../../static'),
 )
 
-print "Hi?"
-print " ******** STATIC_DIRS = %s ******** " % STATICFILES_DIRS
 
