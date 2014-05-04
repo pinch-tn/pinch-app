@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, RedirectView, View
-
+from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
-from models import Project, Mvp, MvpRedaction, Workstream
+from models import Project, Mvp, MvpRedaction, Workstream, Ticket
 import json
 
 class RootProjectView(View):
@@ -200,7 +200,8 @@ class TicketView(View):
             mvp = project.mvp
         else:
             mvp = Mvp.objects.create(project=project)
-        print json.loads(request.body)
+        tickets = Ticket.objects.all().filter(mvp=mvp)
+        return HttpResponse(serializers.serialize("json",list(tickets)),mimetype='application/json')
 
     def post(self, request, **kwargs):
         project_slug = kwargs["slug"]
@@ -209,7 +210,12 @@ class TicketView(View):
             mvp = project.mvp
         else:
             mvp = Mvp.objects.create(project=project)
-        print json.loads(request.body)
+
+        create_ticket = json.loads(request.body)
+        workstream = Workstream.objects.get(name=create_ticket['workstream'])
+        ticket = Ticket.objects.create(mvp=mvp,content=create_ticket['content'],status=create_ticket['status'],workstream=workstream)
+        ticket.save()
+        return HttpResponse(serializers.serialize("json",ticket),mimetype='application/json')
 
     def patch(self, request, **kwargs):
         project_slug = kwargs["slug"]
@@ -218,16 +224,27 @@ class TicketView(View):
             mvp = project.mvp
         else:
             mvp = Mvp.objects.create(project=project)
-        print json.loads(request.body)
 
-    def post(self, request, **kwargs):
+        update_ticket = json.loads(request.body)
+        workstream = Workstream.objects.get(name=update_ticket['workstream'])
+        ticket = Ticket.objects.get(id-update_ticket['id'])
+        ticket.workstream=workstream
+        ticket.content=update_ticket['content']
+        ticket.status=update_ticket['status']
+        ticket.save()
+        return HttpResponse("ok")
+
+    def delete(self, request, **kwargs):
         project_slug = kwargs["slug"]
         project = Project.objects.get(slug=project_slug)
         if project.has_mvp:
             mvp = project.mvp
         else:
             mvp = Mvp.objects.create(project=project)
-        print json.loads(request.body)
+
+        delete_ticket = json.loads(request.body)
+        Ticket.objects.get(id=delete_ticket['id']).delete()
+        return HttpResponse("ok")
 
     @csrf_exempt
     def dispatch(self, *args, **kwargs):

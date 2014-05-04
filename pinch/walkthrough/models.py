@@ -70,6 +70,7 @@ class Workstream(models.Model):
 
 
 class Ticket(models.Model):
+    mvp = models.ForeignKey(Mvp)
     workstream = models.ForeignKey(Workstream)
     content = models.TextField(blank=True)
     status = models.CharField(max_length=20)
