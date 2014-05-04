@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block step %}create-mvp{% endblock step %}
   {% block content %}
   
         <div class="row">
@@ -9,7 +9,6 @@
         </div>
 
         <div class="col-md-8">
-              <small>{{ project.name }}</small>
               <h1>{% block page_title %}Create MVP{% endblock page_title %} <span>5-15 Minutes</span></h1>
               <h2><span>"The MVP you want."</span> Now that there is clarity about what we are building and whom we are building it for, it's time to identify the Minimum Viable Product. For Pinch, your MVP statement needs to be a short walkthrough of your product from a client perspective.</h2>
         </div>

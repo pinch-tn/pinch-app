@@ -1,33 +1,49 @@
 {% extends "base.html" %}
-
+{% block step %}minify-mvp{% endblock step %}
   {% block content %}
+  
+  <div class="row">
+
+      <div class="col-md-1">Icon</div>
+
+      <div class="col-md-8">
+          <small>{{ project.name }}</small>
+          <h1>{% block page_title %}Minify MVP{% endblock page_title %} <span>5-15 Minutes</span></h1>
+		  <h2><span>"The MVP you need."</span> If we don’t need something to say we have a product, let’s cut it out.  Let’s make some hard choices here as you read through your MVP statement.</h2>
+		  <span class="label label-warning">Click and Drag to cut scope!</span>
+      </div>
+
+      <div class="col-md-3"></div>
+
+  </div>
+  
+  
       <div class="row">
 
-          <div class="col-md-1">Icon</div>
+          <div class="col-md-1"></div>
 
           <div class="col-md-8">
-              <small>{{ project.name }}</small>
-              <h1>{% block page_title %}Minify MVP{% endblock page_title %} <span>5-15 Minutes</span></h1>
-
               <form id="main_form" role="form" method="post">
                   {% csrf_token %}
                   <input type="hidden" name="redactions" id="selections" value="{{ selectionJson }}">
-                  <div>
+                  <div class="codeholder">
                       <textarea id="strike_statement">{{ project.mvp.original_statement }}</textarea>
                   </div>
 
-                  <button id="clear" type="button" class="btn btn-default">Clear</button>
+                  <button id="clear" type="button" class="btn btn-default">Clear Edits</button>
                   <button id="minify_next" type="submit" class="btn btn-default">Next</button>
               </form>
           </div>
 
-          <div class="col-md-3">Info bar</div>
+          <div class="col-md-3">
+            <div class="info-panel">
+  				<h3>5-15 Minutes</h3>
+  				<p><b>Click and drag your cursor</b> over things you don't need to do right now.</p>
+  				<p class="example">A user will be able to do this, <span class="strikethrough">and then that</span>, and then finally end up here.</p>
+            </div>
+          </div>
 
       </div>
 
-      <style>
-          .strikethrough {
-              text-decoration: line-through;
-          }
-      </style>
+
   {% endblock content %}

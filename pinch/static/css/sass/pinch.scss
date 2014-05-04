@@ -16,6 +16,89 @@
 	}
 }
 
+.steps {
+	margin-bottom:25px;
+	.step {
+		text-align:center;
+		&:before {
+			color:lighten($color-text, 60%);
+			content:'>';
+			display:block;
+			margin-left:78px;
+			position:absolute;
+		}
+	}
+	.step:nth-child(8) {
+		&:before { display: none; }
+	}
+	.step:hover .hover { display:block; }
+	.hover {
+		background:$color-bg-panel;
+		border-radius:4px;
+		display:none;
+		margin-left:-65px;
+		padding:10px;
+		position:absolute;
+		width:200px;
+		z-index:5000;
+		-webkit-box-shadow: 0 8px 6px -6px $color-primary;
+	   	-moz-box-shadow: 0 8px 6px -6px $color-primary;
+	     box-shadow: 0 8px 6px -6px $color-primary;
+		&:before {
+			display:block;
+			content:'';
+			margin-top:-20px;
+			margin-left:80px;
+			position:absolute;
+			width: 0; 
+			height: 0; 
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+			border-bottom: 10px solid $color-bg-panel;
+		}
+	}
+}
+
+body.create {
+	.step:hover .hover { display:none; }
+	.steps { .create { font-weight:bold; } } }
+
+body.big-idea {
+	.step {
+		&.big-idea:hover, &.validate:hover, &.create-mvp:hover, &.minify-mvp:hover {
+			.hover { display:none; }
+		}
+	}
+	.steps { .big-idea { font-weight:bold; } } }
+
+body.validate {
+	.step {
+		&.validate:hover, &.create-mvp:hover, &.minify-mvp:hover {
+			.hover { display:none; }
+		}
+	}
+	.steps { .validate { font-weight:bold; } } }
+
+body.create-mvp {
+	.step {
+		&.create-mvp:hover, &.minify-mvp:hover {
+			.hover { display:none; }
+		}
+	}
+	.steps { .create-mvp { font-weight:bold; } } }
+
+body.minify-mvp {
+	.step {
+		&.minify-mvp:hover {
+			.hover { display:none; }
+		}
+	}
+	.steps { .minify-mvp { font-weight:bold; } } }
+
+
+
+body.breakdown-mvp { .steps { .breakdown-mvp { font-weight:bold; } } }
+
 button[type="submit"] {
 	background-color:$color-primary;
 	border-top:none;
@@ -65,6 +148,18 @@ body {
 // Classes
 
 .clear {clear:both; height:0px; line-height:0px; font-size:0px;}
+.strikethrough {
+	text-decoration: line-through;
+	padding: 2px 4px;
+	font-size: 90%;
+	color: #c7254e;
+	background-color: #f9f2f4;
+	white-space: nowrap;
+	border-radius: 4px;
+}
+.highlight {
+    background-color: yellow;
+}
 
 // Elements
 
@@ -92,6 +187,7 @@ form {
 		padding:10px 15px;
 		height:10em;
 	}
+	.codeholder {background:#EEE; border:1px solid #DDD; padding:10px; margin-bottom:15px;}
 }
 
 
@@ -141,7 +237,8 @@ form {
 	padding:15px;
 	h3 {padding-top:0px; margin-top:0px;}
 	p {margin-bottom:5px;}
-	p.example {font-size:12px; font-style:italic; font-weight:bold; line-height:13px; margin-bottom:15px;}
+	p.example {font-size:12px; font-style:italic; font-weight:bold; line-height:14px; margin-bottom:15px;}
+	.strike {text-decoration:line-through; background:#ff4540; padding:2px;}
 }
 
 
