@@ -1,20 +1,54 @@
-/* Project specific Javascript goes here. */
+// Project specific Javascript goes here. 
+
+// Strikethrough text highlighted in minify phase
+$(document).ready(function() {
+	// Go to CodeMirror library for rendering & manipulating the text
+	var editor = CodeMirror.fromTextArea($('#strike_statement')[0], {
+		lineWrapping: true,
+		readOnly: true
+	});
+	// Make the manipulation occur on the mouseup interaction
+	var dblDebounceFn = function() {
+		var sel = editor.doc.listSelections()[0];
+		if (mouseDown) 
+			return setTimeout(dblDebounceFn, 100);
+		var options = {
+			className: 'strikethrough',
+			atomic: false
+		};
+		if (sel.head.ch > sel.anchor.ch) {
+			editor.doc.markText(sel.anchor, sel.head, options);	
+		} else {
+			editor.doc.markText(sel.head, sel.anchor, options);
+		}
+	};
+	var debounceFn = _.debounce(dblDebounceFn, 450);
+	editor.on('cursorActivity', debounceFn);
+	var mouseDown = false;
+	var el = editor.getWrapperElement();
+	$(el).mousedown(function() {
+		mouseDown = true;
+	}).mouseup(function() {
+		mouseDown = false;
+	});
 
 
-//	NO LONGER USING: Add feature for MVP statement 
-// $(".add_feature").click(function(){
-// 	// Add text field with Remove button when Add button clicked
-// 	$("form").append("<div class='feature'><input name='feature' type='text'> <button id='remove'>Remove</button></div>")
-// )};
-// // Remove text field and Remove button when Remove button clicked
-// $("#remove").click(function(){
-// 	$(this).parent().remove();  
-// });
+	// Delete all struckthrough text
+	$("#minify_next").click() = function() {
+		$stricken = doc.getAllMarks();
+		for (var item in $stricken) {
+			item.remove();
+		};
+		// Read the next of the text into a variable for the next step
+		minified_statement = $( "#strike_statement" ).text();
+	};
+});
 
-// .CodeMirror-selected {background:#CCCCCC;}
+
+
 
 $(document).ready(function() {
-	var editor = CodeMirror.fromTextArea($('#strike_statement')[0], {
+	var editor = CodeMirror.fromTextArea($('#highlight_statement')[0], {
 		lineWrapping: true,
 		readOnly: true
 	});
@@ -41,18 +75,20 @@ $(document).ready(function() {
 	}).mouseup(function() {
 		mouseDown = false;
 	});
+
+
+	// Delete all struckthrough text
+	$("#minify_next").click() = function() {
+		$stricken = doc.getAllMarks();
+		for (var item in $stricken) {
+			item.remove();
+		};
+		// Read the next of the text into a variable for the next step
+		minified_statement = $( "#highlight_statement").text();
+	};
 });
 
-// Delete all struckthrough text
-$("#minify_next").click() = function() {
-	$stricken = doc.getAllMarks();
-	var item;
-	for item in $stricken {
-		item.remove();
-	};
-	// Read the next of the text into a variable for the next step
-	minified_statement = $( "#strike_statement").text();
-};
+
 
 // remove
 // turn span's into variables
@@ -62,54 +98,11 @@ $("#minify_next").click() = function() {
 
 
 
-//     $("#strike_statement").click(function(){
-// 		//  Select text highlighted
-//         var highlight = window.getSelection(),  
-//         spn = '<span class="highlight">' + highlight + '</span>',
-
-//         text = $('#strike_statement').text(),						// strike_statement or other class? 
-//         range = highlight.getRangeAt(0),
-//         startText = text.substring(0, range.startOffset), 
-//         endText = text.substring(range.endOffset, text.length);
-
-// 		$('#strike_statement').html(startText + spn + endText);
-// 	});
-// });
 
 
-// function getSelectionText() {
-//     var text = "";
-//     if (window.getSelection) {
-//         text = window.getSelection().toString();
-//     } else if (document.selection && document.selection.type != "Control") {
-//         text = document.selection.createRange().text;
-//     }
-//     return text;
-// }
 
-//OR
-// function setInputSelection(input, startPos, endPos) {
-//     input.focus();
-//     if (typeof input.selectionStart != "undefined") {
-//         input.selectionStart = startPos;
-//         input.selectionEnd = endPos;
-//     } else if (document.selection && document.selection.createRange) {
-//         // IE branch
-//         input.select();
-//         var range = document.selection.createRange();
-//         range.collapse(true);
-//         range.moveEnd("character", endPos);
-//         range.moveStart("character", startPos);
-//         range.select();
-//     }
-// }
 
-//  Strikethrough selected text and remove
-// function strikethroughSelected() {
-// 	var $selected = getSelectionText(); 
-// 	// Toggle strikethrough on highlighted text
-// 	$selected.html("<span class='struck'></span>");
-// }
+
 
 
 

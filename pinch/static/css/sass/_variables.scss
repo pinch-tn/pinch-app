@@ -17,6 +17,8 @@ $color-button-border:	#8d9497;
 $color-text:			#333333;
 $color-border-color:	lighten($color-button-border, 30%);
 
+$break-phone: 0px;
+
 @mixin respond-to($media) {
   @if $media == phone {
     @media only screen and (max-width: $break-phone) { @content; }

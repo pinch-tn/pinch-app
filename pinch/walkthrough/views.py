@@ -103,14 +103,6 @@ class CreateMvpView(TemplateView):
         return redirect("minify_mvp", slug=project_slug)
 
 
-class GravityBoardView(TemplateView):
-    template_name = "gravity_board.html"
-
-    def get_context_data(self, **kwargs):
-        project = Project.objects.get(slug=kwargs["slug"])
-        return {
-            "project": project,
-        }
 
 class MinifyMvpView(TemplateView):
     template_name = "minify_mvp.html"
@@ -129,19 +121,20 @@ class MinifyMvpView(TemplateView):
         else:
             mvp = Mvp.objects.create(project=project)
 
-        for redaction in json.loads(request.POST.get("redactions","[]")):
-            mvpRedaction = MvpRedaction.objects.create(mvp=mvp,statement_start=redaction["statement_start"],statement_end=redaction["statement_end"])
-            mvpRedaction.save()
-        return redirect("minify_mvp", slug=project_slug)
+        for add_redaction in json.loads(request.POST.get("redactions","[]")):
+            redaction = MvpRedaction.objects.create(mvp=mvp,statement_start=add_redaction["statement_start"],statement_end=add_redaction["statement_end"])
+            redaction.save()
+        return redirect("breakdown_mvp", slug=project_slug)
 
-class IdentifyWorkstreamView(TemplateView):
-    template_name = "minify_mvp.html"
+
+class BreakdownMvpView(TemplateView):
+    template_name = "breakdown_mvp.html"
 
     def get_context_data(self, **kwargs):
         project = Project.objects.get(slug=kwargs["slug"])
         return {
             "project": project,
-        }
+            }
 
     def post(self, request, **kwargs):
         project_slug = kwargs["name"]
@@ -150,22 +143,20 @@ class IdentifyWorkstreamView(TemplateView):
             mvp = project.mvp
         else:
             mvp = Mvp.objects.create(project=project)
+        for add_workstream in json.loads(request.POST.get("workstreams","[]")):
+            workstream = Workstream.objects.create(mvp=mvp,name=add_workstream["name"],statement_start=add_workstream["statement_start"],statement_end=add_workstream["statement_end"],)
+            workstream.save()
+        return redirect("gravity_board", slug=project_slug)
 
-        for redaction in json.loads(request.POST.get("redactions","[]")):
-            mvpRedaction = MvpRedaction.objects.create(mvp=mvp,statement_start=redaction["statement_start"],statement_end=redaction["statement_end"])
-            mvpRedaction.save()
-        return redirect("minify_mvp", slug=project_slug)
+
+class GravityBoardView(TemplateView):
+    template_name = "gravity_board.html"
+
+    def get_context_data(self, **kwargs):
+        project = Project.objects.get(slug=kwargs["slug"])
+        return {
+            "project": project,
+        }
 
 
-class WorkstreamView(View):
-    def post(self, request, **kwargs):
-        project_name = kwargs["name"]
-        project = Project.objects.get(name=project_name)
-        if project.has_mvp:
-            mvp = project.mvp
-        else:
-            mvp = Mvp.objects.create(project=project)
-        for workstream in json.loads(request.body)["workstreams"]:
-            mvpWorkstream = Workstream.objects.create(mvp=mvp,name=workstream["name"],statement_start=workstream["statement_start"],statement_end=workstream["statement_end"],)
-            mvpWorkstream.save()
-        return HttpResponse('ok')
+

@@ -7767,3 +7767,88 @@ form textarea.form-control {
   font-size: 18px;
   padding: 10px 20px 20px 20px;
 }
+
+/* line 105, sass/pinch.scss */
+.venn {
+  background: url("/static/images/venn-diagram.png") no-repeat center 0;
+  background-size: contain;
+  min-height: 800px;
+}
+/* line 109, sass/pinch.scss */
+.venn textarea {
+  background: transparent;
+  border: none;
+  font-size: 21px;
+  font-weight: normal;
+  height: 300px;
+  margin-top: 115px;
+  overflow: hidden;
+  resize: none;
+  text-align: center;
+  vertical-align: bottom;
+  width: 100%;
+}
+/* line 121, sass/pinch.scss */
+.venn textarea:focus {
+  outline: none;
+}
+/* line 124, sass/pinch.scss */
+.venn textarea#offering {
+  padding-left: 30px;
+}
+/* line 125, sass/pinch.scss */
+.venn textarea#valueProp {
+  padding-right: 30px;
+  padding-left: 30px;
+}
+/* line 126, sass/pinch.scss */
+.venn textarea#customer {
+  padding-right: 30px;
+}
+@media only screen and (max-width: 1200px) {
+  /* line 130, sass/pinch.scss */
+  .venn textarea {
+    margin-top: 90px;
+    height: 245px;
+  }
+}
+@media only screen and (max-width: 990px) {
+  /* line 136, sass/pinch.scss */
+  .venn textarea {
+    height: 300px;
+    margin-top: 115px;
+  }
+  /* line 140, sass/pinch.scss */
+  .venn .form-group.col-md-4 {
+    float: left;
+    width: 33%;
+  }
+}
+@media only screen and (max-width: 650px) {
+  /* line 146, sass/pinch.scss */
+  .venn textarea {
+    font-size: 18px;
+    margin-top: 90px;
+    height: 245px;
+  }
+}
+@media only screen and (max-width: 530px) {
+  /* line 153, sass/pinch.scss */
+  .venn textarea {
+    font-size: 15px;
+    margin-top: 75px;
+    height: 180px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  /* line 160, sass/pinch.scss */
+  .venn textarea {
+    font-size: 15px;
+    margin-top: 55px;
+    height: 160px;
+  }
+}
+/* line 166, sass/pinch.scss */
+.venn .validate-action {
+  margin-top: 100px;
+}
