@@ -120,6 +120,9 @@ class MinifyMvpView(TemplateView):
         else:
             mvp = Mvp.objects.create(project=project)
 
+        for redaction in mvp.mvpredaction_set.all():
+            redaction.delete()
+
         for add_redaction in json.loads(request.POST.get("redactions","[]")):
             redaction = MvpRedaction.objects.create(mvp=mvp,statement_start=add_redaction["statement_start"],statement_end=add_redaction["statement_end"])
             redaction.save()

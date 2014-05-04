@@ -49,6 +49,14 @@ function setup_highlighting(text_selector, button_selector, field_name, options_
 			console.log("Adding", element_text);
 			$("#main_form").append(element_text)
 		});
+
+		$("#clear").click( function() {
+			console.log("Clearing all selections...")
+			var $stricken = editor.getAllMarks();
+			for (var i = 0; i < $stricken.length; i++) {
+				$stricken[i].clear()
+			}
+		})
 	}
 }
 $(document).ready(function() {
