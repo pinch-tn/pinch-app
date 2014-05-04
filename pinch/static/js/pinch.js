@@ -92,16 +92,47 @@ $(document).ready(function() {
 
 
 	// Add Sticky Note Button
-	var $new_task = $('<li class="ticket">This is another task</li>');
+	// Select the list that follows the button clicked
+	var $current_list;
+	$(".add").click(function() {
+		$current_list = $(this).parent().next();
+	});
+	// Take the text from the input from the modal
+	$(".save").click(function() {
+		var new_task_text = $(".modal-body input").val();  // "#myModal"
+		var $new_task = $("<li class='ticket'>" + new_task_text + "</li>");
+		$current_list.append($new_task);
+		$(".modal-body input").removeAttr('value');
+	});
 
+	// Delete Sticky Note Button on each sticky note
+	$(".trash").click(function() {
+		$(this).parent().remove();
+	});
 
 	// Drag and Drop sticky notes
 	var adjustment
+
+	$.ajax("tickets/", {type:"get", dataType:"json", success: function(data) {
+		console.log("Ticket", data);
+	}
+	});
 
 	$("ul.drag_list").sortable({
 	  group: '.drag_list',
 	  connectWith: '.drag_list',
 	  pullPlaceholder: false,
+
+		receive: function (event, ui) {
+			var ticket_update = {
+				workstream: ui.item[0].parentNode.id,
+				id: ui.item[0].id,
+				content: ui.item[0].textContent,
+				status: ui.item[0].parentNode.parentNode.attributes["status"].nodeValue,
+			};
+			console.log("Updating ticket status", ticket_update);
+			$.ajax("tickets/", {type:"patch", contentType: "application/json", data: JSON.stringify(ticket_update)});
+		},
 
 	  // animation on drop
 	  onDrop: function  (item, targetContainer, _super) {
@@ -114,6 +145,7 @@ $(document).ready(function() {
 	      _super(item)
 	    })
 	  },
+
 
 	  // set item relative to cursor position
 	  onDragStart: function ($item, container, _super) {

@@ -77,6 +77,18 @@ class Workstream(models.Model):
     def __unicode__(self):
         return "%s / %s" % (self.mvp.project.name, self.name)
 
+    @property
+    def ready(self):
+        return self.ticket_set.filter(status="ready")
+
+    @property
+    def doing(self):
+        return self.ticket_set.filter(status="doing")
+
+    @property
+    def done(self):
+        return self.ticket_set.filter(status="done")
+
 
 
 class Ticket(models.Model):

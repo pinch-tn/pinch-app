@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block step %}gravity-board{% endblock step %}
+
   {% block content %}
 
 
@@ -10,48 +10,20 @@
       			<h3>Ready</h3>
       		</div>
   			<ul class="task-columns">
-  				<li>
+                {% for workstream in project.mvp.workstream_set.all %}
+  				<li status="ready">
   					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  						<button class="btn btn-primary btn-lg add" data-toggle="modal" data-target="#myModal">
   +
-</button><h4>Make coffee</h4>
+</button><h4>{{ workstream.name }}</h4>
   					</div>
-  					<ul class="drag_list clearfix">
-  						<li class="ticket">This is my task</li>
+  					<ul id="{{ workstream.name }}" class="drag_list clearfix">
+                        {% for ticket in workstream.ready %}
+  						<li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}<div class="trash"></div></li>
+                        {% endfor %}
   					</ul>
   				</li>
-  				<li>
-  					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  +
-</button><h4>Cook breakfast</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my other task</li>
-	  					<li class="ticket">This is my other task</li>
-	  					<li class="ticket">This is my other task</li>
-	  				</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  +
-</button><h4>Clean house</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my final task</li>
-	  				</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  +
-</button><h4>Watch TV</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-  					<li class="ticket">This is my final task</li>
-  					</ul>
-  				</li>
+                {% endfor %}
   			</ul>
       	</div>
       	<!-- DOING -->
@@ -60,40 +32,20 @@
       			<h3>Doing</h3>
       		</div>
   			<ul class="task-columns">
-  				<li>
-  					<div class="task-header">
-  						<h4>Make coffee</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my task</li>
-  					</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Cook breakfast</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my other task</li>
-	  					<li class="ticket">This is my other task</li>
-	  					<li class="ticket">This is my other task</li>
-	  				</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Clean house</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-  					<li class="ticket">This is my final task</li>
-  					</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Watch TV</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my final task</li>
-  					</ul>
-  				</li>
+                {% for workstream in project.mvp.workstream_set.all %}
+                    <li status="doing">
+                        <div class="task-header">
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                +
+                            </button><h4>{{ workstream.name }}</h4>
+                        </div>
+                        <ul id="{{ workstream.name }}" class="drag_list clearfix">
+                            {% for ticket in workstream.doing %}
+                                <li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}<div class="trash"></div></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
   			</ul>
       	</div>
       	<!-- DONE! -->
@@ -102,40 +54,20 @@
       			<h3>Done</h3>
       		</div>
   			<ul class="task-columns">
-  				<li>
-  					<div class="task-header">
-  						<h4>Make coffee</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-  						<li class="ticket">This is my task</li>
-  					</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Cook breakfast</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my other task</li>
-  						<li class="ticket">This is my other task</li>
-  						<li class="ticket">This is my other task</li>
-  					</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Clean house</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-  						<li class="ticket">This is my final task</li>
-  					</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Watch TV</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-  						<li class="ticket">This is my final task</li>
-  					</ul>
-  				</li>
+                {% for workstream in project.mvp.workstream_set.all %}
+                    <li status="done">
+                        <div class="task-header">
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                +
+                            </button><h4>{{ workstream.name }}</h4>
+                        </div>
+                        <ul id="{{ workstream.name }}" class="drag_list clearfix">
+                            {% for ticket in workstream.done %}
+                                <li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}<div class="trash"></div></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
   			</ul>
       	</div>
       </div>
@@ -149,11 +81,11 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        <input type="text" />
+        <input type="text" placeholder="New Task Item..."/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary save" data-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>
