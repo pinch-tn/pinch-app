@@ -1,93 +1,72 @@
 // Project specific Javascript goes here. 
 
+function setup_highlighting(text_selector, button_selector, field_name, options_callback)
+{
+	var target = $(text_selector)[0];
+	if (target) {
+		console.log("Setting up highlighting for " + text_selector);
+		var editor = CodeMirror.fromTextArea(target, {
+			lineWrapping: true,
+			readOnly: true
+		});
+		// Make the manipulation occur on the mouseup interaction
+		var lastSel = undefined;
+		var dblDebounceFn = function() {
+			lastSel = editor.doc.listSelections()[0];
+		};
+//	var debounceFn = _.debounce(dblDebounceFn, 450);
+		editor.on('cursorActivity', dblDebounceFn);
+		var el = editor.getWrapperElement();
+		$(el).mouseup(function() {
+			console.log("marking selection", lastSel.head.ch, lastSel.anchor.ch);
+			var options = options_callback();
+			var sel = lastSel;
+			if (sel.head.ch > sel.anchor.ch) {
+				editor.doc.markText(sel.anchor, sel.head, options);
+			} else {
+				editor.doc.markText(sel.head, sel.anchor, options);
+			}
+		});
+
+		// Delete all struckthrough text
+		$(button_selector).click( function() {
+			console.log("hi");
+			$stricken = editor.getAllMarks();
+			console.log($stricken);
+			for (var i = 0; i < $stricken.length; i++) {
+				var textMarker = $stricken[i];
+				for (var j = 0; j < textMarker.lines.length; j++) {
+					var line = textMarker.lines[j];
+					for (var k = 0; k < line.markedSpans.length; k++) {
+						var markedSpan = line.markedSpans[k];
+						console.log("Span", markedSpan.from, markedSpan.to)
+					}
+				}
+
+//			item.remove();
+			}
+			// Read the next of the text into a variable for the next step
+//		minified_statement = $( "#strike_statement" ).text();
+		});
+	}
+}
 // Strikethrough text highlighted in minify phase
 $(document).ready(function() {
-	// Go to CodeMirror library for rendering & manipulating the text
-	var editor = CodeMirror.fromTextArea($('#strike_statement')[0], {
-		lineWrapping: true,
-		readOnly: true
-	});
-	// Make the manipulation occur on the mouseup interaction
-	var dblDebounceFn = function() {
-		var sel = editor.doc.listSelections()[0];
-		if (mouseDown) 
-			return setTimeout(dblDebounceFn, 100);
-		var options = {
+
+	setup_highlighting("#strike_statement", "#minify_next", "redactions", function() {
+		return {
 			className: 'strikethrough',
 			atomic: false
-		};
-		if (sel.head.ch > sel.anchor.ch) {
-			editor.doc.markText(sel.anchor, sel.head, options);	
-		} else {
-			editor.doc.markText(sel.head, sel.anchor, options);
 		}
-	};
-	var debounceFn = _.debounce(dblDebounceFn, 450);
-	editor.on('cursorActivity', debounceFn);
-	var mouseDown = false;
-	var el = editor.getWrapperElement();
-	$(el).mousedown(function() {
-		mouseDown = true;
-	}).mouseup(function() {
-		mouseDown = false;
 	});
 
-
-	// Delete all struckthrough text
-	$("#minify_next").click() = function() {
-		$stricken = doc.getAllMarks();
-		for (var item in $stricken) {
-			item.remove();
-		};
-		// Read the next of the text into a variable for the next step
-		minified_statement = $( "#strike_statement" ).text();
-	};
-});
-
-
-
-
-$(document).ready(function() {
-	var editor = CodeMirror.fromTextArea($('#highlight_statement')[0], {
-		lineWrapping: true,
-		readOnly: true
-	});
-	var dblDebounceFn = function() {
-		var sel = editor.doc.listSelections()[0];
-		if (mouseDown) 
-			return setTimeout(dblDebounceFn, 100);
-		var options = {
+	setup_highlighting("#highlight_statement", "#highlight_next", "workstreams", function() {
+		return {
 			className: 'highlight',
 			atomic: false
-		};
-		if (sel.head.ch > sel.anchor.ch) {
-			editor.doc.markText(sel.anchor, sel.head, options);	
-		} else {
-			editor.doc.markText(sel.head, sel.anchor, options);
 		}
-	};
-	var debounceFn = _.debounce(dblDebounceFn, 450);
-	editor.on('cursorActivity', debounceFn);
-	var mouseDown = false;
-	var el = editor.getWrapperElement();
-	$(el).mousedown(function() {
-		mouseDown = true;
-	}).mouseup(function() {
-		mouseDown = false;
 	});
-
-
-	// Delete all struckthrough text
-	$("#minify_next").click() = function() {
-		$stricken = doc.getAllMarks();
-		for (var item in $stricken) {
-			item.remove();
-		};
-		// Read the next of the text into a variable for the next step
-		minified_statement = $( "#highlight_statement").text();
-	};
 });
-
 
 
 // remove
