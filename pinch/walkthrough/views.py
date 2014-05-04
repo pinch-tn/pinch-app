@@ -143,7 +143,10 @@ class BreakdownMvpView(TemplateView):
         else:
             mvp = Mvp.objects.create(project=project)
         for add_workstream in json.loads(request.POST.get("workstreams","[]")):
-            workstream = Workstream.objects.create(mvp=mvp,name=add_workstream["name"],statement_start=add_workstream["statement_start"],statement_end=add_workstream["statement_end"],)
+            start = add_workstream["statement_start"]
+            end = add_workstream["statement_end"]
+            name = mvp.original_statement[start:end]
+            workstream = Workstream.objects.create(mvp=mvp, name=name, statement_start=start, statement_end=end,)
             workstream.save()
         return redirect("gravity_board", slug=project_slug)
 

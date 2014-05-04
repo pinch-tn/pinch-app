@@ -9,7 +9,7 @@
               <small>{{ project.name }}</small>
               <h1>{% block page_title %}Breakdown MVP{% endblock page_title %} <span>5-15 Minutes</span></h1>
 
-              <form role="form" method="post">
+              <form id="main_form" role="form" method="post">
                   {% csrf_token %}
                   <div>
                       <textarea id="highlight_statement">{{ project.mvp.original_statement }}</textarea>

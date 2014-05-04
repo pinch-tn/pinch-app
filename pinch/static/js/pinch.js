@@ -31,22 +31,23 @@ function setup_highlighting(text_selector, button_selector, field_name, options_
 		// Delete all struckthrough text
 		$(button_selector).click( function() {
 			console.log("hi");
-			$stricken = editor.getAllMarks();
+			var $stricken = editor.getAllMarks();
 			console.log($stricken);
+			var selections = [];
 			for (var i = 0; i < $stricken.length; i++) {
 				var textMarker = $stricken[i];
 				for (var j = 0; j < textMarker.lines.length; j++) {
 					var line = textMarker.lines[j];
 					for (var k = 0; k < line.markedSpans.length; k++) {
 						var markedSpan = line.markedSpans[k];
+						selections.push({ "statement_start": markedSpan.from, "statement_end": markedSpan.to });
 						console.log("Span", markedSpan.from, markedSpan.to)
 					}
 				}
-
-//			item.remove();
 			}
-			// Read the next of the text into a variable for the next step
-//		minified_statement = $( "#strike_statement" ).text();
+			var element_text = "<input name='" + field_name + "' type='hidden' value='" + JSON.stringify(selections) + "'>";
+			console.log("Adding", element_text);
+			$("#main_form").append(element_text)
 		});
 	}
 }
