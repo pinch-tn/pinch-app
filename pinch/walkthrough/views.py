@@ -113,8 +113,8 @@ class MinifyMvpView(TemplateView):
             "project": project,
         }
 
-    def post(self, request, **kwargs):
-        project_slug = kwargs["name"]
+    def post(self, request, *args, **kwargs):
+        project_slug = kwargs["slug"]
         project = Project.objects.get(name=project_slug)
         if project.has_mvp:
             mvp = project.mvp
