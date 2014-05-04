@@ -70,8 +70,15 @@
   width: 100px;
   height: 75px;
 }
+/* line 59, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li .ticket .trash {
+  background-color: red;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
 
-/* line 65, sass/_gravity_board.scss */
+/* line 66, sass/_gravity_board.scss */
 .modal-dialog {
   left: 0 !important;
 }
