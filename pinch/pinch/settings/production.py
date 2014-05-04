@@ -89,7 +89,7 @@ from os.path import dirname, join, abspath
 
 BASE_DIR = dirname(abspath(__file__))
 print " ******** BASE_DIR = %s ******** " % BASE_DIR
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = join(BASE_DIR, '../../staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
