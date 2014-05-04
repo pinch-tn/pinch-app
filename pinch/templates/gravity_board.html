@@ -19,7 +19,7 @@
   					</div>
   					<ul id="{{ workstream.name }}" class="drag_list clearfix">
                         {% for ticket in workstream.ready %}
-  						<li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}</li>
+  						<li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}<div class="trash"></div></li>
                         {% endfor %}
   					</ul>
   				</li>
@@ -41,7 +41,7 @@
                         </div>
                         <ul id="{{ workstream.name }}" class="drag_list clearfix">
                             {% for ticket in workstream.doing %}
-                                <li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}</li>
+                                <li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}<div class="trash"></div></li>
                             {% endfor %}
                         </ul>
                     </li>
@@ -63,7 +63,7 @@
                         </div>
                         <ul id="{{ workstream.name }}" class="drag_list clearfix">
                             {% for ticket in workstream.done %}
-                                <li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}</li>
+                                <li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}<div class="trash"></div></li>
                             {% endfor %}
                         </ul>
                     </li>
