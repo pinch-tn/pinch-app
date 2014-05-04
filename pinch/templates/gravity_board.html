@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block step %}gravity-board{% endblock step %}
   {% block content %}
 
 
@@ -12,7 +12,9 @@
   			<ul class="task-columns">
   				<li>
   					<div class="task-header">
-  						<h4>Make coffee</h4>
+  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  +
+</button><h4>Make coffee</h4>
   					</div>
   					<ul class="drag_list clearfix">
   						<li class="ticket">This is my task</li>
@@ -20,7 +22,9 @@
   				</li>
   				<li>
   					<div class="task-header">
-  						<h4>Cook breakfast</h4>
+  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  +
+</button><h4>Cook breakfast</h4>
   					</div>
   					<ul class="drag_list clearfix">
 	  					<li class="ticket">This is my other task</li>
@@ -30,7 +34,9 @@
   				</li>
   				<li>
   					<div class="task-header">
-  						<h4>Clean house</h4>
+  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  +
+</button><h4>Clean house</h4>
   					</div>
   					<ul class="drag_list clearfix">
 	  					<li class="ticket">This is my final task</li>
@@ -38,7 +44,9 @@
   				</li>
   				<li>
   					<div class="task-header">
-  						<h4>Watch TV</h4>
+  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  +
+</button><h4>Watch TV</h4>
   					</div>
   					<ul class="drag_list clearfix">
   					<li class="ticket">This is my final task</li>
@@ -131,4 +139,23 @@
   			</ul>
       	</div>
       </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
   {% endblock content %}
