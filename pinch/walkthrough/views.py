@@ -177,6 +177,10 @@ class BreakdownMvpView(TemplateView):
             name = mvp.statement.split("\n")[line][start:end]
             workstream = Workstream.objects.create(mvp=mvp, name=name, line=line, statement_start=start, statement_end=end,)
             workstream.save()
+
+        # add "select tech" workstream
+        tech_ws = Workstream.objects.create(mvp=mvp,name="Tools and Technology", line=0, statement_start=0, statement_end=0)
+        tech_ws.save()
         return redirect("gravity_board", slug=project_slug)
 
 
