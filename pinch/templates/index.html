@@ -1,6 +1,36 @@
 {% extends "base.html" %}
-
+{% block step %}home{% endblock step %}
   {% block content %}
-  	<h1>This is our homepage</h1>
-  	<p><a href="/walkthrough/">Create a new project</a></p>
+	<div class="row home-row">
+ 		<div class="col-md-2"></div>
+ 		<div class="col-md-8 center">
+			<img src="/static/images/logo.png" width="20%" />
+		</div>
+ 		<div class="col-md-2"></div>
+	</div>
+	<div class="row">
+ 		<div class="col-md-2"></div>
+ 		<div class="col-md-8 center">
+			<h3>The "start something" app for compact start-ups, proof of concept, and prototyping.</h3>
+		</div>
+ 		<div class="col-md-2"></div>
+	</div>
+	<div class="row">
+ 		<div class="col-md-2"></div>
+ 		<div class="col-md-8 center">
+			<br />
+			<img src="/static/images/homepage_illo.png"  width="80%" />
+			<br />
+		</div>
+ 		<div class="col-md-2"></div>
+	</div>
+	<div class="row">
+ 		<div class="col-md-2"></div>
+ 		<div class="col-md-8 center">
+			<br /><br />
+			<a href="/walkthrough/" class="create-button">Create Project</a>
+		</div>
+ 		<div class="col-md-2"></div>
+	</div>	
+	
   {% endblock content %}

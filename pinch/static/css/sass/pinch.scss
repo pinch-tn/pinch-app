@@ -3,6 +3,10 @@
 @import "gravity_board";
 @import "bootstrap";
 
+.home-row {
+	margin-top:40px;
+}
+
 .navbar-header {
 	a {
 		background:url('/static/images/pinch-logo.png') no-repeat 15px 16px;
@@ -146,6 +150,7 @@ body {
   img {margin:5px 15px 5px 5px;}
 }
 
+body.home { .steps { display:none; } }
 body.gravity-board { #footer, .steps { display:none; } }
 
 // Classes
@@ -163,7 +168,25 @@ body.gravity-board { #footer, .steps { display:none; } }
 .highlight {
     background-color: yellow;
 }
+.center {text-align:center;}
 
+.create-button {
+	background-color: #AAA;
+	border-top: none;
+	border-right: none;
+	border-bottom: 2px solid #8d9497;
+	border-left: 2px solid #8d9497;
+	color: #fff;
+	font-size: 21px;
+	font-weight: 300;
+	margin-top: 20px;
+	padding:5px 15px;
+}
+.create-button:hover {
+	background-color: #f8bf51;
+	color:#FFF;
+	text-decoration:none;
+}
 // Elements
 
 h1 {
@@ -199,7 +222,6 @@ form {
 
 .step-icon {
 	div {
-		margin-top:28px;
 		&.big-idea {
 			background:url('/static/images/icon-big-idea.png') no-repeat 0 0;
 			width:64px;
@@ -225,6 +247,33 @@ form {
 			@include respond-to(retina-display) {
 				background:url('/static/images/validate@2x.png');
 				background-size:64px 40px;
+			}
+		}
+		&.create-mvp {
+			background:url('/static/images/icon-create-mvp.png') no-repeat 0 0;
+			width:64px;
+			height:46px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/icon-create-mvp@2x.png');
+				background-size:64px 46px;
+			}
+		}
+		&.minify-mvp {
+			background:url('/static/images/icon-minify-mvp.png') no-repeat 0 0;
+			width:64px;
+			height:42px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/icon-minify-mvp@2x.png');
+				background-size:64px 42px;
+			}
+		}
+		&.breakdown-mvp {
+			background:url('/static/images/icon-breakdown-mvp.png') no-repeat 0 0;
+			width:64px;
+			height:47px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/icon-breakdown-mvp@2x.png');
+				background-size:64px 47px;
 			}
 		}
 	}
