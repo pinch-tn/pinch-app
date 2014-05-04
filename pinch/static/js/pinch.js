@@ -105,6 +105,11 @@ $(document).ready(function() {
 		$(".modal-body input").removeAttr('value');
 	});
 
+	// Delete Sticky Note Button on each sticky note
+	$(".trash").click(function() {
+		$(this).parent().remove();
+	});
+
 	// Drag and Drop sticky notes
 	var adjustment
 
