@@ -5,16 +5,17 @@
 
         <div class="col-md-1">Icon</div>
 
-        <div class="col-md-8">
-
-          <h1>{% block page_title %}{{ project.name }} - Create MVP{% endblock page_title %}<span>5-15 Minutes</span></h1>
-          <form role="form" method="post">
-            {% csrf_token %}
-            <div class="form-group">
-              <textarea class="form-control" rows="5" name="original_statement" id="original_statement" placeholder="To achiever our goal what is the minimum amount of work we need to do?  Provide a short walkthrough.">{{ project.idea }}</textarea>
-            </div>
-            <button type="submit" class="btn btn-default">Next</button>
-          </form>
+          <div class="col-md-8">
+              <small>{{ project.name }}</small>
+              <h1>{% block page_title %}Create MVP{% endblock page_title %} <span>5-15 Minutes</span></h1>
+              <h2><span>"What's the least we can do?"</span> Now that there is clarity about what we are building and who we are building it for, it's time to identify the Minimum Viable Product. For Pinch, your MVP statement needs to be a short walkthrough of your product from a client perspective.</h2>
+              <form role="form" method="post">
+                  {% csrf_token %}
+                  <div class="form-group">
+                      <textarea class="form-control" rows="3" name="original_statement" id="original_statement" placeholder="Our clients need to be able to...">{{ project.mvp.original_statement }}</textarea>
+                  </div>
+                  <button type="submit" class="btn btn-default">Next</button>
+              </form>
 
         </div>
 

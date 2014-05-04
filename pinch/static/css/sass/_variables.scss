@@ -12,8 +12,38 @@
 
 $color-primary:			#f8bf51;
 $color-bg:				#f8f7f7;
+$color-bg-panel:		#feebc5;
 $color-button-border:	#8d9497;
 $color-text:			#333333;
+$color-border-color:	lighten($color-button-border, 30%);
+
+@mixin respond-to($media) {
+  @if $media == phone {
+    @media only screen and (max-width: $break-phone) { @content; }
+  }
+  @else if $media == small-screens {
+    @media only screen and (min-width: $break-phone + 1) and (max-width: $break-small - 1) { @content; }
+    @media only screen and (max-height:720px) { @content; }
+  }
+  /* Retina image support */
+  @else if $media == retina-display {
+    @media (-webkit-min-device-pixel-ratio: 2) { @content; }
+    @media (min-resolution: 192dpi) { @content; }
+  }
+  /*  Using retina image support
+   *  #my-element {
+   *    background:url('http://link.to/low-res-image.png');
+   *    @include respond-to(retina-display) {
+   *      background:url('http://link.to/high-res-image.png');
+   *      background-size:202px 27px; <-- Size of the low-res image
+   *  }
+   */
+
+/*  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }*/
+}
+
 
 //## Gray and brand colors for use across Bootstrap.
 

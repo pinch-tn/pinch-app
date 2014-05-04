@@ -5,6 +5,8 @@ Checkout [pinch](http://www.startpinching.com/).
 
 We're making it an app!
 
+![codeship status](https://www.codeship.io/projects/fbbc8ec0-b53b-0131-952c-5a246534b827/status)
+
 
 getting started
 ===============

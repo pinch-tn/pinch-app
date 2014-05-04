@@ -11,10 +11,12 @@ TEST_DISCOVER_PATTERN = "test_*.py"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": ":memory:",
+        'NAME': normpath(join(DJANGO_ROOT, 'test.db')),
         "USER": "",
         "PASSWORD": "",
         "HOST": "",
         "PORT": "",
     },
 }
+
+ALLOWED_HOSTS = ["localhost"]
