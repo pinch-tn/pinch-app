@@ -43,8 +43,17 @@ $(document).ready(function() {
 	});
 });
 
+// Delete all struckthrough text
+$("#minify_next").click() = function() {
+	$stricken = doc.getAllMarks();
+	var item;
+	for item in $stricken {
+		item.remove();
+	};
+	// Read the next of the text into a variable for the next step
+	minified_statement = $( "#strike_statement").text();
+};
 
-// doc.getAllMarks() → array<TextMarker>
 // remove
 // turn span's into variables
 
