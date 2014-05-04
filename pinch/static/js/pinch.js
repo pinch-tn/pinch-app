@@ -91,13 +91,18 @@ $(document).ready(function() {
 // });
 
 
+	// Add Sticky Note Button
+	var $new_task = $('<li class="ticket">This is another task</li>');
+
+
 	// Drag and Drop sticky notes
 	var adjustment
-	// var item			// Needed???  For each sticky note
 
 	$("ul.drag_list").sortable({
-	  group: 'drag_list',
+	  group: '.drag_list',
+	  connectWith: '.drag_list',
 	  pullPlaceholder: false,
+
 	  // animation on drop
 	  onDrop: function  (item, targetContainer, _super) {
 	    var clonedItem = $('<li/>').css({height: 0})
