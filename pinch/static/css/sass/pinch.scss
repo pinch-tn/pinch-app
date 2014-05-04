@@ -145,6 +145,8 @@ body {
   img {margin:5px 15px 5px 5px;}
 }
 
+body.gravity-board { #footer, .steps { display:none; } }
+
 // Classes
 
 .clear {clear:both; height:0px; line-height:0px; font-size:0px;}
