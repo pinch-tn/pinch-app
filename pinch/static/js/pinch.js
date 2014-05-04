@@ -140,7 +140,7 @@ $(document).ready(function() {
 		receive: function (event, ui) {
 			var ticket_update = {
 				workstream: ui.item[0].parentNode.id,
-				id: ui.item[0].id,
+				pk: ui.item[0].id,
 				content: ui.item[0].textContent,
 				status: ui.item[0].parentNode.parentNode.attributes["status"].nodeValue,
 			};
