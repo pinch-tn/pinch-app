@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, RedirectView, View
 from django.views.decorators.csrf import csrf_exempt
-from models import Project, Mvp, MvpRedaction
+from models import Project, Mvp, MvpRedaction, Workstream
 import json
 
 class RootProjectView(View):
@@ -115,8 +115,49 @@ class GravityBoardView(TemplateView):
 class MinifyMvpView(TemplateView):
     template_name = "minify_mvp.html"
 
+    def get_context_data(self, **kwargs):
+        project = Project.objects.get(slug=kwargs["slug"])
+        return {
+            "project": project,
+        }
 
-class MvpRedactionsView(View):
+    def post(self, request, **kwargs):
+        project_slug = kwargs["name"]
+        project = Project.objects.get(name=project_slug)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+
+        for redaction in json.loads(request.POST.get("redactions","[]")):
+            mvpRedaction = MvpRedaction.objects.create(mvp=mvp,statement_start=redaction["statement_start"],statement_end=redaction["statement_end"])
+            mvpRedaction.save()
+        return redirect("minify_mvp", slug=project_slug)
+
+class IdentifyWorkstreamView(TemplateView):
+    template_name = "minify_mvp.html"
+
+    def get_context_data(self, **kwargs):
+        project = Project.objects.get(slug=kwargs["slug"])
+        return {
+            "project": project,
+        }
+
+    def post(self, request, **kwargs):
+        project_slug = kwargs["name"]
+        project = Project.objects.get(name=project_slug)
+        if project.has_mvp:
+            mvp = project.mvp
+        else:
+            mvp = Mvp.objects.create(project=project)
+
+        for redaction in json.loads(request.POST.get("redactions","[]")):
+            mvpRedaction = MvpRedaction.objects.create(mvp=mvp,statement_start=redaction["statement_start"],statement_end=redaction["statement_end"])
+            mvpRedaction.save()
+        return redirect("minify_mvp", slug=project_slug)
+
+
+class WorkstreamView(View):
     def post(self, request, **kwargs):
         project_name = kwargs["name"]
         project = Project.objects.get(name=project_name)
@@ -124,12 +165,7 @@ class MvpRedactionsView(View):
             mvp = project.mvp
         else:
             mvp = Mvp.objects.create(project=project)
-        for redaction in json.loads(request.body)["redactions"]:
-            mvpRedaction = MvpRedaction.objects.create(mvp=mvp,statement_start=redaction["statement_start"],statement_end=redaction["statement_end"])
-            mvpRedaction.save()
+        for workstream in json.loads(request.body)["workstreams"]:
+            mvpWorkstream = Workstream.objects.create(mvp=mvp,name=workstream["name"],statement_start=workstream["statement_start"],statement_end=workstream["statement_end"],)
+            mvpWorkstream.save()
         return HttpResponse('ok')
-    @csrf_exempt
-    def dispatch(self, *args, **kwargs):
-        return super(MvpRedactionsView, self).dispatch(*args, **kwargs)
-
-
