@@ -33,12 +33,14 @@ class Mvp(models.Model):
 
 class MvpRedaction(models.Model):
     mvp = models.ForeignKey(Mvp)
+    line = models.IntegerField()
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
 
 
 class Workstream(models.Model):
     mvp = models.ForeignKey(Mvp)
+    line = models.IntegerField()
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
     name = models.TextField()

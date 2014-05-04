@@ -34,7 +34,7 @@ function setup_highlighting(text_selector, button_selector, field_name, options_
 		{
 			var currentSelection = currentSelections[i];
 			var options = options_callback();
-			editor.doc.markText({line: 0, ch: currentSelection.statement_start}, {line:0, ch: currentSelection.statement_end}, options)
+			editor.doc.markText({line: currentSelection.line, ch: currentSelection.statement_start}, {line: currentSelection.line, ch: currentSelection.statement_end}, options)
 		}
 
 		// Delete all struckthrough text
@@ -47,10 +47,11 @@ function setup_highlighting(text_selector, button_selector, field_name, options_
 				var textMarker = $stricken[i];
 				for (var j = 0; j < textMarker.lines.length; j++) {
 					var line = textMarker.lines[j];
+					var lineNo = line.lineNo()
 					for (var k = 0; k < line.markedSpans.length; k++) {
 						var markedSpan = line.markedSpans[k];
-						selections.push({ "statement_start": markedSpan.from, "statement_end": markedSpan.to });
-						console.log("Span", markedSpan.from, markedSpan.to)
+						selections.push({ "line":  lineNo, "statement_start": markedSpan.from, "statement_end": markedSpan.to });
+						console.log("Span", markedSpan)
 					}
 				}
 			}
