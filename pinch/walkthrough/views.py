@@ -108,20 +108,33 @@ class MinifyMvpView(TemplateView):
 
     def get_context_data(self, **kwargs):
         project = Project.objects.get(slug=kwargs["slug"])
+        if project.has_mvp:
+            current_selection = [{"line": r.line, "statement_start": r.statement_start, "statement_end": r.statement_end} for r in project.mvp.mvpredaction_set.all()]
+        else:
+            current_selection = []
         return {
             "project": project,
+            "selectionJson": json.dumps(current_selection)
         }
 
-    def post(self, request, **kwargs):
+    def post(self, request, *args, **kwargs):
         project_slug = kwargs["slug"]
         project = Project.objects.get(slug=project_slug)
+
         if project.has_mvp:
             mvp = project.mvp
         else:
             mvp = Mvp.objects.create(project=project)
 
-        for add_redaction in json.loads(request.POST.get("redactions","[]")):
-            redaction = MvpRedaction.objects.create(mvp=mvp,statement_start=add_redaction["statement_start"],statement_end=add_redaction["statement_end"])
+        for redaction in mvp.mvpredaction_set.all():
+            redaction.delete()
+
+        raw_redactions = json.loads(request.POST.get("redactions", "[]"))
+        # deduplicate
+        redactions = [dict(t) for t in set([tuple(d.items()) for d in raw_redactions])]
+        for add_redaction in redactions:
+            line = add_redaction["line"]
+            redaction = MvpRedaction.objects.create(mvp=mvp, line=line, statement_start=add_redaction["statement_start"],statement_end=add_redaction["statement_end"])
             redaction.save()
         return redirect("breakdown_mvp", slug=project_slug)
 
@@ -131,9 +144,14 @@ class BreakdownMvpView(TemplateView):
 
     def get_context_data(self, **kwargs):
         project = Project.objects.get(slug=kwargs["slug"])
+        if project.has_mvp:
+            current_selection = [{"line": w.line, "statement_start": w.statement_start, "statement_end": w.statement_end} for w in project.mvp.workstream_set.all()]
+        else:
+            current_selection = []
         return {
             "project": project,
-            }
+            "selectionJson": json.dumps(current_selection)
+        }
 
     def post(self, request, **kwargs):
         project_slug = kwargs["slug"]
@@ -143,10 +161,11 @@ class BreakdownMvpView(TemplateView):
         else:
             mvp = Mvp.objects.create(project=project)
         for add_workstream in json.loads(request.POST.get("workstreams","[]")):
+            line = add_workstream["line"]
             start = add_workstream["statement_start"]
             end = add_workstream["statement_end"]
             name = mvp.original_statement[start:end]
-            workstream = Workstream.objects.create(mvp=mvp, name=name, statement_start=start, statement_end=end,)
+            workstream = Workstream.objects.create(mvp=mvp, name=name, line=line, statement_start=start, statement_end=end,)
             workstream.save()
         return redirect("gravity_board", slug=project_slug)
 

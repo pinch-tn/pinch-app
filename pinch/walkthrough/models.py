@@ -27,18 +27,30 @@ class Project(models.Model):
 
 
 class Mvp(models.Model):
-    project = models.OneToOneField(Project, primary_key=True)
+    project = models.OneToOneField(Project)
     original_statement = models.TextField(blank=True)
 
+    def statement(self):
+        minified_statement = ""
+        redactions = MvpRedaction.objects.all().filter(mvp=self).order_by("statement_start")
+        last_redaction_end = 0;
+        for redaction in redactions:
+            if redaction.statement_start > last_redaction_end:
+                minified_statement =  minified_statement + self.original_statement[last_redaction_end:redaction.statement_start]
+            last_redaction_end = redaction.statement_end
+        minified_statement = minified_statement + self.original_statement[last_redaction_end:len(self.original_statement)]
+        return minified_statement
 
 class MvpRedaction(models.Model):
-    mvp = models.ForeignKey(Mvp, primary_key=True)
+    mvp = models.ForeignKey(Mvp)
+    line = models.IntegerField()
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
 
 
 class Workstream(models.Model):
-    mvp = models.ForeignKey(Mvp, primary_key=True)
+    mvp = models.ForeignKey(Mvp)
+    line = models.IntegerField()
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
     name = models.TextField()
@@ -46,7 +58,7 @@ class Workstream(models.Model):
 
 
 class Ticket(models.Model):
-    workstream = models.ForeignKey(Workstream, primary_key=True)
+    workstream = models.ForeignKey(Workstream)
     content = models.TextField(blank=True)
     status = models.CharField(max_length=20)
 

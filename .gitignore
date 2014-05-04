@@ -42,3 +42,4 @@ Desktop.ini
 *.iml
 
 pinch-env
+.sass-cache

@@ -3,6 +3,19 @@
 @import "gravity_board";
 @import "bootstrap";
 
+.navbar-header {
+	a {
+		background:url('/static/images/pinch-logo.png') no-repeat 15px 16px;
+		background-size:25px 20px;
+		padding-left:50px;
+		@include respond-to(retina-display) {
+			background:url('/static/images/pinch-logo@2x.png') 15px 16px;
+			background-repeat:no-repeat;
+			background-size:25px 20px;
+		}
+	}
+}
+
 button[type="submit"] {
 	background-color:$color-primary;
 	border-top:none;
@@ -19,12 +32,41 @@ button[type="submit"] {
 	}
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
 	background:$color-bg;
 	color:$color-text;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight:300;
+	/* Set the fixed height of the footer here */
+	margin-bottom: 110px;
 }
+
+// Base ID changes
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-top:15px;
+  /* Set the fixed height of the footer here */
+  min-height: 85px;
+  padding:10px;
+  background-color: #FFF;
+  border-top:1px solid #EEE;
+  border-bottom:1px solid #EEE;
+  img {margin:5px 15px 5px 5px;}
+}
+
+// Classes
+
+.clear {clear:both; height:0px; line-height:0px; font-size:0px;}
+
+// Elements
 
 h1 {
 	font-weight:300;
@@ -95,8 +137,11 @@ form {
 
 .info-panel {
 	background-color:$color-bg-panel;
-	font-size:18px;
-	padding:10px 20px 20px 20px;
+	font-size:16px;
+	padding:15px;
+	h3 {padding-top:0px; margin-top:0px;}
+	p {margin-bottom:5px;}
+	p.example {font-size:12px; font-style:italic; font-weight:bold; line-height:13px; margin-bottom:15px;}
 }
 
 
