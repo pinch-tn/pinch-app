@@ -15,22 +15,42 @@
 		overflow:visible;
 		white-space:nowrap;
 		.header {
+			background-color:lighten($color-button-border, 30%);
 			border-bottom:1px solid $color-border-color;
 			overflow:hidden;
+			padding:5px 5px 5px 15px;
+			text-transform:uppercase;
+			h3 {
+				margin:0;
+				padding:0;
+			}
 		}
 		.task-columns {
 			margin:0;
-			padding:0;
+			padding:0 10px;
 			li {
-				background:#ccc;
-				display:inline-block;
+				border-left:1px solid $color-border-color;
+				display:table-cell;
+				padding:10px 0;
 				width:350px;
+				&:first-child { border-left:0; }
+				.task-header {
+					padding:5px;
+					text-transform:uppercase;
+					h4 {
+						margin:0;
+						padding:0;
+					}
+				}
 				.ticket {
 					background-color:$color-bg-panel;
 					float:left;
+					line-height:15px;
 					margin:5px;
-					width:150px;
-					height:100px;
+					padding:5px;
+					white-space:normal;
+					width:100px;
+					height:75px;
 				}
 			}
 		}
