@@ -90,6 +90,16 @@ $(document).ready(function() {
 
 // });
 
+	var get_ticket_info = function(item) {
+		var ticket_update = {
+			workstream: item.parentNode.id,
+			id: item.id,
+			content: item.textContent,
+			status: item.parentNode.parentNode.attributes["status"].nodeValue,
+		};
+
+	}
+
 
 	// Add Sticky Note Button
 	// Select the list that follows the button clicked
@@ -100,9 +110,16 @@ $(document).ready(function() {
 	// Take the text from the input from the modal
 	$(".save").click(function() {
 		var new_task_text = $(".modal-body input").val();  // "#myModal"
-		var $new_task = $("<li class='ticket'>" + new_task_text + "</li>");
-		$current_list.append($new_task);
-		$(".modal-body input").removeAttr('value');
+		var ticket_info = {
+			workstream: $current_list.attr("id"),
+			content: new_task_text,
+			status: $current_list.parent().attr("status")
+		};
+		$.ajax("tickets/", {type:"post", contentType: "application/json", data: JSON.stringify(ticket_info), dataType:"json", success: function(data) {
+			var $new_task = $("<li id='" + data.pk + "' class='ticket'>" + new_task_text + "<div class='trash'></div></li>");
+			$current_list.append($new_task);
+			$(".modal-body input").removeAttr('value');
+		}})
 	});
 
 	// Delete Sticky Note Button on each sticky note
@@ -113,10 +130,7 @@ $(document).ready(function() {
 	// Drag and Drop sticky notes
 	var adjustment
 
-	$.ajax("tickets/", {type:"get", dataType:"json", success: function(data) {
-		console.log("Ticket", data);
-	}
-	});
+
 
 	$("ul.drag_list").sortable({
 	  group: '.drag_list',
