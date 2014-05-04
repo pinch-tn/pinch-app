@@ -35,9 +35,7 @@
                 {% for workstream in project.mvp.workstream_set.all %}
                     <li status="doing">
                         <div class="task-header">
-                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                                +
-                            </button><h4>{{ workstream.name }}</h4>
+                            <h4>{{ workstream.name }}</h4>
                         </div>
                         <ul id="{{ workstream.name }}" class="drag_list clearfix">
                             {% for ticket in workstream.doing %}
@@ -57,9 +55,7 @@
                 {% for workstream in project.mvp.workstream_set.all %}
                     <li status="done">
                         <div class="task-header">
-                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                                +
-                            </button><h4>{{ workstream.name }}</h4>
+                            <h4>{{ workstream.name }}</h4>
                         </div>
                         <ul id="{{ workstream.name }}" class="drag_list clearfix">
                             {% for ticket in workstream.done %}
