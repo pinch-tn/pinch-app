@@ -167,7 +167,10 @@ class BreakdownMvpView(TemplateView):
         for workstream in mvp.workstream_set.all():
             workstream.delete()
 
-        for add_workstream in json.loads(request.POST.get("workstreams","[]")):
+        raw_workstreams = json.loads(request.POST.get("workstreams", "[]"))
+        workstreams = [dict(t) for t in set([tuple(d.items()) for d in raw_workstreams])]
+
+        for add_workstream in workstreams:
             line = add_workstream["line"]
             start = add_workstream["statement_start"]
             end = add_workstream["statement_end"]

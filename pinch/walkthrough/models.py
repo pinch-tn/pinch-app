@@ -52,12 +52,18 @@ class Mvp(models.Model):
             minified_statement[line] = minified_statement[line] + original_statement[line][last_redaction_end[line]:len(original_statement[line])]
         return "\n".join(minified_statement)
 
+    def __unicode__(self):
+        return self.project.name
+
 
 class MvpRedaction(models.Model):
     mvp = models.ForeignKey(Mvp)
     line = models.IntegerField()
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
+
+    def __unicode__(self):
+        return "%s [%s,%s,%s]" % (self.mvp.project.name, self.line, self.statement_start, self.statement_end)
 
 
 class Workstream(models.Model):
@@ -68,10 +74,18 @@ class Workstream(models.Model):
     name = models.TextField()
     owner = models.TextField(blank=True)
 
+    def __unicode__(self):
+        return "%s / %s" % (self.mvp.project.name, self.name)
+
+
 
 class Ticket(models.Model):
     mvp = models.ForeignKey(Mvp)
     workstream = models.ForeignKey(Workstream)
     content = models.TextField(blank=True)
     status = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return "%s / %s" % (self.mvp.project.name, self.content)
+
 
