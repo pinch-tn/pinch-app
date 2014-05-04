@@ -218,7 +218,7 @@ class TicketView(View):
         workstream = Workstream.objects.get(name=create_ticket['workstream'])
         ticket = Ticket.objects.create(mvp=mvp,content=create_ticket['content'],status=create_ticket['status'],workstream=workstream)
         ticket.save()
-        return HttpResponse(serializers.serialize("json",ticket),mimetype='application/json')
+        return HttpResponse(serializers.serialize("json",[ticket,])[1:-1],mimetype='application/json')
 
     def patch(self, request, **kwargs):
         project_slug = kwargs["slug"]
@@ -230,7 +230,7 @@ class TicketView(View):
 
         update_ticket = json.loads(request.body)
         workstream = Workstream.objects.get(name=update_ticket['workstream'])
-        ticket = Ticket.objects.get(id-update_ticket['id'])
+        ticket = Ticket.objects.get(pk=update_ticket['pk'])
         ticket.workstream=workstream
         ticket.content=update_ticket['content']
         ticket.status=update_ticket['status']
@@ -246,7 +246,7 @@ class TicketView(View):
             mvp = Mvp.objects.create(project=project)
 
         delete_ticket = json.loads(request.body)
-        Ticket.objects.get(id=delete_ticket['id']).delete()
+        Ticket.objects.get(pk=delete_ticket['pk']).delete()
         return HttpResponse("ok")
 
     @csrf_exempt
