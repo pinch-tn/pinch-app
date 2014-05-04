@@ -30,16 +30,21 @@ class Mvp(models.Model):
     project = models.OneToOneField(Project)
     original_statement = models.TextField(blank=True)
 
+    @property
     def statement(self):
-        minified_statement = ""
+        original_statement = self.original_statement.split("\n")
+        minified_statement = [""] * len(original_statement)
         redactions = MvpRedaction.objects.all().filter(mvp=self).order_by("statement_start")
-        last_redaction_end = 0;
+        last_redaction_end = [0] * len(minified_statement)
         for redaction in redactions:
-            if redaction.statement_start > last_redaction_end:
-                minified_statement =  minified_statement + self.original_statement[last_redaction_end:redaction.statement_start]
-            last_redaction_end = redaction.statement_end
-        minified_statement = minified_statement + self.original_statement[last_redaction_end:len(self.original_statement)]
-        return minified_statement
+            line = redaction.line
+            if redaction.statement_start > last_redaction_end[line]:
+                minified_statement[line] = minified_statement[line] + original_statement[line][last_redaction_end[line]:redaction.statement_start]
+            last_redaction_end[line] = redaction.statement_end
+        for line in range(0, len(original_statement)):
+            minified_statement[line] = minified_statement[line] + original_statement[line][last_redaction_end[line]:len(original_statement[line])]
+        return "\n".join(minified_statement)
+
 
 class MvpRedaction(models.Model):
     mvp = models.ForeignKey(Mvp)
