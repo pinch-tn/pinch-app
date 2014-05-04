@@ -107,6 +107,13 @@ $(document).ready(function() {
 	$(".add").click(function() {
 		$current_list = $(this).parent().next();
 	});
+	// Delete Sticky Note Button on each sticky note
+	var deleteFunction = function ()
+	{
+		$(this).parent().remove();
+		var pk = $(this).parent().attr("id")
+		$.ajax("tickets/", {type: "delete", contentType: "application/json", data: JSON.stringify({pk: pk})})
+	};
 	// Take the text from the input from the modal
 	$(".save").click(function() {
 		var new_task_text = $(".modal-body input").val();  // "#myModal"
@@ -119,13 +126,11 @@ $(document).ready(function() {
 			var $new_task = $("<li id='" + data.pk + "' class='ticket'>" + new_task_text + "<div class='trash'></div></li>");
 			$current_list.append($new_task);
 			$(".modal-body input").removeAttr('value');
+			$(".trash").click(deleteFunction);
 		}})
 	});
 
-	// Delete Sticky Note Button on each sticky note
-	$(".trash").click(function() {
-		$(this).parent().remove();
-	});
+	$(".trash").click(deleteFunction);
 
 	// Drag and Drop sticky notes
 	var adjustment
