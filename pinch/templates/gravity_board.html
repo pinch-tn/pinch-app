@@ -11,15 +11,15 @@
       		</div>
   			<ul class="task-columns">
                 {% for workstream in project.mvp.workstream_set.all %}
-  				<li>
+  				<li status="ready">
   					<div class="task-header">
   						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   +
 </button><h4>{{ workstream.name }}</h4>
   					</div>
-  					<ul class="drag_list clearfix">
+  					<ul id="{{ workstream.name }}" class="drag_list clearfix">
                         {% for ticket in workstream.ready %}
-  						<li class="ticket">{{ ticket.content }}</li>
+  						<li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}</li>
                         {% endfor %}
   					</ul>
   				</li>
@@ -33,15 +33,15 @@
       		</div>
   			<ul class="task-columns">
                 {% for workstream in project.mvp.workstream_set.all %}
-                    <li>
+                    <li status="doing">
                         <div class="task-header">
                             <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                                 +
                             </button><h4>{{ workstream.name }}</h4>
                         </div>
-                        <ul class="drag_list clearfix">
+                        <ul id="{{ workstream.name }}" class="drag_list clearfix">
                             {% for ticket in workstream.doing %}
-                                <li class="ticket">{{ ticket.content }}</li>
+                                <li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}</li>
                             {% endfor %}
                         </ul>
                     </li>
@@ -55,15 +55,15 @@
       		</div>
   			<ul class="task-columns">
                 {% for workstream in project.mvp.workstream_set.all %}
-                    <li>
+                    <li status="done">
                         <div class="task-header">
                             <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                                 +
                             </button><h4>{{ workstream.name }}</h4>
                         </div>
-                        <ul class="drag_list clearfix">
+                        <ul id="{{ workstream.name }}" class="drag_list clearfix">
                             {% for ticket in workstream.done %}
-                                <li class="ticket">{{ ticket.content }}</li>
+                                <li id="{{ ticket.id }}" class="ticket">{{ ticket.content }}</li>
                             {% endfor %}
                         </ul>
                     </li>

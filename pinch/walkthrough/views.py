@@ -230,7 +230,7 @@ class TicketView(View):
 
         update_ticket = json.loads(request.body)
         workstream = Workstream.objects.get(name=update_ticket['workstream'])
-        ticket = Ticket.objects.get(id-update_ticket['id'])
+        ticket = Ticket.objects.get(id=update_ticket['id'])
         ticket.workstream=workstream
         ticket.content=update_ticket['content']
         ticket.status=update_ticket['status']

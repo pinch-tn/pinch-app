@@ -109,7 +109,14 @@ $(document).ready(function() {
 	  pullPlaceholder: false,
 
 		receive: function (event, ui) {
-			console.log("receive", ui.item)
+			var ticket_update = {
+				workstream: ui.item[0].parentNode.id,
+				id: ui.item[0].id,
+				content: ui.item[0].textContent,
+				status: ui.item[0].parentNode.parentNode.attributes["status"].nodeValue,
+			};
+			console.log("Updating ticket status", ticket_update);
+			$.ajax("tickets/", {type:"patch", contentType: "application/json", data: JSON.stringify(ticket_update)});
 		},
 
 	  // animation on drop
