@@ -146,6 +146,7 @@ body {
   img {margin:5px 15px 5px 5px;}
 }
 
+body.home { .steps { display:none; } }
 body.gravity-board { #footer, .steps { display:none; } }
 
 // Classes
