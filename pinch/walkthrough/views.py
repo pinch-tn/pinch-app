@@ -164,7 +164,7 @@ class BreakdownMvpView(TemplateView):
             line = add_workstream["line"]
             start = add_workstream["statement_start"]
             end = add_workstream["statement_end"]
-            name = mvp.original_statement[start:end]
+            name = mvp.statement.split("\n")[line][start:end]
             workstream = Workstream.objects.create(mvp=mvp, name=name, line=line, statement_start=start, statement_end=end,)
             workstream.save()
         return redirect("gravity_board", slug=project_slug)
