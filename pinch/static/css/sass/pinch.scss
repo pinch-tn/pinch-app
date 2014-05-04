@@ -3,6 +3,19 @@
 @import "gravity_board";
 @import "bootstrap";
 
+.navbar-header {
+	a {
+		background:url('/static/images/pinch-logo.png') no-repeat 15px 16px;
+		background-size:25px 20px;
+		padding-left:50px;
+		@include respond-to(retina-display) {
+			background:url('/static/images/pinch-logo@2x.png') 15px 16px;
+			background-repeat:no-repeat;
+			background-size:25px 20px;
+		}
+	}
+}
+
 button[type="submit"] {
 	background-color:$color-primary;
 	border-top:none;
