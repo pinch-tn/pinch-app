@@ -87,18 +87,14 @@ $(document).ready(function() {
 		// Read the next of the text into a variable for the next step
 		minified_statement = $( "#highlight_statement").text();
 	};
-});
 
 
-
-// remove
-// turn span's into variables
-
-// var clear = editor.doc.getAllMarks().remove();  
 // loop over array and call .remove() on each element
+var $ticket = $('<div class="task-header"><textarea></textarea></div>');
+$button_name.click(function() {
 
 
-
+});
 
 
 
@@ -111,7 +107,7 @@ $(document).ready(function() {
 var adjustment
 var item			// Needed???  For each sticky note
 
-	$(".workstream-column").sortable({
+	$(".task-columns").sortable({
 	  group: 'column',
 	  pullPlaceholder: false,
 	  // animation on drop
@@ -145,4 +141,4 @@ var item			// Needed???  For each sticky note
 	    })
 	  }
 	});
-
+});
