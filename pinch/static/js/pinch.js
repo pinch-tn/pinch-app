@@ -92,8 +92,18 @@ $(document).ready(function() {
 
 
 	// Add Sticky Note Button
-	var $new_task = $('<li class="ticket">This is another task</li>');
-
+	// Select the list that follows the button clicked
+	var $current_list;
+	$(".add").click(function() {
+		$current_list = $(this).parent().next();
+	});
+	// Take the text from the input from the modal
+	$(".save").click(function() {
+		var new_task_text = $(".modal-body input").val();  // "#myModal"
+		var $new_task = $("<li class='ticket'>" + new_task_text + "</li>");
+		$current_list.append($new_task);
+		$(".modal-body input").removeAttr('value');
+	});
 
 	// Drag and Drop sticky notes
 	var adjustment
