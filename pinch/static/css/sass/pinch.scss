@@ -218,7 +218,6 @@ form {
 
 .step-icon {
 	div {
-		margin-top:28px;
 		&.big-idea {
 			background:url('/static/images/icon-big-idea.png') no-repeat 0 0;
 			width:64px;
@@ -244,6 +243,24 @@ form {
 			@include respond-to(retina-display) {
 				background:url('/static/images/validate@2x.png');
 				background-size:64px 40px;
+			}
+		}
+		&.create-mvp {
+			background:url('/static/images/icon-create-mvp.png') no-repeat 0 0;
+			width:64px;
+			height:46px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/icon-create-mvp@2x.png');
+				background-size:64px 46px;
+			}
+		}
+		&.cminify-mvp {
+			background:url('/static/images/icon-minify-mvp.png') no-repeat 0 0;
+			width:64px;
+			height:46px;
+			@include respond-to(retina-display) {
+				background:url('/static/images/icon-minify-mvp@2x.png');
+				background-size:64px 46px;
 			}
 		}
 	}
