@@ -84,13 +84,13 @@ ALLOWED_HOSTS = ['*']
 # Static asset configuration
 from os.path import dirname, join, abspath
 
-BASE_DIR = dirname(dirname(dirname(abspath(__file__))))
+BASE_DIR = dirname(abspath(__file__))))
 print " ******** BASE_DIR = %s ******** " % BASE_DIR
-STATIC_ROOT = join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    join(BASE_DIR, 'static'),
+    join(BASE_DIR, '../../static'),
 )
 
 print "Hi?"
