@@ -10,48 +10,20 @@
       			<h3>Ready</h3>
       		</div>
   			<ul class="task-columns">
+                {% for workstream in project.mvp.workstream_set.all %}
   				<li>
   					<div class="task-header">
   						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   +
-</button><h4>Make coffee</h4>
+</button><h4>{{ workstream.name }}</h4>
   					</div>
   					<ul class="drag_list clearfix">
-  						<li class="ticket">This is my task</li>
+                        {% for ticket in workstream.ready %}
+  						<li class="ticket">{{ ticket.content }}</li>
+                        {% endfor %}
   					</ul>
   				</li>
-  				<li>
-  					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  +
-</button><h4>Cook breakfast</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my other task</li>
-	  					<li class="ticket">This is my other task</li>
-	  					<li class="ticket">This is my other task</li>
-	  				</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  +
-</button><h4>Clean house</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my final task</li>
-	  				</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  +
-</button><h4>Watch TV</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-  					<li class="ticket">This is my final task</li>
-  					</ul>
-  				</li>
+                {% endfor %}
   			</ul>
       	</div>
       	<!-- DOING -->
@@ -60,40 +32,20 @@
       			<h3>Doing</h3>
       		</div>
   			<ul class="task-columns">
-  				<li>
-  					<div class="task-header">
-  						<h4>Make coffee</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my task</li>
-  					</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Cook breakfast</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my other task</li>
-	  					<li class="ticket">This is my other task</li>
-	  					<li class="ticket">This is my other task</li>
-	  				</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Clean house</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-  					<li class="ticket">This is my final task</li>
-  					</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Watch TV</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my final task</li>
-  					</ul>
-  				</li>
+                {% for workstream in project.mvp.workstream_set.all %}
+                    <li>
+                        <div class="task-header">
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                +
+                            </button><h4>{{ workstream.name }}</h4>
+                        </div>
+                        <ul class="drag_list clearfix">
+                            {% for ticket in workstream.doing %}
+                                <li class="ticket">{{ ticket.content }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
   			</ul>
       	</div>
       	<!-- DONE! -->
@@ -102,40 +54,20 @@
       			<h3>Done</h3>
       		</div>
   			<ul class="task-columns">
-  				<li>
-  					<div class="task-header">
-  						<h4>Make coffee</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-  						<li class="ticket">This is my task</li>
-  					</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Cook breakfast</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-	  					<li class="ticket">This is my other task</li>
-  						<li class="ticket">This is my other task</li>
-  						<li class="ticket">This is my other task</li>
-  					</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Clean house</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-  						<li class="ticket">This is my final task</li>
-  					</ul>
-  				</li>
-  				<li>
-  					<div class="task-header">
-  						<h4>Watch TV</h4>
-  					</div>
-  					<ul class="drag_list clearfix">
-  						<li class="ticket">This is my final task</li>
-  					</ul>
-  				</li>
+                {% for workstream in project.mvp.workstream_set.all %}
+                    <li>
+                        <div class="task-header">
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                +
+                            </button><h4>{{ workstream.name }}</h4>
+                        </div>
+                        <ul class="drag_list clearfix">
+                            {% for ticket in workstream.done %}
+                                <li class="ticket">{{ ticket.content }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
   			</ul>
       	</div>
       </div>
