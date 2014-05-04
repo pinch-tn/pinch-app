@@ -65,6 +65,18 @@ body {
 // Classes
 
 .clear {clear:both; height:0px; line-height:0px; font-size:0px;}
+.strikethrough {
+	text-decoration: line-through;
+	padding: 2px 4px;
+	font-size: 90%;
+	color: #c7254e;
+	background-color: #f9f2f4;
+	white-space: nowrap;
+	border-radius: 4px;
+}
+.highlight {
+    background-color: yellow;
+}
 
 // Elements
 
@@ -92,6 +104,7 @@ form {
 		padding:10px 15px;
 		height:10em;
 	}
+	.codeholder {background:#EEE; border:1px solid #DDD; padding:10px; margin-bottom:15px;}
 }
 
 
@@ -141,7 +154,8 @@ form {
 	padding:15px;
 	h3 {padding-top:0px; margin-top:0px;}
 	p {margin-bottom:5px;}
-	p.example {font-size:12px; font-style:italic; font-weight:bold; line-height:13px; margin-bottom:15px;}
+	p.example {font-size:12px; font-style:italic; font-weight:bold; line-height:14px; margin-bottom:15px;}
+	.strike {text-decoration:line-through; background:#ff4540; padding:2px;}
 }
 
 

@@ -2,7 +2,8 @@
 
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
-  height: 300px;
+  min-height: 150px;
+  max-height: 300px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
   line-height: 1.428571429;
@@ -123,7 +124,9 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   /* See overflow: hidden in .CodeMirror */
   margin-bottom: -30px; margin-right: -30px;
   padding-bottom: 30px;
-  height: 100%;
+  min-height: 150px;
+  max-height: 300px;
+  /* height: 100%; */
   outline: none; /* Prevent dragging from highlighting the element */
   position: relative;
   -moz-box-sizing: content-box;
