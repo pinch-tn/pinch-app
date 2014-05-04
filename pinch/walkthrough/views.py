@@ -103,7 +103,6 @@ class CreateMvpView(TemplateView):
         return redirect("minify_mvp", slug=project_slug)
 
 
-
 class MinifyMvpView(TemplateView):
     template_name = "minify_mvp.html"
 
@@ -114,8 +113,8 @@ class MinifyMvpView(TemplateView):
         }
 
     def post(self, request, **kwargs):
-        project_slug = kwargs["name"]
-        project = Project.objects.get(name=project_slug)
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
         if project.has_mvp:
             mvp = project.mvp
         else:
@@ -137,14 +136,17 @@ class BreakdownMvpView(TemplateView):
             }
 
     def post(self, request, **kwargs):
-        project_slug = kwargs["name"]
-        project = Project.objects.get(name=project_slug)
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
         if project.has_mvp:
             mvp = project.mvp
         else:
             mvp = Mvp.objects.create(project=project)
         for add_workstream in json.loads(request.POST.get("workstreams","[]")):
-            workstream = Workstream.objects.create(mvp=mvp,name=add_workstream["name"],statement_start=add_workstream["statement_start"],statement_end=add_workstream["statement_end"],)
+            start = add_workstream["statement_start"]
+            end = add_workstream["statement_end"]
+            name = mvp.original_statement[start:end]
+            workstream = Workstream.objects.create(mvp=mvp, name=name, statement_start=start, statement_end=end,)
             workstream.save()
         return redirect("gravity_board", slug=project_slug)
 

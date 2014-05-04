@@ -1,111 +1,89 @@
 // Project specific Javascript goes here. 
 
+function setup_highlighting(text_selector, button_selector, field_name, options_callback)
+{
+	var target = $(text_selector)[0];
+	if (target) {
+		console.log("Setting up highlighting for " + text_selector);
+		var editor = CodeMirror.fromTextArea(target, {
+			lineWrapping: true,
+			readOnly: true
+		});
+		// Make the manipulation occur on the mouseup interaction
+		var lastSel = undefined;
+		var dblDebounceFn = function() {
+			lastSel = editor.doc.listSelections()[0];
+		};
+//	var debounceFn = _.debounce(dblDebounceFn, 450);
+		editor.on('cursorActivity', dblDebounceFn);
+		var el = editor.getWrapperElement();
+		$(el).mouseup(function() {
+			console.log("marking selection", lastSel.head.ch, lastSel.anchor.ch);
+			var options = options_callback();
+			var sel = lastSel;
+			if (sel.head.ch > sel.anchor.ch) {
+				editor.doc.markText(sel.anchor, sel.head, options);
+			} else {
+				editor.doc.markText(sel.head, sel.anchor, options);
+			}
+		});
 
-/********		 MINIFY MVP PAGE		********/
-// Strikethrough text highlighted in minify phase
+		// Delete all struckthrough text
+		$(button_selector).click( function() {
+			console.log("hi");
+			var $stricken = editor.getAllMarks();
+			console.log($stricken);
+			var selections = [];
+			for (var i = 0; i < $stricken.length; i++) {
+				var textMarker = $stricken[i];
+				for (var j = 0; j < textMarker.lines.length; j++) {
+					var line = textMarker.lines[j];
+					for (var k = 0; k < line.markedSpans.length; k++) {
+						var markedSpan = line.markedSpans[k];
+						selections.push({ "statement_start": markedSpan.from, "statement_end": markedSpan.to });
+						console.log("Span", markedSpan.from, markedSpan.to)
+					}
+				}
+			}
+			var element_text = "<input name='" + field_name + "' type='hidden' value='" + JSON.stringify(selections) + "'>";
+			console.log("Adding", element_text);
+			$("#main_form").append(element_text)
+		});
+	}
+}
 $(document).ready(function() {
-	// Go to CodeMirror library for rendering & manipulating the text
-	var editor = CodeMirror.fromTextArea($('#strike_statement')[0], {
-		lineWrapping: true,
-		readOnly: true
-	});
-	// Make the manipulation occur on the mouseup interaction
-	var dblDebounceFn = function() {
-		var sel = editor.doc.listSelections()[0];
-		if (mouseDown) 
-			return setTimeout(dblDebounceFn, 100);
-		var options = {
+
+	setup_highlighting("#strike_statement", "#minify_next", "redactions", function() {
+		return {
 			className: 'strikethrough',
 			atomic: false
-		};
-		if (sel.head.ch > sel.anchor.ch) {
-			editor.doc.markText(sel.anchor, sel.head, options);	
-		} else {
-			editor.doc.markText(sel.head, sel.anchor, options);
 		}
-	};
-	var debounceFn = _.debounce(dblDebounceFn, 450);
-	editor.on('cursorActivity', debounceFn);
-	var mouseDown = false;
-	var el = editor.getWrapperElement();
-	$(el).mousedown(function() {
-		mouseDown = true;
-	}).mouseup(function() {
-		mouseDown = false;
 	});
 
-
-	// Delete all struckthrough text
-	$("#minify_next").click() = function() {
-		$stricken = doc.getAllMarks();
-		for (var item in $stricken) {
-			item.remove();
-		};
-		// Read the next of the text into a variable for the next step
-		minified_statement = $( "#strike_statement" ).text();
-	};
-
-
-
-
-/******** 		BREAKDOWN MVP PAGE 		********/
-	var editor = CodeMirror.fromTextArea($('#highlight_statement')[0], {
-		lineWrapping: true,
-		readOnly: true
-	});
-	var dblDebounceFn = function() {
-		var sel = editor.doc.listSelections()[0];
-		if (mouseDown) 
-			return setTimeout(dblDebounceFn, 100);
-		var options = {
+	setup_highlighting("#highlight_statement", "#highlight_next", "workstreams", function() {
+		return {
 			className: 'highlight',
 			atomic: false
-		};
-		if (sel.head.ch > sel.anchor.ch) {
-			editor.doc.markText(sel.anchor, sel.head, options);	
-		} else {
-			editor.doc.markText(sel.head, sel.anchor, options);
 		}
-	};
-	var debounceFn = _.debounce(dblDebounceFn, 450);
-	editor.on('cursorActivity', debounceFn);
-	var mouseDown = false;
-	var el = editor.getWrapperElement();
-	$(el).mousedown(function() {
-		mouseDown = true;
-	}).mouseup(function() {
-		mouseDown = false;
 	});
-
-
-	// Take all highlighted spans and convert to workstream titles
-	$("#breakdown_next").click() = function() {
-		$highlighted = doc.getAllMarks();
-		for (var item in $highlighted) {
-			item.remove();
-		};
-		// Read the next of the text into a variable for the next step
-		minified_statement = $( "#highlight_statement").text();
-	};
 
 
 // loop over array and call .remove() on each element
-var $ticket = $('<div class="task-header"><textarea></textarea></div>');
-$button_name.click(function() {
+// var $ticket = $('<div class="task-header"><textarea></textarea></div>');
+// $button_name.click(function() {
 
-
-});
-
-
+// });
 
 
 
 
 
 
-// Drag and Drop sticky notes
-var adjustment
-var item			// Needed???  For each sticky note
+
+
+	// Drag and Drop sticky notes
+	var adjustment
+	var item			// Needed???  For each sticky note
 
 	$(".task-columns").sortable({
 	  group: 'column',
