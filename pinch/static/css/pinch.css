@@ -74,7 +74,19 @@
 }
 /* line 62, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li .ticket {
+  background: url("/static/images/page-curl.png") no-repeat right bottom;
   background-color: #feebc5;
+  /*  Using retina image support
+   *  #my-element {
+   *    background:url('http://link.to/low-res-image.png');
+   *    @include respond-to(retina-display) {
+   *      background:url('http://link.to/high-res-image.png');
+   *      background-size:202px 27px; <-- Size of the low-res image
+   *  }
+   */
+  /*  @else if $media == wide-screens {
+      @media only screen and (min-width: $break-large) { @content; }
+    }*/
   float: left;
   line-height: 15px;
   margin: 5px;
@@ -83,28 +95,44 @@
   width: 100px;
   height: 75px;
 }
-/* line 71, sass/_gravity_board.scss */
+@media (-webkit-min-device-pixel-ratio: 2) {
+  /* line 62, sass/_gravity_board.scss */
+  #gravity-board .lane .task-columns > li .ticket {
+    background: url("/static/images/page-curl@2x.png") no-repeat bottom right;
+    background-size: 13px 12px;
+    background-color: #feebc5;
+  }
+}
+@media (min-resolution: 192dpi) {
+  /* line 62, sass/_gravity_board.scss */
+  #gravity-board .lane .task-columns > li .ticket {
+    background: url("/static/images/page-curl@2x.png") no-repeat bottom right;
+    background-size: 13px 12px;
+    background-color: #feebc5;
+  }
+}
+/* line 77, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li .ticket:hover .trash {
   display: block;
 }
-/* line 74, sass/_gravity_board.scss */
+/* line 80, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li .ticket .trash {
   background-color: #f6b1ae;
   border-radius: 100px;
   cursor: pointer;
   display: none;
-  margin-top: 45px;
-  margin-left: 69px;
-  padding: 3px 8px;
+  margin-top: 0;
+  margin-left: 72px;
+  padding: 2px 7px;
   position: absolute;
   text-align: center;
 }
 
-/* line 91, sass/_gravity_board.scss */
+/* line 97, sass/_gravity_board.scss */
 .modal-dialog {
   left: 0 !important;
 }
-/* line 93, sass/_gravity_board.scss */
+/* line 99, sass/_gravity_board.scss */
 .modal-dialog .ticket-input {
   font-size: 21px;
   padding: 10px 5px;
