@@ -1,74 +1,37 @@
-/* line 7, sass/_gravity_board.scss */
-#gravity-board a {
-  border: 0;
-  text-decoration: underline;
-}
-/* line 8, sass/_gravity_board.scss */
-#gravity-board .columns-container {
+/* line 5, sass/_gravity_board.scss */
+#gravity-board {
   border-top: 1px solid #dddfe0;
   top: 50px;
   right: 0;
   bottom: 0;
   left: 0;
-  overflow-y: hidden;
-  overflow-x: auto;
+  overflow: auto;
   position: absolute;
 }
-/* line 17, sass/_gravity_board.scss */
-#gravity-board .columns-container .columns-container-scroller {
-  height: 100%;
+/* line 13, sass/_gravity_board.scss */
+#gravity-board .lane {
+  width: 100%;
   overflow: visible;
   white-space: nowrap;
 }
-/* line 21, sass/_gravity_board.scss */
-#gravity-board .columns-container .columns-container-scroller .column {
-  background-color: white;
-  border-right: 1px solid #dddfe0;
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-  width: 326px;
-  height: 100%;
-}
-/* line 29, sass/_gravity_board.scss */
-#gravity-board .columns-container .columns-container-scroller .column .column-header {
+/* line 17, sass/_gravity_board.scss */
+#gravity-board .lane .header {
   border-bottom: 1px solid #dddfe0;
-  padding: .25em;
+  overflow: hidden;
 }
-/* line 32, sass/_gravity_board.scss */
-#gravity-board .columns-container .columns-container-scroller .column .column-header h3 {
-  display: block;
+/* line 21, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns {
   margin: 0;
   padding: 0;
 }
-/* line 33, sass/_gravity_board.scss */
-#gravity-board .columns-container .columns-container-scroller .column .column-header h3 span {
-  color: #c4c4c4;
-  cursor: pointer;
-  display: block;
-  float: right;
-  padding-top: .15em;
+/* line 24, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li {
+  background: #ccc;
+  display: inline-block;
+  width: 350px;
 }
-/* line 39, sass/_gravity_board.scss */
-#gravity-board .columns-container .columns-container-scroller .column .column-header h3 span:hover {
-  color: #444;
-}
-/* line 45, sass/_gravity_board.scss */
-#gravity-board .columns-container .columns-container-scroller .column .column-scroller {
-  position: absolute;
-  top: 33px;
-  bottom: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  width: 325px;
-}
-/* line 52, sass/_gravity_board.scss */
-#gravity-board .columns-container .columns-container-scroller .column .column-scroller .lane-header {
-  border-top: 1px solid #dddfe0;
-  border-bottom: 1px solid #dddfe0;
-}
-/* line 56, sass/_gravity_board.scss */
-#gravity-board .columns-container .columns-container-scroller .column .column-scroller .ticket {
+/* line 28, sass/_gravity_board.scss */
+#gravity-board .lane .task-columns li .ticket {
   background-color: #feebc5;
   float: left;
   margin: 5px;
