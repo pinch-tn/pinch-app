@@ -45,10 +45,16 @@ function setup_highlighting(text_selector, button_selector, field_name, options_
 					}
 				}
 			}
-			var element_text = "<input name='" + field_name + "' type='hidden' value='" + JSON.stringify(selections) + "'>";
-			console.log("Adding", element_text);
-			$("#main_form").append(element_text)
+			$("#selections").val(JSON.stringify(selections));
 		});
+
+		$("#clear").click( function() {
+			console.log("Clearing all selections...")
+			var $stricken = editor.getAllMarks();
+			for (var i = 0; i < $stricken.length; i++) {
+				$stricken[i].clear()
+			}
+		})
 	}
 }
 $(document).ready(function() {

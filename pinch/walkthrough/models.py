@@ -27,7 +27,7 @@ class Project(models.Model):
 
 
 class Mvp(models.Model):
-    project = models.OneToOneField(Project, primary_key=True)
+    project = models.OneToOneField(Project)
     original_statement = models.TextField(blank=True)
 
     def statement(self):
@@ -42,13 +42,13 @@ class Mvp(models.Model):
         return minified_statement
 
 class MvpRedaction(models.Model):
-    mvp = models.ForeignKey(Mvp, primary_key=True)
+    mvp = models.ForeignKey(Mvp)
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
 
 
 class Workstream(models.Model):
-    mvp = models.ForeignKey(Mvp, primary_key=True)
+    mvp = models.ForeignKey(Mvp)
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
     name = models.TextField()
@@ -56,7 +56,7 @@ class Workstream(models.Model):
 
 
 class Ticket(models.Model):
-    workstream = models.ForeignKey(Workstream, primary_key=True)
+    workstream = models.ForeignKey(Workstream)
     content = models.TextField(blank=True)
     status = models.CharField(max_length=20)
 
