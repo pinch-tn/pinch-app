@@ -160,7 +160,25 @@ body {
 .highlight {
     background-color: yellow;
 }
+.center {text-align:center;}
 
+.create-button {
+	background-color: #AAA;
+	border-top: none;
+	border-right: none;
+	border-bottom: 2px solid #8d9497;
+	border-left: 2px solid #8d9497;
+	color: #fff;
+	font-size: 21px;
+	font-weight: 300;
+	margin-top: 20px;
+	padding:5px 15px;
+}
+.create-button:hover {
+	background-color: #f8bf51;
+	color:#FFF;
+	text-decoration:none;
+}
 // Elements
 
 h1 {
