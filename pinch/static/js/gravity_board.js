@@ -27,6 +27,7 @@ function TicketModel(ticket)
 {
 	this.id = ko.observable(ticket.id);
 	this.text = ko.observable(ticket.text)
+
 }
 
 function WorkstreamStatusModel(status, tickets)
@@ -38,6 +39,11 @@ function WorkstreamStatusModel(status, tickets)
 	{
 		this.tickets.push(new TicketModel(tickets[i]))
 	}
+	var self = this;
+	this.deleteTicket = function(ticket) {
+		console.log()
+		self.tickets.remove(ticket);
+	};
 }
 
 function WorkstreamModel(name, readyTickets, doingTickets, doneTickets)

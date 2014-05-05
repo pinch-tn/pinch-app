@@ -18,7 +18,7 @@
 </button><h4 data-bind="text: name"></h4>
   					</div>
   					<ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: ready.tickets }">
-                        <li class="ticket"><div class="trash">x</div><span data-bind="text: text"/></li>
+                        <li class="ticket"><div class="trash" data-bind="click: $parent.ready.deleteTicket">x</div><span data-bind="text: text"/></li>
   					</ul>
                     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-bind="attr: { id: cssClass() + 'Modal' }">
                         <div class="modal-dialog">
@@ -52,7 +52,7 @@
                         <h4 data-bind="text: name"></h4>
                     </div>
                     <ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: doing.tickets }">
-                        <li class="ticket"><div class="trash">x</div><span data-bind="text: text"/></li>
+                        <li class="ticket"><div class="trash" data-bind="click: $parent.doing.deleteTicket">x</div><span data-bind="text: text"/></li>
                     </ul>
                 </li>
             </ul>
@@ -68,7 +68,7 @@
                         <h4 data-bind="text: name"></h4>
                     </div>
                     <ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: done.tickets }">
-                        <li class="ticket"><div class="trash">x</div><span data-bind="text: text"/></li>
+                        <li class="ticket"><div class="trash" data-bind="click: $parent.done.deleteTicket">x</div><span data-bind="text: text"/></li>
                     </ul>
                 </li>
             </ul>
