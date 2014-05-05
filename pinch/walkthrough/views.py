@@ -266,8 +266,8 @@ class TicketView(View):
             mvp = Mvp.objects.create(project=project)
 
         delete_ticket = json.loads(request.body)
-        Ticket.objects.get(pk=delete_ticket['pk']).delete()
-        return HttpResponse("ok")
+        Ticket.objects.get(pk=delete_ticket['id']).delete()
+        return HttpResponse("id")
 
     @csrf_exempt
     def dispatch(self, *args, **kwargs):

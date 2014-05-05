@@ -1,14 +1,18 @@
 ko.bindingHandlers.showModal = {
-	init: function (element, valueAccessor) {
+	init: function (element, valueAccessor)
+	{
 	},
-	update: function (element, valueAccessor) {
+	update: function (element, valueAccessor)
+	{
 		var value = valueAccessor();
-		if (ko.utils.unwrapObservable(value)) {
+		if (ko.utils.unwrapObservable(value))
+		{
 			$(element).modal('show');
 			// this is to focus input field inside dialog
 			$("input", element).focus();
 		}
-		else {
+		else
+		{
 			$(element).modal('hide');
 		}
 	}
@@ -40,8 +44,16 @@ function WorkstreamStatusModel(status, tickets)
 		this.tickets.push(new TicketModel(tickets[i]))
 	}
 	var self = this;
-	this.deleteTicket = function(ticket) {
-		self.tickets.remove(ticket);
+	this.deleteTicket = function (ticket)
+	{
+		$.ajax("tickets/", { type: "delete", contentType: "application/json", data: JSON.stringify({id: ticket.id()}), success: function (data)
+		{
+			console.log("successfully deleted ticket", ticket);
+			self.tickets.remove(ticket);
+		}, error: function (textStatus, errorThrown)
+		{
+			console.log("failed to delete ticket", textStatus, errorThrown);
+		} });
 	};
 }
 
@@ -58,7 +70,8 @@ function WorkstreamModel(name, readyTickets, doingTickets, doneTickets)
 
 	var self = this;
 	this.newTicket = new TicketModel({id: -1, text: ""});
-	this.createNew = function() {
+	this.createNew = function ()
+	{
 		console.log("creating new ticket", self.newTicket);
 		ticket_info = {
 			workstream: self.name(),
@@ -67,13 +80,15 @@ function WorkstreamModel(name, readyTickets, doingTickets, doneTickets)
 		};
 		pendingTicket = self.newTicket;
 		self.newTicket = new TicketModel({id: -1, text: ""});
-		$.ajax("tickets/", { type: "post", contentType: "application/json", data: JSON.stringify(ticket_info), dataType: "json", success: function(data) {
+		$.ajax("tickets/", { type: "post", contentType: "application/json", data: JSON.stringify(ticket_info), dataType: "json", success: function (data)
+		{
 			console.log("Created ticket on server", data);
 			pendingTicket.id(data.id);
 			self.ready.tickets.push(pendingTicket);
-		}, error: function(textStatus, errorThrown) {
-	console.log("Error trying to create new ticket on server", textStatus, errorThrown);
-}});
+		}, error: function (textStatus, errorThrown)
+		{
+			console.log("Error trying to create new ticket on server", textStatus, errorThrown);
+		}});
 	};
 }
 
@@ -235,8 +250,10 @@ var mockTicketSetup = [
 	}
 ];
 
-$.ajax("tickets/", { dataType: "json", success: function(data) {
+$.ajax("tickets/", { dataType: "json", success: function (data)
+{
 	ko.applyBindings(new GravityBoardModel(data));
-}, error: function(textStatus, errorThrown) {
+}, error: function (textStatus, errorThrown)
+{
 	console.log("Error trying to retrieve tickets from server", textStatus, errorThrown);
 } });
