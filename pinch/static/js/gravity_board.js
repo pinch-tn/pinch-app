@@ -1,3 +1,19 @@
+ko.bindingHandlers.showModal = {
+	init: function (element, valueAccessor) {
+	},
+	update: function (element, valueAccessor) {
+		var value = valueAccessor();
+		if (ko.utils.unwrapObservable(value)) {
+			$(element).modal('show');
+			// this is to focus input field inside dialog
+			$("input", element).focus();
+		}
+		else {
+			$(element).modal('hide');
+		}
+	}
+};
+
 function convertToSlug(Text)
 {
 	return Text
@@ -34,6 +50,14 @@ function WorkstreamModel(name, readyTickets, doingTickets, doneTickets)
 	this.ready = new WorkstreamStatusModel("ready", readyTickets);
 	this.doing = new WorkstreamStatusModel("doing", doingTickets);
 	this.done = new WorkstreamStatusModel("done", doneTickets);
+
+	var self = this;
+	this.newTicket = new TicketModel({id: -1, text: ""});
+	this.createNew = function() {
+		console.log("creating new ticket", self.newTicket);
+		self.ready.tickets.push(self.newTicket);
+		self.newTicket = new TicketModel({id: -1, text: ""});
+	};
 }
 
 function GravityBoardModel(workstreams)
@@ -44,6 +68,7 @@ function GravityBoardModel(workstreams)
 		var ws = workstreams[i];
 		this.workstreams.push(new WorkstreamModel(ws.name, ws.ready, ws.doing, ws.done));
 	}
+	this.currentWorkstream = ko.observable();
 }
 
 var mockTicketSetup = [
