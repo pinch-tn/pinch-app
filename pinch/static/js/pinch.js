@@ -123,7 +123,7 @@ $(document).ready(function() {
 			status: $current_list.parent().attr("status")
 		};
 		$.ajax("tickets/", {type:"post", contentType: "application/json", data: JSON.stringify(ticket_info), dataType:"json", success: function(data) {
-			var $new_task = $("<li id='" + data.pk + "' class='ticket'>" + new_task_text + "<div class='trash'>x</div></li>");
+			var $new_task = $("<li id='" + data.pk + "' class='ticket'><div class='trash'>x</div>" + new_task_text + "</li>");
 			$current_list.append($new_task);
 			$(".modal-body input").removeAttr('value');
 			$(".trash").click(deleteFunction);
@@ -146,8 +146,8 @@ $(document).ready(function() {
 			var ticket_update = {
 				workstream: ui.item[0].parentNode.id,
 				pk: ui.item[0].id,
-				content: ui.item[0].textContent,
-				status: ui.item[0].parentNode.parentNode.attributes["status"].nodeValue,
+				content: ui.item[0].textContent.substring(1),
+				status: ui.item[0].parentNode.parentNode.attributes["status"].nodeValue
 			};
 			console.log("Updating ticket status", ticket_update);
 			$.ajax("tickets/", {type:"patch", contentType: "application/json", data: JSON.stringify(ticket_update)});

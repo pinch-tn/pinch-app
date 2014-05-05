@@ -71,7 +71,7 @@ class Workstream(models.Model):
     line = models.IntegerField()
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
-    name = models.TextField()
+    name = models.TextField(unique=True)
     owner = models.TextField(blank=True)
 
     def __unicode__(self):
