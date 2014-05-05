@@ -10,21 +10,17 @@
       		<div class="header">
       			<h3>Ready</h3>
       		</div>
-  			<ul class="task-columns">
-                {% for workstream in project.mvp.workstream_set.all %}
-  				<li status="ready">
+  			<ul class="task-columns" data-bind="foreach: workstreams">
+  				<li>
   					<div class="task-header">
   						<button class="btn btn-primary btn-lg add" data-toggle="modal" data-target="#myModal">
   +
-</button><h4>{{ workstream.name }}</h4>
+</button><h4 data-bind="text: name"></h4>
   					</div>
-  					<ul id="{{ workstream.name }}" class="drag_list clearfix">
-                        {% for ticket in workstream.ready %}
-  						<li id="{{ ticket.id }}" class="ticket"><div class="trash">x</div>{{ ticket.content }}</li>
-                        {% endfor %}
+  					<ul class="drag_list clearfix" data-bind="foreach: ready.tickets">
+                        <li class="ticket"><div class="trash">x</div><span data-bind="text: text"/></li>
   					</ul>
   				</li>
-                {% endfor %}
   			</ul>
       	</div>
       	<!-- DOING -->
@@ -32,40 +28,32 @@
       		<div class="header">
       			<h3>Doing</h3>
       		</div>
-  			<ul class="task-columns">
-                {% for workstream in project.mvp.workstream_set.all %}
-                    <li status="doing">
-                        <div class="task-header">
-                            <h4>{{ workstream.name }}</h4>
-                        </div>
-                        <ul id="{{ workstream.name }}" class="drag_list clearfix">
-                            {% for ticket in workstream.doing %}
-                                <li id="{{ ticket.id }}" class="ticket"><div class="trash">x</div>{{ ticket.content }}</li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endfor %}
-  			</ul>
+            <ul class="task-columns" data-bind="foreach: workstreams">
+                <li>
+                    <div class="task-header">
+                        <h4 data-bind="text: name"></h4>
+                    </div>
+                    <ul class="drag_list clearfix" data-bind="foreach: doing.tickets">
+                        <li class="ticket"><div class="trash">x</div><span data-bind="text: text"/></li>
+                    </ul>
+                </li>
+            </ul>
       	</div>
       	<!-- DONE! -->
       	<div class="lane done">
       		<div class="header">
       			<h3>Done</h3>
       		</div>
-  			<ul class="task-columns">
-                {% for workstream in project.mvp.workstream_set.all %}
-                    <li status="done">
-                        <div class="task-header">
-                            <h4>{{ workstream.name }}</h4>
-                        </div>
-                        <ul id="{{ workstream.name }}" class="drag_list clearfix">
-                            {% for ticket in workstream.done %}
-                                <li id="{{ ticket.id }}" class="ticket"><div class="trash">x</div>{{ ticket.content }}</li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endfor %}
-  			</ul>
+            <ul class="task-columns" data-bind="foreach: workstreams">
+                <li>
+                    <div class="task-header">
+                        <h4 data-bind="text: name"></h4>
+                    </div>
+                    <ul class="drag_list clearfix" data-bind="foreach: doing.tickets">
+                        <li class="ticket"><div class="trash">x</div><span data-bind="text: text"/></li>
+                    </ul>
+                </li>
+            </ul>
       	</div>
       </div>
 
