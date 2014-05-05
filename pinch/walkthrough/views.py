@@ -219,7 +219,7 @@ class TicketView(View):
             mvp = Mvp.objects.create(project=project)
 
         create_ticket = json.loads(request.body)
-        workstream = Workstream.objects.get(name=create_ticket['workstream'])
+        workstream = mvp.workstream_set.filter(name=create_ticket['workstream'])[0]
         ticket = Ticket.objects.create(mvp=mvp,content=create_ticket['content'],status=create_ticket['status'],workstream=workstream)
         ticket.save()
         return HttpResponse(serializers.serialize("json",[ticket,])[1:-1],mimetype='application/json')
@@ -233,7 +233,7 @@ class TicketView(View):
             mvp = Mvp.objects.create(project=project)
 
         update_ticket = json.loads(request.body)
-        workstream = Workstream.objects.get(name=update_ticket['workstream'])
+        workstream = mvp.workstream_set.filter(name=update_ticket['workstream'])[0]
         ticket = Ticket.objects.get(pk=update_ticket['pk'])
         ticket.workstream=workstream
         ticket.content=update_ticket['content']

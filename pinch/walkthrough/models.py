@@ -71,8 +71,11 @@ class Workstream(models.Model):
     line = models.IntegerField()
     statement_start = models.IntegerField()
     statement_end = models.IntegerField()
-    name = models.TextField(unique=True)
+    name = models.TextField()
     owner = models.TextField(blank=True)
+
+    class Meta:
+        unique_together = ('name', 'mvp')
 
     def __unicode__(self):
         return "%s / %s" % (self.mvp.project.name, self.name)
