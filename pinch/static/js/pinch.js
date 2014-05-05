@@ -90,100 +90,100 @@ $(document).ready(function() {
 
 // });
 
-	var get_ticket_info = function(item) {
-		var ticket_update = {
-			workstream: item.parentNode.id,
-			id: item.id,
-			content: item.textContent,
-			status: item.parentNode.parentNode.attributes["status"].nodeValue,
-		};
-
-	}
-
-
-	// Add Sticky Note Button
-	// Select the list that follows the button clicked
-	var $current_list;
-	$(".add").click(function() {
-		$current_list = $(this).parent().next();
-	});
-	// Delete Sticky Note Button on each sticky note
-	var deleteFunction = function ()
-	{
-		$(this).parent().remove();
-		var pk = $(this).parent().attr("id")
-		$.ajax("tickets/", {type: "delete", contentType: "application/json", data: JSON.stringify({pk: pk})})
-	};
-	// Take the text from the input from the modal
-	$(".save").click(function() {
-		var new_task_text = $(".modal-body input").val();  // "#myModal"
-		var ticket_info = {
-			workstream: $current_list.attr("id"),
-			content: new_task_text,
-			status: $current_list.parent().attr("status")
-		};
-		$.ajax("tickets/", {type:"post", contentType: "application/json", data: JSON.stringify(ticket_info), dataType:"json", success: function(data) {
-			var $new_task = $("<li id='" + data.pk + "' class='ticket'><div class='trash'>x</div>" + new_task_text + "</li>");
-			$current_list.append($new_task);
-			$(".modal-body input").removeAttr('value');
-			$(".trash").click(deleteFunction);
-		}})
-	});
-
-	$(".trash").click(deleteFunction);
-
-	// Drag and Drop sticky notes
-	var adjustment
-
-
-
-	$("ul.drag_list").sortable({
-	  group: '.drag_list',
-	  connectWith: '.drag_list',
-	  pullPlaceholder: false,
-
-		receive: function (event, ui) {
-			var ticket_update = {
-				workstream: ui.item[0].parentNode.id,
-				pk: ui.item[0].id,
-				content: ui.item[0].textContent.substring(1),
-				status: ui.item[0].parentNode.parentNode.attributes["status"].nodeValue
-			};
-			console.log("Updating ticket status", ticket_update);
-			$.ajax("tickets/", {type:"patch", contentType: "application/json", data: JSON.stringify(ticket_update)});
-		},
-
-	  // animation on drop
-	  onDrop: function  (item, targetContainer, _super) {
-	    var clonedItem = $('<li/>').css({height: 0})
-	    item.before(clonedItem)
-	    clonedItem.animate({'height': item.height()})
-	    
-	    item.animate(clonedItem.position(), function  () {
-	      clonedItem.detach()
-	      _super(item)
-	    })
-	  },
-
-
-	  // set item relative to cursor position
-	  onDragStart: function ($item, container, _super) {
-	    var offset = $item.offset(),
-	    pointer = container.rootGroup.pointer
-
-	    adjustment = {
-	      left: pointer.left - offset.left,
-	      top: pointer.top - offset.top
-	    }
-
-	    _super($item, container)
-	  },
-	  onDrag: function ($item, position) {
-	    $item.css({
-	      left: position.left - adjustment.left,
-	      top: position.top - adjustment.top
-	    })
-	  }
-	});
+//	var get_ticket_info = function(item) {
+//		var ticket_update = {
+//			workstream: item.parentNode.id,
+//			id: item.id,
+//			content: item.textContent,
+//			status: item.parentNode.parentNode.attributes["status"].nodeValue,
+//		};
+//
+//	}
+//
+//
+//	// Add Sticky Note Button
+//	// Select the list that follows the button clicked
+//	var $current_list;
+//	$(".add").click(function() {
+//		$current_list = $(this).parent().next();
+//	});
+//	// Delete Sticky Note Button on each sticky note
+//	var deleteFunction = function ()
+//	{
+//		$(this).parent().remove();
+//		var pk = $(this).parent().attr("id")
+//		$.ajax("tickets/", {type: "delete", contentType: "application/json", data: JSON.stringify({pk: pk})})
+//	};
+//	// Take the text from the input from the modal
+//	$(".save").click(function() {
+//		var new_task_text = $(".modal-body input").val();  // "#myModal"
+//		var ticket_info = {
+//			workstream: $current_list.attr("id"),
+//			content: new_task_text,
+//			status: $current_list.parent().attr("status")
+//		};
+//		$.ajax("tickets/", {type:"post", contentType: "application/json", data: JSON.stringify(ticket_info), dataType:"json", success: function(data) {
+//			var $new_task = $("<li id='" + data.pk + "' class='ticket'><div class='trash'>x</div>" + new_task_text + "</li>");
+//			$current_list.append($new_task);
+//			$(".modal-body input").removeAttr('value');
+//			$(".trash").click(deleteFunction);
+//		}})
+//	});
+//
+//	$(".trash").click(deleteFunction);
+//
+//	// Drag and Drop sticky notes
+//	var adjustment
+//
+//
+//
+//	$("ul.drag_list").sortable({
+//	  group: '.drag_list',
+//	  connectWith: '.drag_list',
+//	  pullPlaceholder: false,
+//
+//		receive: function (event, ui) {
+//			var ticket_update = {
+//				workstream: ui.item[0].parentNode.id,
+//				pk: ui.item[0].id,
+//				content: ui.item[0].textContent.substring(1),
+//				status: ui.item[0].parentNode.parentNode.attributes["status"].nodeValue
+//			};
+//			console.log("Updating ticket status", ticket_update);
+//			$.ajax("tickets/", {type:"patch", contentType: "application/json", data: JSON.stringify(ticket_update)});
+//		},
+//
+//	  // animation on drop
+//	  onDrop: function  (item, targetContainer, _super) {
+//	    var clonedItem = $('<li/>').css({height: 0})
+//	    item.before(clonedItem)
+//	    clonedItem.animate({'height': item.height()})
+//
+//	    item.animate(clonedItem.position(), function  () {
+//	      clonedItem.detach()
+//	      _super(item)
+//	    })
+//	  },
+//
+//
+//	  // set item relative to cursor position
+//	  onDragStart: function ($item, container, _super) {
+//	    var offset = $item.offset(),
+//	    pointer = container.rootGroup.pointer
+//
+//	    adjustment = {
+//	      left: pointer.left - offset.left,
+//	      top: pointer.top - offset.top
+//	    }
+//
+//	    _super($item, container)
+//	  },
+//	  onDrag: function ($item, position) {
+//	    $item.css({
+//	      left: position.left - adjustment.left,
+//	      top: position.top - adjustment.top
+//	    })
+//	  }
+//	});
 
 });
