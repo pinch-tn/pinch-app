@@ -17,7 +17,7 @@
   +
 </button><h4 data-bind="text: name"></h4>
   					</div>
-  					<ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: ready.tickets }">
+  					<ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: ready.tickets, afterMove: ready.updateToThis }">
                         <li class="ticket"><div class="trash" data-bind="click: $parent.ready.deleteTicket">x</div><span data-bind="text: text"/></li>
   					</ul>
                     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-bind="attr: { id: cssClass() + 'Modal' }">
@@ -51,7 +51,7 @@
                     <div class="task-header">
                         <h4 data-bind="text: name"></h4>
                     </div>
-                    <ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: doing.tickets }">
+                    <ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: doing.tickets, afterMove: doing.updateToThis }">
                         <li class="ticket"><div class="trash" data-bind="click: $parent.doing.deleteTicket">x</div><span data-bind="text: text"/></li>
                     </ul>
                 </li>
@@ -67,7 +67,7 @@
                     <div class="task-header">
                         <h4 data-bind="text: name"></h4>
                     </div>
-                    <ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: done.tickets }">
+                    <ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: done.tickets, afterMove: done.updateToThis }">
                         <li class="ticket"><div class="trash" data-bind="click: $parent.done.deleteTicket">x</div><span data-bind="text: text"/></li>
                     </ul>
                 </li>

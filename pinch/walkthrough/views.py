@@ -250,7 +250,7 @@ class TicketView(View):
 
         update_ticket = json.loads(request.body)
         workstream = mvp.workstream_set.filter(name=update_ticket['workstream'])[0]
-        ticket = Ticket.objects.get(pk=update_ticket['pk'])
+        ticket = Ticket.objects.get(pk=update_ticket['id'])
         ticket.workstream=workstream
         ticket.content=update_ticket['content']
         ticket.status=update_ticket['status']

@@ -1,23 +1,3 @@
-ko.bindingHandlers.showModal = {
-	init: function (element, valueAccessor)
-	{
-	},
-	update: function (element, valueAccessor)
-	{
-		var value = valueAccessor();
-		if (ko.utils.unwrapObservable(value))
-		{
-			$(element).modal('show');
-			// this is to focus input field inside dialog
-			$("input", element).focus();
-		}
-		else
-		{
-			$(element).modal('hide');
-		}
-	}
-};
-
 function convertToSlug(Text)
 {
 	return Text
@@ -34,8 +14,9 @@ function TicketModel(ticket)
 
 }
 
-function WorkstreamStatusModel(status, tickets)
+function WorkstreamStatusModel(wsName, status, tickets)
 {
+	this.wsName = wsName;
 	this.status = status;
 	this.tickets = ko.observableArray([]);
 
@@ -55,6 +36,18 @@ function WorkstreamStatusModel(status, tickets)
 			console.log("failed to delete ticket", textStatus, errorThrown);
 		} });
 	};
+	this.updateToThis = function (arg)
+	{
+		console.log("updating ticket to " + self.status, arg.item)
+		var ticket_update = {
+			workstream: self.wsName(),
+			id: arg.item.id(),
+			content: arg.item.text(),
+			status: self.status
+		};
+
+		$.ajax("tickets/", {type:"patch", contentType: "application/json", data: JSON.stringify(ticket_update)});
+	}
 }
 
 function WorkstreamModel(name, readyTickets, doingTickets, doneTickets)
@@ -64,9 +57,9 @@ function WorkstreamModel(name, readyTickets, doingTickets, doneTickets)
 	                            {
 		                            return convertToSlug(this.name());
 	                            }, this);
-	this.ready = new WorkstreamStatusModel("ready", readyTickets);
-	this.doing = new WorkstreamStatusModel("doing", doingTickets);
-	this.done = new WorkstreamStatusModel("done", doneTickets);
+	this.ready = new WorkstreamStatusModel(this.name, "ready", readyTickets);
+	this.doing = new WorkstreamStatusModel(this.name, "doing", doingTickets);
+	this.done = new WorkstreamStatusModel(this.name, "done", doneTickets);
 
 	var self = this;
 	this.newTicket = new TicketModel({id: -1, text: ""});
