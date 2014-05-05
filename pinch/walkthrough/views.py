@@ -208,18 +208,22 @@ class TicketView(View):
         else:
             mvp = Mvp.objects.create(project=project)
         workstreams = mvp.workstream_set.all()
-        return HttpResponse(self._convert_workstreams_to_json(workstreams),mimetype='application/json')
+        return HttpResponse(json.dumps(self._convert_workstreams_to_json(workstreams)),mimetype='application/json')
+
+    def _convert_ticket_to_json(self, t):
+        t_out = {"id": t.id, "text": t.content}
+        return t_out
 
     def _convert_workstreams_to_json(self, workstreams):
         all = []
         for w in workstreams:
             w_out = { "name": w.name, "ready":[], "doing":[], "done":[] }
             for t in w.ticket_set.all():
-                t_out = { "id": t.id, "text": t.content }
+                t_out = self._convert_ticket_to_json(t)
                 w_out[t.status].append(t_out)
             all.append(w_out)
 
-        return json.dumps(all)
+        return all
 
 
     def post(self, request, **kwargs):
@@ -234,7 +238,7 @@ class TicketView(View):
         workstream = mvp.workstream_set.filter(name=create_ticket['workstream'])[0]
         ticket = Ticket.objects.create(mvp=mvp,content=create_ticket['content'],status=create_ticket['status'],workstream=workstream)
         ticket.save()
-        return HttpResponse(serializers.serialize("json",[ticket,])[1:-1],mimetype='application/json')
+        return HttpResponse(json.dumps(self._convert_ticket_to_json(ticket)), content_type='application/json')
 
     def patch(self, request, **kwargs):
         project_slug = kwargs["slug"]

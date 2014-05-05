@@ -41,7 +41,6 @@ function WorkstreamStatusModel(status, tickets)
 	}
 	var self = this;
 	this.deleteTicket = function(ticket) {
-		console.log()
 		self.tickets.remove(ticket);
 	};
 }
@@ -61,8 +60,20 @@ function WorkstreamModel(name, readyTickets, doingTickets, doneTickets)
 	this.newTicket = new TicketModel({id: -1, text: ""});
 	this.createNew = function() {
 		console.log("creating new ticket", self.newTicket);
-		self.ready.tickets.push(self.newTicket);
+		ticket_info = {
+			workstream: self.name(),
+			content: self.newTicket.text(),
+			status: "ready"
+		};
+		pendingTicket = self.newTicket;
 		self.newTicket = new TicketModel({id: -1, text: ""});
+		$.ajax("tickets/", { type: "post", contentType: "application/json", data: JSON.stringify(ticket_info), dataType: "json", success: function(data) {
+			console.log("Created ticket on server", data);
+			pendingTicket.id(data.id);
+			self.ready.tickets.push(pendingTicket);
+		}, error: function(textStatus, errorThrown) {
+	console.log("Error trying to create new ticket on server", textStatus, errorThrown);
+}});
 	};
 }
 
