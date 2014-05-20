@@ -8039,8 +8039,8 @@ form input[type="text"], form textarea.form-control {
   font-size: 21px;
 }
 /* line 221, sass/pinch.scss */
-form input[type="text"] {
-  padding: 25px 15px;
+form input[type="text"].form-control {
+  height: 50px;
 }
 /* line 224, sass/pinch.scss */
 form textarea.form-control {
