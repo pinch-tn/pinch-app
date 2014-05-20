@@ -218,8 +218,8 @@ form {
 		box-shadow:none;
 		font-size:21px;
 	}
-	input[type="text"] {
-		padding:25px 15px;
+	input[type="text"].form-control {
+		height:50px;
 	}
 	textarea.form-control {
 		padding:10px 15px;
