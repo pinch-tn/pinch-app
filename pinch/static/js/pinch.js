@@ -67,14 +67,89 @@ function setup_highlighting(text_selector, button_selector, field_name, options_
 		})
 	}
 }
+
+// bind an entire div to this model with "with"
+//   bind a button to "clear"
+//   bind a hidden input field to "selectionsJson"
+//   bind a textarea to "selections" with "highlight" binding
+//   the highlighted sections and the json in hidden input field will be kept in sync
+//     we achieve this by updating the codemirror selections whenever the "selections" observable changes
+//     we also update the "selections" observable whenever a new selection is made
+//
+function HighlightModel() {
+	var self = this;
+
+	self.clear = function() {
+		self.selections.clear();
+	};
+
+	self.selections = ko.observableArray([]);
+
+	self.selectionsJson = ko.computed(function() {
+		return JSON.stringify(self.selections());
+	});
+}
+
+// Bind to a text area, specify a "highlighted class"
+ko.bindingHandlers.highlight = {
+	init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+		console.log("Setting up highlighting", element, allBindings);
+		var highlightClass = valueAccessor().highlightClass;
+		console.log("  Highlight class will be: ", highlightClass);
+
+		var editor = CodeMirror.fromTextArea(element, {
+			lineWrapping: true,
+			readOnly: true
+		});
+		element.editor = editor;
+		// Make the manipulation occur on the mouseup interaction
+		var lastSel = undefined;
+		editor.on('cursorActivity', function() {
+			lastSel = editor.doc.listSelections()[0];
+		});
+		var el = editor.getWrapperElement();
+		$(el).mouseup(function() {
+			var sel = lastSel;
+			console.log("Recording selection", sel);
+			var selectionArray = valueAccessor().data;
+			var selectionItem;
+			if (sel.head.ch > sel.anchor.ch) {
+				selectionItem = { line: sel.head.line, statement_start: sel.anchor.ch, statement_end: sel.head.ch};
+			} else {
+				selectionItem = { line: sel.head.line, statement_start: sel.head.ch, statement_end: sel.anchor.ch};
+			}
+			console.log("Adding selection", selectionArray(), selectionItem);
+			selectionArray.push(selectionItem);
+			console.log("Selection array updated", selectionArray());
+		});
+
+	},
+	update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+		console.log("Updating highlight markings...");
+		var currentSelections = valueAccessor().data();
+		console.log("Current selections are: ", currentSelections);
+		var editor = element.editor;
+		var highlightClass = valueAccessor().highlightClass;
+		for (var i = 0; i < currentSelections.length; i++)
+		{
+			var currentSelection = currentSelections[i];
+			console.log("Highlighting section", currentSelection);
+			editor.doc.markText({ line: currentSelection.line, ch: currentSelection.statement_start },
+			                    { line: currentSelection.line, ch: currentSelection.statement_end },
+			                    { className: highlightClass, atomic: false });
+		}
+	}
+};
+
+
 $(document).ready(function() {
 
-	setup_highlighting("#strike_statement", "#minify_next", "redactions", function() {
-		return {
-			className: 'strikethrough',
-			atomic: false
-		}
-	});
+//	setup_highlighting("#strike_statement", "#minify_next", "redactions", function() {
+//		return {
+//			className: 'strikethrough',
+//			atomic: false
+//		}
+//	});
 
 	setup_highlighting("#highlight_statement", "#highlight_next", "workstreams", function() {
 		return {
@@ -82,108 +157,5 @@ $(document).ready(function() {
 			atomic: false
 		}
 	});
-
-
-// loop over array and call .remove() on each element
-// var $ticket = $('<div class="task-header"><textarea></textarea></div>');
-// $button_name.click(function() {
-
-// });
-
-//	var get_ticket_info = function(item) {
-//		var ticket_update = {
-//			workstream: item.parentNode.id,
-//			id: item.id,
-//			content: item.textContent,
-//			status: item.parentNode.parentNode.attributes["status"].nodeValue,
-//		};
-//
-//	}
-//
-//
-//	// Add Sticky Note Button
-//	// Select the list that follows the button clicked
-//	var $current_list;
-//	$(".add").click(function() {
-//		$current_list = $(this).parent().next();
-//	});
-//	// Delete Sticky Note Button on each sticky note
-//	var deleteFunction = function ()
-//	{
-//		$(this).parent().remove();
-//		var pk = $(this).parent().attr("id")
-//		$.ajax("tickets/", {type: "delete", contentType: "application/json", data: JSON.stringify({pk: pk})})
-//	};
-//	// Take the text from the input from the modal
-//	$(".save").click(function() {
-//		var new_task_text = $(".modal-body input").val();  // "#myModal"
-//		var ticket_info = {
-//			workstream: $current_list.attr("id"),
-//			content: new_task_text,
-//			status: $current_list.parent().attr("status")
-//		};
-//		$.ajax("tickets/", {type:"post", contentType: "application/json", data: JSON.stringify(ticket_info), dataType:"json", success: function(data) {
-//			var $new_task = $("<li id='" + data.pk + "' class='ticket'><div class='trash'>x</div>" + new_task_text + "</li>");
-//			$current_list.append($new_task);
-//			$(".modal-body input").removeAttr('value');
-//			$(".trash").click(deleteFunction);
-//		}})
-//	});
-//
-//	$(".trash").click(deleteFunction);
-//
-//	// Drag and Drop sticky notes
-//	var adjustment
-//
-//
-//
-//	$("ul.drag_list").sortable({
-//	  group: '.drag_list',
-//	  connectWith: '.drag_list',
-//	  pullPlaceholder: false,
-//
-//		receive: function (event, ui) {
-//			var ticket_update = {
-//				workstream: ui.item[0].parentNode.id,
-//				pk: ui.item[0].id,
-//				content: ui.item[0].textContent.substring(1),
-//				status: ui.item[0].parentNode.parentNode.attributes["status"].nodeValue
-//			};
-//			console.log("Updating ticket status", ticket_update);
-//			$.ajax("tickets/", {type:"patch", contentType: "application/json", data: JSON.stringify(ticket_update)});
-//		},
-//
-//	  // animation on drop
-//	  onDrop: function  (item, targetContainer, _super) {
-//	    var clonedItem = $('<li/>').css({height: 0})
-//	    item.before(clonedItem)
-//	    clonedItem.animate({'height': item.height()})
-//
-//	    item.animate(clonedItem.position(), function  () {
-//	      clonedItem.detach()
-//	      _super(item)
-//	    })
-//	  },
-//
-//
-//	  // set item relative to cursor position
-//	  onDragStart: function ($item, container, _super) {
-//	    var offset = $item.offset(),
-//	    pointer = container.rootGroup.pointer
-//
-//	    adjustment = {
-//	      left: pointer.left - offset.left,
-//	      top: pointer.top - offset.top
-//	    }
-//
-//	    _super($item, container)
-//	  },
-//	  onDrag: function ($item, position) {
-//	    $item.css({
-//	      left: position.left - adjustment.left,
-//	      top: position.top - adjustment.top
-//	    })
-//	  }
-//	});
 
 });

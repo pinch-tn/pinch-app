@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block step %}minify-mvp{% endblock step %}
   {% block content %}
   
@@ -26,9 +27,9 @@
           <div class="col-md-8">
               <form id="main_form" role="form" method="post">
                   {% csrf_token %}
-                  <input type="hidden" name="redactions" id="selections" value="{{ selectionJson }}">
+                  <input type="hidden" name="redactions" id="selections" value="" data-bind="value: selectionsJson">
                   <div class="codeholder">
-                      <textarea id="strike_statement">{{ project.mvp.original_statement }}</textarea>
+                      <textarea id="strike_statement" data-bind="highlight: { data: selections, highlightClass: 'strikethrough' }">{{ project.mvp.original_statement }}</textarea>
                   </div>
                   <div class="clearfix">
                     <button id="clear" type="button" class="btn btn-default">Clear Edits</button>
@@ -49,3 +50,7 @@
 
 
   {% endblock content %}
+
+{% block extra_js %}
+    <script src="{% static 'js/minify_mvp.js' %}"></script>
+{% endblock extra_js %}
