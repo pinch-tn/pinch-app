@@ -156,11 +156,11 @@ $(document).ready(function() {
 //		}
 //	});
 
-	setup_highlighting("#highlight_statement", "#highlight_next", "workstreams", function() {
-		return {
-			className: 'highlight',
-			atomic: false
-		}
-	});
+//	setup_highlighting("#highlight_statement", "#highlight_next", "workstreams", function() {
+//		return {
+//			className: 'highlight',
+//			atomic: false
+//		}
+//	});
 
 });
