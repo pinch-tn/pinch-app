@@ -54,13 +54,7 @@
 {% block extra_js %}
     <script>
         $(document).ready(function() {
-            var model = new HighlightModel();
-            {% for redaction in project.mvp.mvpredaction_set.all %}
-                model.selections.push({ line: {{redaction.line}},
-                                          statement_start: {{redaction.statement_start}},
-                                          statement_end: {{redaction.statement_end}}});
-            {% endfor %}
-            ko.applyBindings(model);
+            ko.applyBindings(new HighlightModel( {{ selectionJson|safe }} ));
         });
     </script>
 {% endblock extra_js %}

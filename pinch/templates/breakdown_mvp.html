@@ -45,13 +45,7 @@
 {% block extra_js %}
     <script>
         $(document).ready(function() {
-            var model = new HighlightModel();
-            {% for ws in project.mvp.workstream_set.all %}
-                model.selections.push({ line: {{ws.line}},
-                                        statement_start: {{ws.statement_start}},
-                                        statement_end: {{ws.statement_end}}});
-            {% endfor %}
-            ko.applyBindings(model);
+            ko.applyBindings(new HighlightModel( {{ selectionJson|safe }} ));
         });
     </script>
 {% endblock extra_js %}

@@ -8,14 +8,18 @@
 //     we achieve this by updating the codemirror selections whenever the "selections" observable changes
 //     we also update the "selections" observable whenever a new selection is made
 //
-function HighlightModel() {
+function HighlightModel(initialSelections) {
 	var self = this;
 
 	self.clear = function() {
 		self.selections.removeAll();
 	};
 
-	self.selections = ko.observableArray([]);
+	if (!initialSelections)
+	{
+		initialSelections = [];
+	}
+	self.selections = ko.observableArray(initialSelections);
 
 	self.selectionsJson = ko.computed(function() {
 		return JSON.stringify(self.selections());
