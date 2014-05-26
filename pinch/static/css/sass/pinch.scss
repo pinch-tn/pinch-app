@@ -21,6 +21,11 @@
 	a.navbar-brand { color:#fff; }
 }
 
+
+
+
+/* Top Breadcrumbs */
+
 .steps {
 	margin-bottom:25px;
 	.step {
@@ -64,6 +69,19 @@
 	}
 }
 
+@media only screen and (max-width:1200px) {
+	.steps { .step { &:before { margin-left:73px; } } }
+}
+
+@media only screen and (max-width:992px) {
+	.col-md-1.step { float:left; width:23%; }
+	.steps { .step { &:before { margin-left:110px; } } }
+}
+
+@media only screen and (max-width:490px) {
+	.steps { .step { &:before { margin-left:76px; } } }
+}
+
 body.create {
 	.step:hover .hover { display:none; }
 	.steps { .create { font-weight:bold; } } }
@@ -100,25 +118,12 @@ body.minify-mvp {
 	}
 	.steps { .minify-mvp { font-weight:bold; } } }
 
-
-
 body.breakdown-mvp { .steps { .breakdown-mvp { font-weight:bold; } } }
 
-button[type="submit"] {
-	background-color:$color-primary;
-	border-top:none;
-	border-right:none;
-	border-bottom:2px solid $color-button-border;
-	border-left:2px solid $color-button-border;
-	color:#fff;
-	float:right;
-	font-size:21px;
-	font-weight:300;
-	margin-bottom:40px;
-	&.btn {
-		border-radius:0;
-	}
-}
+
+
+
+
 
 html {
   position: relative;
@@ -133,8 +138,6 @@ body {
 	/* Set the fixed height of the footer here */
 	margin-bottom: 110px;
 }
-
-// Base ID changes
 
 #footer {
   position: absolute;
@@ -152,8 +155,6 @@ body {
 
 body.home { .steps { display:none; } }
 body.gravity-board { #footer, .steps { display:none; } }
-
-// Classes
 
 .clear {clear:both; height:0px; line-height:0px; font-size:0px;}
 .strikethrough {
@@ -187,7 +188,12 @@ body.gravity-board { #footer, .steps { display:none; } }
 	color:#FFF;
 	text-decoration:none;
 }
-// Elements
+
+
+
+
+
+// Headlines
 
 h1 {
 	font-weight:300;
@@ -198,6 +204,12 @@ h2 { font-size:1.5em; font-style:italic; font-weight:300; margin-top:5px; margin
 	span { font-weight:normal; }
 }
 
+
+
+
+
+// Form elements
+
 form {
 	label { font-weight:300; }
 	input[type="text"], textarea.form-control {
@@ -206,8 +218,8 @@ form {
 		box-shadow:none;
 		font-size:21px;
 	}
-	input[type="text"] {
-		padding:25px 15px;
+	input[type="text"].form-control {
+		height:50px;
 	}
 	textarea.form-control {
 		padding:10px 15px;
@@ -215,6 +227,24 @@ form {
 	}
 	.codeholder {background:#EEE; border:1px solid #DDD; padding:10px; margin-bottom:15px;}
 }
+
+button[type="submit"] {
+	background-color:$color-primary;
+	border-top:none;
+	border-right:none;
+	border-bottom:2px solid $color-button-border;
+	border-left:2px solid $color-button-border;
+	color:#fff;
+	float:right;
+	font-size:21px;
+	font-weight:300;
+	margin-bottom:40px;
+	&.btn {
+		border-radius:0;
+	}
+}
+
+
 
 
 
@@ -281,6 +311,8 @@ form {
 
 
 
+
+
 // Info panel
 
 .info-panel {
@@ -292,6 +324,8 @@ form {
 	p.example {font-size:12px; font-style:italic; font-weight:bold; line-height:14px; margin-bottom:15px;}
 	.strike {text-decoration:line-through; background:#ff4540; padding:2px;}
 }
+
+
 
 
 

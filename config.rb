@@ -1,4 +1,4 @@
-SW SW require 'bootstrap-sass'
+require 'bootstrap-sass'
 # Require any additional compass plugins here.
 
 

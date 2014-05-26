@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock title %}</title>
+    <title>{% block title %}Pinch{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -40,11 +40,11 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
+          </button>-->
           <a class="navbar-brand" href="/">Pinch</a>
         </div>
         <div class="collapse navbar-collapse">
@@ -102,14 +102,16 @@
 	  
     </div> <!-- /container -->
 
-	<div id="footer">
+	<div id="footer" class="hidden-xs">
 	   <div class="container clearfix">
-		  <img src="/static/images/bahn5.png" align="left" height="60px"/>
+		  <a href="http://www.hacknashville.com/" target="_blank"><img src="/static/images/bahn5.png" align="left" height="60px"/></a>
 	      <p class="text-muted">
 			  <b>Built by Hackers, for Hackers.</b><br />
-			   Team: <em>Brendan Wovchko, Cale Mooth, 
-				  Jared Bunting, Jesse Gray, Kyle Williams, Mahesh Thundathil, 
-				  Matt Conrad, Matthew O'Briant, Taylor Schena
+			   Team: <em><a href="http://www.twitter.com/taylorrific" target="_blank">Taylor Schena</a>, <a href="http://www.twitter.com/CaleM" target="_blank">Cale Mooth</a>, 
+				  <a href="http://www.twitter.com/jwbunt" target="_blank">Jared Bunting</a>, <a href="http://www.twitter.com/ScrumMasterJ" target="_blank">Jesse Gray</a>, 
+				  <a href="http://www.twitter.com/kylewill" target="_blank">Kyle Williams</a>, <a href="https://www.linkedin.com/pub/mahesh-thundathil/37/747/bb3" target="_blank">Mahesh Thundathil</a>, 
+				  <a href="http://www.twitter.com/kizmat_konrad" target="_blank">Matt Conrad</a>, <a href="https://www.linkedin.com/pub/matthew-o-briant/75/914/72b" target="_blank">Matthew O'Briant</a>, and 
+				  <a href="http://www.twitter.com/wovchko" target="_blank">Brendan Wovchko</a>.
 			  </em><br />
 			  Based on the Methodology "Pinch" at <a href="http://www.startpinching.com" target="_blank">startpinching.com</a>
 		  </p>
@@ -134,14 +136,13 @@
     <script src="{% static 'js/pinch.js' %}"></script>
 
     {% block extra_js %}{% endblock extra_js %}
-{#    <script>#}
-{#      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){#}
-{#      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),#}
-{#      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)#}
-{#      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');#}
-{##}
-{#      ga('create', 'UA-50612155-1', 'pinch.tn');#}
-{#      ga('send', 'pageview');#}
-{#    </script>#}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-50612155-1', 'pinch.tn');
+      ga('send', 'pageview');
+    </script>
   </body>
 </html>
