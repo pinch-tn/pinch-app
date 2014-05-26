@@ -52,5 +52,15 @@
   {% endblock content %}
 
 {% block extra_js %}
-    <script src="{% static 'js/minify_mvp.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            var model = new HighlightModel();
+            {% for redaction in project.mvp.mvpredaction_set.all %}
+                model.selections.push({ line: {{redaction.line}},
+                                          statement_start: {{redaction.statement_start}},
+                                          statement_end: {{redaction.statement_end}}});
+            {% endfor %}
+            ko.applyBindings(model);
+        });
+    </script>
 {% endblock extra_js %}
