@@ -32,7 +32,7 @@
                       <textarea id="strike_statement" data-bind="highlight: { data: selections, highlightClass: 'strikethrough' }">{{ project.mvp.original_statement }}</textarea>
                   </div>
                   <div class="clearfix">
-                    <button id="clear" type="button" class="btn btn-default">Clear Edits</button>
+                    <button id="clear" type="button" class="btn btn-default" data-bind="click: clear">Clear Edits</button>
                     <button id="minify_next" type="submit" class="btn btn-default">Next</button>
                   </div>
               </form>

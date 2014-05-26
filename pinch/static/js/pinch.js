@@ -80,7 +80,7 @@ function HighlightModel() {
 	var self = this;
 
 	self.clear = function() {
-		self.selections.clear();
+		self.selections.removeAll();
 	};
 
 	self.selections = ko.observableArray([]);
@@ -130,6 +130,11 @@ ko.bindingHandlers.highlight = {
 		console.log("Current selections are: ", currentSelections);
 		var editor = element.editor;
 		var highlightClass = valueAccessor().highlightClass;
+
+		var $stricken = editor.getAllMarks();
+		for (var j = 0; j < $stricken.length; j++) {
+			$stricken[j].clear()
+		}
 		for (var i = 0; i < currentSelections.length; i++)
 		{
 			var currentSelection = currentSelections[i];
