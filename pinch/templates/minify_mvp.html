@@ -52,6 +52,7 @@
   {% endblock content %}
 
 {% block extra_js %}
+    <script src="{% static 'js/ko-highlight.js' %}"></script>
     <script>
         $(document).ready(function() {
             ko.applyBindings(new HighlightModel( {{ selectionJson|safe }} ));

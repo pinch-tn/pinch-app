@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block step %}breakdown-mvp{% endblock step %}
   {% block content %}
       <div class="row">
@@ -43,6 +44,7 @@
   {% endblock content %}
 
 {% block extra_js %}
+    <script src="{% static 'js/ko-highlight.js' %}"></script>
     <script>
         $(document).ready(function() {
             ko.applyBindings(new HighlightModel( {{ selectionJson|safe }} ));
