@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block step %}breakdown-mvp{% endblock step %}
   {% block content %}
       <div class="row">
@@ -19,12 +20,12 @@
           <div class="col-md-8">
               <form id="main_form" role="form" method="post">
                   {% csrf_token %}
-                  <input type="hidden" name="workstreams" id="selections" value="{{ selectionJson }}">
+                  <input type="hidden" name="workstreams" id="selections" value="" data-bind="value: selectionsJson">
                   <div class="codeholder">
-                      <textarea id="highlight_statement">{{ project.mvp.statement }}</textarea>
+                      <textarea id="highlight_statement" data-bind="highlight: { data: selections, highlightClass: 'highlight' }">{{ project.mvp.statement }}</textarea>
                   </div>
                   <div class="clearfix">
-                    <button id="clear" type="button" class="btn btn-default">Clear</button>
+                    <button id="clear" type="button" class="btn btn-default" data-bind="click: clear">Clear</button>
                     <button id="highlight_next" type="submit" class="btn btn-default">Next</button>
                   </div>
               </form>
@@ -41,3 +42,12 @@
       </div>	  
 
   {% endblock content %}
+
+{% block extra_js %}
+    <script src="{% static 'js/ko-highlight.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            ko.applyBindings(new HighlightModel( {{ selectionJson|safe }} ));
+        });
+    </script>
+{% endblock extra_js %}

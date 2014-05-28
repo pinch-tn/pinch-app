@@ -207,8 +207,24 @@ class TicketView(View):
             mvp = project.mvp
         else:
             mvp = Mvp.objects.create(project=project)
-        tickets = Ticket.objects.all().filter(mvp=mvp)
-        return HttpResponse(serializers.serialize("json",list(tickets)),mimetype='application/json')
+        workstreams = mvp.workstream_set.all()
+        return HttpResponse(json.dumps(self._convert_workstreams_to_json(workstreams)),mimetype='application/json')
+
+    def _convert_ticket_to_json(self, t):
+        t_out = {"id": t.id, "text": t.content}
+        return t_out
+
+    def _convert_workstreams_to_json(self, workstreams):
+        all = []
+        for w in workstreams:
+            w_out = { "name": w.name, "ready":[], "doing":[], "done":[] }
+            for t in w.ticket_set.all():
+                t_out = self._convert_ticket_to_json(t)
+                w_out[t.status].append(t_out)
+            all.append(w_out)
+
+        return all
+
 
     def post(self, request, **kwargs):
         project_slug = kwargs["slug"]
@@ -222,7 +238,7 @@ class TicketView(View):
         workstream = mvp.workstream_set.filter(name=create_ticket['workstream'])[0]
         ticket = Ticket.objects.create(mvp=mvp,content=create_ticket['content'],status=create_ticket['status'],workstream=workstream)
         ticket.save()
-        return HttpResponse(serializers.serialize("json",[ticket,])[1:-1],mimetype='application/json')
+        return HttpResponse(json.dumps(self._convert_ticket_to_json(ticket)), content_type='application/json')
 
     def patch(self, request, **kwargs):
         project_slug = kwargs["slug"]
@@ -234,7 +250,7 @@ class TicketView(View):
 
         update_ticket = json.loads(request.body)
         workstream = mvp.workstream_set.filter(name=update_ticket['workstream'])[0]
-        ticket = Ticket.objects.get(pk=update_ticket['pk'])
+        ticket = Ticket.objects.get(pk=update_ticket['id'])
         ticket.workstream=workstream
         ticket.content=update_ticket['content']
         ticket.status=update_ticket['status']
@@ -250,8 +266,8 @@ class TicketView(View):
             mvp = Mvp.objects.create(project=project)
 
         delete_ticket = json.loads(request.body)
-        Ticket.objects.get(pk=delete_ticket['pk']).delete()
-        return HttpResponse("ok")
+        Ticket.objects.get(pk=delete_ticket['id']).delete()
+        return HttpResponse("id")
 
     @csrf_exempt
     def dispatch(self, *args, **kwargs):

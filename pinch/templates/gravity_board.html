@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block step %}gravity-board{% endblock step %}
   {% block content %}
 
@@ -9,21 +10,35 @@
       		<div class="header">
       			<h3>Ready</h3>
       		</div>
-  			<ul class="task-columns">
-                {% for workstream in project.mvp.workstream_set.all %}
-  				<li status="ready">
+  			<ul class="task-columns" data-bind="foreach: workstreams">
+  				<li>
   					<div class="task-header">
-  						<button class="btn btn-primary btn-lg add" data-toggle="modal" data-target="#myModal">
+  						<button class="btn btn-primary btn-lg add" data-toggle="modal" data-bind="attr: { 'data-target': '#' + cssClass() + 'Modal' }">
   +
-</button><h4>{{ workstream.name }}</h4>
+</button><h4 data-bind="text: name"></h4>
   					</div>
-  					<ul id="{{ workstream.name }}" class="drag_list clearfix">
-                        {% for ticket in workstream.ready %}
-  						<li id="{{ ticket.id }}" class="ticket"><div class="trash">x</div>{{ ticket.content }}</li>
-                        {% endfor %}
+  					<ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: ready.tickets, connectClass: cssClass(), afterMove: ready.updateToThis }">
+                        <li class="ticket"><div class="trash" data-bind="click: $parent.ready.deleteTicket">x</div><span data-bind="text: text"/></li>
   					</ul>
+                    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-bind="attr: { id: cssClass() + 'Modal' }">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Add a new ticket</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <input class="ticket-input" type="text" placeholder="New ticket name" data-bind="value: newText"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary save" data-dismiss="modal" data-bind="click: createNew">Add ticket</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
   				</li>
-                {% endfor %}
   			</ul>
       	</div>
       	<!-- DOING -->
@@ -31,40 +46,32 @@
       		<div class="header">
       			<h3>Doing</h3>
       		</div>
-  			<ul class="task-columns">
-                {% for workstream in project.mvp.workstream_set.all %}
-                    <li status="doing">
-                        <div class="task-header">
-                            <h4>{{ workstream.name }}</h4>
-                        </div>
-                        <ul id="{{ workstream.name }}" class="drag_list clearfix">
-                            {% for ticket in workstream.doing %}
-                                <li id="{{ ticket.id }}" class="ticket"><div class="trash">x</div>{{ ticket.content }}</li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endfor %}
-  			</ul>
+            <ul class="task-columns" data-bind="foreach: workstreams">
+                <li>
+                    <div class="task-header">
+                        <h4 data-bind="text: name"></h4>
+                    </div>
+                    <ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: doing.tickets, connectClass: cssClass(), afterMove: doing.updateToThis }">
+                        <li class="ticket"><div class="trash" data-bind="click: $parent.doing.deleteTicket">x</div><span data-bind="text: text"/></li>
+                    </ul>
+                </li>
+            </ul>
       	</div>
       	<!-- DONE! -->
       	<div class="lane done">
       		<div class="header">
       			<h3>Done</h3>
       		</div>
-  			<ul class="task-columns">
-                {% for workstream in project.mvp.workstream_set.all %}
-                    <li status="done">
-                        <div class="task-header">
-                            <h4>{{ workstream.name }}</h4>
-                        </div>
-                        <ul id="{{ workstream.name }}" class="drag_list clearfix">
-                            {% for ticket in workstream.done %}
-                                <li id="{{ ticket.id }}" class="ticket"><div class="trash">x</div>{{ ticket.content }}</li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endfor %}
-  			</ul>
+            <ul class="task-columns" data-bind="foreach: workstreams">
+                <li>
+                    <div class="task-header">
+                        <h4 data-bind="text: name"></h4>
+                    </div>
+                    <ul class="drag_list clearfix" data-bind="css: cssClass, sortable: { data: done.tickets, connectClass: cssClass(), afterMove: done.updateToThis }">
+                        <li class="ticket"><div class="trash" data-bind="click: $parent.done.deleteTicket">x</div><span data-bind="text: text"/></li>
+                    </ul>
+                </li>
+            </ul>
       	</div>
       </div>
 
@@ -87,3 +94,8 @@
   </div>
 </div>
   {% endblock content %}
+
+{% block extra_js %}
+    <script src="{% static 'js/gravity_board.js' %}"></script>
+{% endblock extra_js %}
+
