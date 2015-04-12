@@ -162,7 +162,6 @@ body.gravity-board { #footer, .steps { display:none; } }
 	padding: 2px 4px;
 	font-size: 90%;
 	color: #c7254e;
-	background-color: #f9f2f4;
 	white-space: nowrap;
 	border-radius: 4px;
 }
@@ -204,6 +203,9 @@ h2 { font-size:1.5em; font-style:italic; font-weight:300; margin-top:5px; margin
 	span { font-weight:normal; }
 }
 
+.minify-mvp, .breakdown-mvp {
+	h3 { background-color:$color-bg-panel; display:inline-block; font-weight:bold; }
+}
 
 
 
@@ -225,7 +227,12 @@ form {
 		padding:10px 15px;
 		height:10em;
 	}
-	.codeholder {background:#EEE; border:1px solid #DDD; padding:10px; margin-bottom:15px;}
+	.codeholder {background:$color-bg; border:none; padding:0; margin-bottom:15px;}
+	.CodeMirror-code {
+		pre {
+			font-size:30px;
+		}
+	}
 }
 
 button[type="submit"] {
@@ -322,7 +329,7 @@ button[type="submit"] {
 	h3 {padding-top:0px; margin-top:0px;}
 	p {margin-bottom:5px;}
 	p.example {font-size:12px; font-style:italic; font-weight:bold; line-height:14px; margin-bottom:15px;}
-	.strike {text-decoration:line-through; background:#ff4540; padding:2px;}
+	.strike {text-decoration:line-through; padding:2px;}
 }
 
 
