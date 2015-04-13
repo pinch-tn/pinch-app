@@ -120,6 +120,8 @@ body.minify-mvp {
 
 body.breakdown-mvp { .steps { .breakdown-mvp { font-weight:bold; } } }
 
+body.gravity-board { .steps { .gravity-board { font-weight:bold; } } }
+
 
 
 
@@ -154,7 +156,7 @@ body {
 }
 
 body.home { .steps { display:none; } }
-body.gravity-board { #footer, .steps { display:none; } }
+body.gravity-board { #footer { display:none !important; } }
 
 .clear {clear:both; height:0px; line-height:0px; font-size:0px;}
 .strikethrough {
