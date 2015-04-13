@@ -1,11 +1,13 @@
 import datetime
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
+from randomslugfield import RandomSlugField
 
 
 class Project(models.Model):
     name = models.CharField(max_length=200, db_index=True, unique=True)
-    slug = AutoSlugField(populate_from="name")
+    key = RandomSlugField(length=6, exclude_upper=True)
+    slug = AutoSlugField(populate_from=["name", "key"])
     created = models.DateTimeField(auto_now_add=True)
     started = models.DateTimeField(blank=True, null=True, editable=False)
     ended = models.DateTimeField(blank=True, null=True, editable=False)
