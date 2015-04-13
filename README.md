@@ -39,7 +39,7 @@ pinch/manage.py migrate
 Add Test Data:
 
 ```
-pinch/manage.py loaddata walkthrough/fixtures/test_data.json
+pinch/manage.py loaddata pinch/walkthrough/fixtures/test_data.json
 ```
 
 Run server:
