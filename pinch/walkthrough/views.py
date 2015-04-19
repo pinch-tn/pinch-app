@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, RedirectView, View
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
-from models import Project, Mvp, MvpRedaction, Workstream, Ticket
+from models import Project, ProjectMember, Mvp, MvpRedaction, Workstream, Ticket
 import json
 
 class RootProjectView(View):
@@ -27,11 +27,34 @@ class RootProjectView(View):
 class CreateProjectView(TemplateView):
     template_name = "create_project.html"
 
+    def get_context_data(self, **kwargs):
+        return {
+            "event_default": "Hack Tennessee 7"
+        }
+
     def post(self, request, *args, **kwargs):
         project = Project.objects.create(name=request.POST.get("projectName", ""))
         project.started = project.created
         project.ended = project.started + datetime.timedelta(days=14)
+        event = request.POST.get("event")
+        if event:
+            project.event = event
         project.save()
+        owner = ProjectMember.objects.create(project=project,
+                                             name=request.POST.get("ownerName", ""),
+                                             email=request.POST.get("ownerEmail", ""),
+                                             owner=True)
+        owner.save()
+
+        memberNames = request.POST.getlist("memberName")
+        memberEmails = request.POST.getlist("memberEmail")
+        for name, email in zip(memberNames, memberEmails):
+            if name:
+                member = ProjectMember.objects.create(project=project,
+                                                      name=name,
+                                                      email=email,
+                                                      owner=False)
+                member.save()
         return redirect("big_idea", slug=project.slug)
 
 
@@ -179,7 +202,7 @@ class BreakdownMvpView(TemplateView):
             workstream.save()
 
         # add "select tech" workstream
-        tech_ws = Workstream.objects.create(mvp=mvp,name="Tools and Technology", line=0, statement_start=0, statement_end=0)
+        tech_ws = Workstream.objects.create(mvp=mvp,name="Tools & Technology", line=0, statement_start=0, statement_end=0)
         tech_ws.save()
         return redirect("gravity_board", slug=project_slug)
 

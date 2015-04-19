@@ -5,8 +5,6 @@ Checkout [pinch](http://www.startpinching.com/).
 
 We're making it an app!
 
-![codeship status](https://www.codeship.io/projects/fbbc8ec0-b53b-0131-952c-5a246534b827/status)
-
 
 getting started
 ===============
@@ -39,7 +37,7 @@ pinch/manage.py migrate
 Add Test Data:
 
 ```
-pinch/manage.py loaddata walkthrough/fixtures/test_data.json
+pinch/manage.py loaddata pinch/walkthrough/fixtures/test_data.json
 ```
 
 Run server:
