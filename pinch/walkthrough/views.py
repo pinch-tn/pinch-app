@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, RedirectView, View
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
-from models import Project, Mvp, MvpRedaction, Workstream, Ticket
+from models import Project, ProjectMember, Mvp, MvpRedaction, Workstream, Ticket
 import json
 
 class RootProjectView(View):
@@ -27,11 +27,24 @@ class RootProjectView(View):
 class CreateProjectView(TemplateView):
     template_name = "create_project.html"
 
+    def get_context_data(self, **kwargs):
+        return {
+            "event_default": "Hack Tennessee 7"
+        }
+
     def post(self, request, *args, **kwargs):
         project = Project.objects.create(name=request.POST.get("projectName", ""))
         project.started = project.created
         project.ended = project.started + datetime.timedelta(days=14)
+        event = request.POST.get("event")
+        if event:
+            project.event = event
         project.save()
+        owner = ProjectMember.objects.create(project=project,
+                                             name=request.POST.get("ownerName", ""),
+                                             email=request.POST.get("ownerEmail", ""),
+                                             owner=True)
+        owner.save()
         return redirect("big_idea", slug=project.slug)
 
 

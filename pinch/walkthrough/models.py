@@ -8,6 +8,8 @@ class Project(models.Model):
     name = models.CharField(max_length=200, db_index=True, unique=True)
     key = RandomSlugField(length=6, exclude_upper=True)
     slug = AutoSlugField(populate_from=["name", "key"])
+    event = models.CharField(max_length=200, default="")
+
     created = models.DateTimeField(auto_now_add=True)
     started = models.DateTimeField(blank=True, null=True, editable=False)
     ended = models.DateTimeField(blank=True, null=True, editable=False)
@@ -33,6 +35,14 @@ class Project(models.Model):
 
     def is_workstream_frozen(self):
         return self.has_mvp and self.mvp.workstream_set
+
+
+class ProjectMember(models.Model):
+
+    name = models.CharField(max_length=200, null=False, blank=False)
+    email = models.EmailField(max_length=254, null=False, blank=False)
+    owner = models.BooleanField(default=False)
+    project = models.ForeignKey(related_name="members", to=Project)
 
 
 class Mvp(models.Model):
