@@ -45,6 +45,16 @@ class CreateProjectView(TemplateView):
                                              email=request.POST.get("ownerEmail", ""),
                                              owner=True)
         owner.save()
+
+        memberNames = request.POST.getlist("memberName")
+        memberEmails = request.POST.getlist("memberEmail")
+        for name, email in zip(memberNames, memberEmails):
+            if name:
+                member = ProjectMember.objects.create(project=project,
+                                                      name=name,
+                                                      email=email,
+                                                      owner=False)
+                member.save()
         return redirect("big_idea", slug=project.slug)
 
 
