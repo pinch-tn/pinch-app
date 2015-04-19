@@ -31,12 +31,9 @@
               <input type="text" class="form-control" name="ownerName" id="ownerName" placeholder="Your name">
               <input type="email" class="form-control" name="ownerEmail" id="ownerEmail" placeholder="Your email address">
 
-              <input type="text" class="form-control" name="memberName" id="memberName0" placeholder="Member 0 name">
-              <input type="email" class="form-control" name="memberEmail" id="memberEmail0" placeholder="Member 0 email address">
-              <input type="text" class="form-control" name="memberName" id="memberName1" placeholder="Member 1 name">
-              <input type="email" class="form-control" name="memberEmail" id="memberEmail1" placeholder="Member 1 email address">
-              <input type="text" class="form-control" name="memberName" id="memberName2" placeholder="Member 2 name">
-              <input type="email" class="form-control" name="memberEmail" id="memberEmail2" placeholder="Member 2 email address">
+              <div class="project-members">
+              </div>
+              <button class="btn btn-default square add-member-button">Add Project Member</button>
             </div>
             <div class="clearfix">
               <button type="submit" class="btn btn-default square">get started</button>
@@ -55,4 +52,22 @@
       </div>
 
   {% endblock content %}
+{% block extra_js %}
+
+  <script>
+    $(document).ready(function() {
+      var wrapper = $(".project-members");
+      var add_button = $(".add-member-button");
+
+      var m = 0;
+      $(add_button).click(function(e) {
+        e.preventDefault();
+        $(wrapper).append("<input type='text' class='form-control' name='memberName' id='memberName" + m + "' placeholder='Member " + m + " name'>");
+        $(wrapper).append("<input type='email' class='form-control' name='memberEmail' id='memberEmail" + m + "' placeholder='Member " + m + " email address'>");
+        m++;
+      });
+    })
+  </script>
+
+{% endblock extra_js %}
 
