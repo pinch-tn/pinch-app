@@ -55,6 +55,9 @@ class CreateProjectView(TemplateView):
                                                       email=email,
                                                       owner=False)
                 member.save()
+
+        project = Project.objects.get(pk=project.pk)
+        project.send_created_email(request.build_absolute_uri(project.slug))
         return redirect("big_idea", slug=project.slug)
 
 
