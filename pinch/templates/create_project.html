@@ -27,6 +27,13 @@
             {% csrf_token %}
             <div class="form-group">
               <input type="text" class="form-control" name="projectName" id="projectName" placeholder="Your great project name">
+              <input type="text" class="form-control" name="event" id="event" placeholder="Is your project part of an event?" value="{{ event_default }}">
+              <input type="text" class="form-control" name="ownerName" id="ownerName" placeholder="Your name">
+              <input type="email" class="form-control" name="ownerEmail" id="ownerEmail" placeholder="Your email address">
+
+              <div class="project-members">
+              </div>
+              <button class="btn btn-default square add-member-button">Add Project Member</button>
             </div>
             <div class="clearfix">
               <button type="submit" class="btn btn-default square">get started</button>
@@ -45,4 +52,22 @@
       </div>
 
   {% endblock content %}
+{% block extra_js %}
+
+  <script>
+    $(document).ready(function() {
+      var wrapper = $(".project-members");
+      var add_button = $(".add-member-button");
+
+      var m = 0;
+      $(add_button).click(function(e) {
+        e.preventDefault();
+        $(wrapper).append("<input type='text' class='form-control' name='memberName' id='memberName" + m + "' placeholder='Member " + m + " name'>");
+        $(wrapper).append("<input type='email' class='form-control' name='memberEmail' id='memberEmail" + m + "' placeholder='Member " + m + " email address'>");
+        m++;
+      });
+    })
+  </script>
+
+{% endblock extra_js %}
 
