@@ -29,10 +29,10 @@ ALLOWED_HOSTS = ['pinch-tn.herokuapp.com']
 
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' if environ.get('SENDGRID_USERNAME', None) else 'django.core.mail.backends.console.EmailBackend'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host
-EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST = 'smtp.sendgrid.net' 
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-password
 EMAIL_HOST_PASSWORD = environ.get('SENDGRID_PASSWORD', '')
