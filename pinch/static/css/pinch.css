@@ -8041,36 +8041,41 @@ h2 span {
 /* line 218, sass/pinch.scss */
 form label {
   font-weight: 300;
+  margin-top: 20px;
 }
-/* line 219, sass/pinch.scss */
-form input[type="text"], form textarea.form-control {
+/* line 222, sass/pinch.scss */
+form input[type="text"], form input[type="email"], form textarea.form-control {
   border: 1px solid #dddfe0;
   border-radius: 0;
   box-shadow: none;
   font-size: 21px;
 }
-/* line 225, sass/pinch.scss */
-form input[type="text"].form-control {
+/* line 228, sass/pinch.scss */
+form input[type="text"].form-control, form input[type="email"].form-control {
   height: 50px;
 }
-/* line 228, sass/pinch.scss */
+/* line 231, sass/pinch.scss */
+form .add-member-button {
+  margin-top: 10px;
+}
+/* line 234, sass/pinch.scss */
 form textarea.form-control {
   padding: 10px 15px;
   height: 10em;
 }
-/* line 232, sass/pinch.scss */
+/* line 238, sass/pinch.scss */
 form .codeholder {
   background: #f8f7f7;
   border: none;
   padding: 0;
   margin-bottom: 15px;
 }
-/* line 234, sass/pinch.scss */
+/* line 240, sass/pinch.scss */
 form .CodeMirror-code pre {
   font-size: 30px;
 }
 
-/* line 240, sass/pinch.scss */
+/* line 246, sass/pinch.scss */
 button[type="submit"] {
   background-color: #f8bf51;
   border-top: none;
@@ -8083,12 +8088,12 @@ button[type="submit"] {
   font-weight: 300;
   margin-bottom: 40px;
 }
-/* line 251, sass/pinch.scss */
+/* line 257, sass/pinch.scss */
 button[type="submit"].btn {
   border-radius: 0;
 }
 
-/* line 264, sass/pinch.scss */
+/* line 270, sass/pinch.scss */
 .step-icon div.big-idea {
   background: url("/static/images/icon-big-idea.png") no-repeat 0 0;
   width: 64px;
@@ -8106,20 +8111,20 @@ button[type="submit"].btn {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 264, sass/pinch.scss */
+  /* line 270, sass/pinch.scss */
   .step-icon div.big-idea {
     background: url("/static/images/icon-big-idea@2x.png");
     background-size: 64px 97px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 264, sass/pinch.scss */
+  /* line 270, sass/pinch.scss */
   .step-icon div.big-idea {
     background: url("/static/images/icon-big-idea@2x.png");
     background-size: 64px 97px;
   }
 }
-/* line 273, sass/pinch.scss */
+/* line 279, sass/pinch.scss */
 .step-icon div.create-project {
   background: url("/static/images/create-project.png") no-repeat 0 0;
   width: 64px;
@@ -8137,20 +8142,20 @@ button[type="submit"].btn {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 273, sass/pinch.scss */
+  /* line 279, sass/pinch.scss */
   .step-icon div.create-project {
     background: url("/static/images/create-project@2x.png");
     background-size: 64px 65px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 273, sass/pinch.scss */
+  /* line 279, sass/pinch.scss */
   .step-icon div.create-project {
     background: url("/static/images/create-project@2x.png");
     background-size: 64px 65px;
   }
 }
-/* line 282, sass/pinch.scss */
+/* line 288, sass/pinch.scss */
 .step-icon div.validate {
   background: url("/static/images/validate.png") no-repeat 0 0;
   width: 64px;
@@ -8168,20 +8173,20 @@ button[type="submit"].btn {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 282, sass/pinch.scss */
+  /* line 288, sass/pinch.scss */
   .step-icon div.validate {
     background: url("/static/images/validate@2x.png");
     background-size: 64px 40px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 282, sass/pinch.scss */
+  /* line 288, sass/pinch.scss */
   .step-icon div.validate {
     background: url("/static/images/validate@2x.png");
     background-size: 64px 40px;
   }
 }
-/* line 291, sass/pinch.scss */
+/* line 297, sass/pinch.scss */
 .step-icon div.create-mvp {
   background: url("/static/images/icon-create-mvp.png") no-repeat 0 0;
   width: 64px;
@@ -8199,20 +8204,20 @@ button[type="submit"].btn {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 291, sass/pinch.scss */
+  /* line 297, sass/pinch.scss */
   .step-icon div.create-mvp {
     background: url("/static/images/icon-create-mvp@2x.png");
     background-size: 64px 46px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 291, sass/pinch.scss */
+  /* line 297, sass/pinch.scss */
   .step-icon div.create-mvp {
     background: url("/static/images/icon-create-mvp@2x.png");
     background-size: 64px 46px;
   }
 }
-/* line 300, sass/pinch.scss */
+/* line 306, sass/pinch.scss */
 .step-icon div.minify-mvp {
   background: url("/static/images/icon-minify-mvp.png") no-repeat 0 0;
   width: 64px;
@@ -8230,20 +8235,20 @@ button[type="submit"].btn {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 300, sass/pinch.scss */
+  /* line 306, sass/pinch.scss */
   .step-icon div.minify-mvp {
     background: url("/static/images/icon-minify-mvp@2x.png");
     background-size: 64px 42px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 300, sass/pinch.scss */
+  /* line 306, sass/pinch.scss */
   .step-icon div.minify-mvp {
     background: url("/static/images/icon-minify-mvp@2x.png");
     background-size: 64px 42px;
   }
 }
-/* line 309, sass/pinch.scss */
+/* line 315, sass/pinch.scss */
 .step-icon div.breakdown-mvp {
   background: url("/static/images/icon-breakdown-mvp.png") no-repeat 0 0;
   width: 64px;
@@ -8261,36 +8266,36 @@ button[type="submit"].btn {
     }*/
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 309, sass/pinch.scss */
+  /* line 315, sass/pinch.scss */
   .step-icon div.breakdown-mvp {
     background: url("/static/images/icon-breakdown-mvp@2x.png");
     background-size: 64px 47px;
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 309, sass/pinch.scss */
+  /* line 315, sass/pinch.scss */
   .step-icon div.breakdown-mvp {
     background: url("/static/images/icon-breakdown-mvp@2x.png");
     background-size: 64px 47px;
   }
 }
 
-/* line 327, sass/pinch.scss */
+/* line 333, sass/pinch.scss */
 .info-panel {
   background-color: #feebc5;
   font-size: 16px;
   padding: 15px;
 }
-/* line 331, sass/pinch.scss */
+/* line 337, sass/pinch.scss */
 .info-panel h3 {
   padding-top: 0px;
   margin-top: 0px;
 }
-/* line 332, sass/pinch.scss */
+/* line 338, sass/pinch.scss */
 .info-panel p {
   margin-bottom: 5px;
 }
-/* line 333, sass/pinch.scss */
+/* line 339, sass/pinch.scss */
 .info-panel p.example {
   font-size: 12px;
   font-style: italic;
@@ -8298,19 +8303,19 @@ button[type="submit"].btn {
   line-height: 14px;
   margin-bottom: 15px;
 }
-/* line 334, sass/pinch.scss */
+/* line 340, sass/pinch.scss */
 .info-panel .strike {
   text-decoration: line-through;
   padding: 2px;
 }
 
-/* line 343, sass/pinch.scss */
+/* line 349, sass/pinch.scss */
 .venn {
   background: url("/static/images/venn-diagram.png") no-repeat center 0;
   background-size: contain;
   min-height: 800px;
 }
-/* line 347, sass/pinch.scss */
+/* line 353, sass/pinch.scss */
 .venn textarea {
   background: transparent;
   border: none;
@@ -8324,44 +8329,44 @@ button[type="submit"].btn {
   vertical-align: bottom;
   width: 100%;
 }
-/* line 359, sass/pinch.scss */
+/* line 365, sass/pinch.scss */
 .venn textarea:focus {
   outline: none;
 }
-/* line 362, sass/pinch.scss */
+/* line 368, sass/pinch.scss */
 .venn textarea#offering {
   padding-left: 30px;
 }
-/* line 363, sass/pinch.scss */
+/* line 369, sass/pinch.scss */
 .venn textarea#valueProp {
   padding-right: 30px;
   padding-left: 30px;
 }
-/* line 364, sass/pinch.scss */
+/* line 370, sass/pinch.scss */
 .venn textarea#customer {
   padding-right: 30px;
 }
 @media only screen and (max-width: 1200px) {
-  /* line 368, sass/pinch.scss */
+  /* line 374, sass/pinch.scss */
   .venn textarea {
     margin-top: 90px;
     height: 245px;
   }
 }
 @media only screen and (max-width: 990px) {
-  /* line 374, sass/pinch.scss */
+  /* line 380, sass/pinch.scss */
   .venn textarea {
     height: 300px;
     margin-top: 115px;
   }
-  /* line 378, sass/pinch.scss */
+  /* line 384, sass/pinch.scss */
   .venn .form-group.col-md-4 {
     float: left;
     width: 33%;
   }
 }
 @media only screen and (max-width: 650px) {
-  /* line 384, sass/pinch.scss */
+  /* line 390, sass/pinch.scss */
   .venn textarea {
     font-size: 18px;
     margin-top: 90px;
@@ -8369,7 +8374,7 @@ button[type="submit"].btn {
   }
 }
 @media only screen and (max-width: 530px) {
-  /* line 391, sass/pinch.scss */
+  /* line 397, sass/pinch.scss */
   .venn textarea {
     font-size: 15px;
     margin-top: 75px;
@@ -8377,14 +8382,14 @@ button[type="submit"].btn {
   }
 }
 @media only screen and (max-width: 500px) {
-  /* line 398, sass/pinch.scss */
+  /* line 404, sass/pinch.scss */
   .venn textarea {
     font-size: 15px;
     margin-top: 55px;
     height: 160px;
   }
 }
-/* line 404, sass/pinch.scss */
+/* line 410, sass/pinch.scss */
 .venn .validate-action {
   margin-top: 100px;
 }

@@ -215,15 +215,21 @@ h2 { font-size:1.5em; font-style:italic; font-weight:300; margin-top:5px; margin
 // Form elements
 
 form {
-	label { font-weight:300; }
-	input[type="text"], textarea.form-control {
+	label {
+		font-weight:300;
+		margin-top:20px;
+	}
+	input[type="text"], input[type="email"], textarea.form-control {
 		border:1px solid $color-border-color;
 		border-radius:0;
 		box-shadow:none;
 		font-size:21px;
 	}
-	input[type="text"].form-control {
+	input[type="text"].form-control, input[type="email"].form-control {
 		height:50px;
+	}
+	.add-member-button {
+		margin-top:10px;
 	}
 	textarea.form-control {
 		padding:10px 15px;
