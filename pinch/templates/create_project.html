@@ -26,14 +26,17 @@
           <form role="form" method="post">
             {% csrf_token %}
             <div class="form-group">
-              <input type="text" class="form-control" name="projectName" id="projectName" placeholder="Your great project name">
+              <input type="text" class="form-control" name="projectName" id="projectName" placeholder="Acme Enterprises">
+              <label>Event name</label>
               <input type="text" class="form-control" name="event" id="event" placeholder="Is your project part of an event?" value="{{ event_default }}">
-              <input type="text" class="form-control" name="ownerName" id="ownerName" placeholder="Your name">
-              <input type="email" class="form-control" name="ownerEmail" id="ownerEmail" placeholder="Your email address">
+              <label>Your name</label>
+              <input type="text" class="form-control" name="ownerName" id="ownerName" placeholder="Jennifer Smith">
+              <label>Your email</label>
+              <input type="email" class="form-control" name="ownerEmail" id="ownerEmail" placeholder="you@domain.com">
 
               <div class="project-members">
               </div>
-              <button class="btn btn-default square add-member-button">Add Project Member</button>
+              <button class="btn btn-default square add-member-button">+ Add a project member</button>
             </div>
             <div class="clearfix">
               <button type="submit" class="btn btn-default square">get started</button>
@@ -62,8 +65,8 @@
       var m = 0;
       $(add_button).click(function(e) {
         e.preventDefault();
-        $(wrapper).append("<input type='text' class='form-control' name='memberName' id='memberName" + m + "' placeholder='Member " + m + " name'>");
-        $(wrapper).append("<input type='email' class='form-control' name='memberEmail' id='memberEmail" + m + "' placeholder='Member " + m + " email address'>");
+        $(wrapper).append("<hr><label>Project member's name</label><input type='text' class='form-control' name='memberName' id='memberName" + m + "' placeholder='Member Name'>");
+        $(wrapper).append("<label>Project member's email</label><input type='email' class='form-control' name='memberEmail' id='memberEmail" + m + "' placeholder='member" + (m+1) + "@domain.com'>");
         m++;
       });
     })
