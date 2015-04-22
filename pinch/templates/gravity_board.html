@@ -3,12 +3,11 @@
 {% block step %}gravity-board{% endblock step %}
   {% block content %}
 
-
       <div id="gravity-board">
       	<!-- READY -->
       	<div class="lane ready">
       		<div class="header">
-      			<h3>Ready</h3>
+            <h3>Ready&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">?</a></h3>
       		</div>
   			<ul class="task-columns" data-bind="foreach: workstreams">
   				<li>
@@ -89,6 +88,22 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary save" data-dismiss="modal">Add ticket</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Info modal -->
+
+<div class="info-modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4>Gravity Board</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some content here explaining the Gravity Board.</p>
       </div>
     </div>
   </div>

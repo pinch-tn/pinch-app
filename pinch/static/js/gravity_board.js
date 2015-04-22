@@ -118,3 +118,5 @@ $.ajax("tickets/", { dataType: "json", success: function (data)
 {
 	console.log("Error trying to retrieve tickets from server", textStatus, errorThrown);
 } });
+
+$('.info-modal').modal('show');
