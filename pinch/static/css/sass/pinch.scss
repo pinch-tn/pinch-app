@@ -257,6 +257,12 @@ button[type="submit"] {
 	&.btn {
 		border-radius:0;
 	}
+	&.ready {
+		float:none;
+		font-size:18px;
+		margin-top:20px;
+		margin-bottom:0;
+	}
 }
 
 
