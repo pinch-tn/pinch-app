@@ -7,6 +7,8 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from models import Project, ProjectMember, Mvp, MvpRedaction, Workstream, Ticket
 import json
+from django.core.urlresolvers import reverse
+
 
 class RootProjectView(View):
 
@@ -209,7 +211,7 @@ class BreakdownMvpView(TemplateView):
 
 
 def create_gravity_board(request, project):
-    project.send_created_email(request.build_absolute_uri(project.slug))
+    project.send_created_email(request.build_absolute_uri(reverse("gravity_board", kwargs={"slug": project.slug})))
     return redirect("gravity_board", slug=project.slug)
 
 
