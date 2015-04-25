@@ -56,8 +56,6 @@ class CreateProjectView(TemplateView):
                                                       owner=False)
                 member.save()
 
-        project = Project.objects.get(pk=project.pk)
-        project.send_created_email(request.build_absolute_uri(project.slug))
         return redirect("big_idea", slug=project.slug)
 
 
@@ -207,7 +205,12 @@ class BreakdownMvpView(TemplateView):
         # add "select tech" workstream
         tech_ws = Workstream.objects.create(mvp=mvp,name="Tools & Technology", line=0, statement_start=0, statement_end=0)
         tech_ws.save()
-        return redirect("gravity_board", slug=project_slug)
+        return create_gravity_board(request, project)
+
+
+def create_gravity_board(request, project):
+    project.send_created_email(request.build_absolute_uri(project.slug))
+    return redirect("gravity_board", slug=project.slug)
 
 
 class GravityBoardView(TemplateView):
