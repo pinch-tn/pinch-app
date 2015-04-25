@@ -67,6 +67,11 @@
 			border-bottom: 10px solid $color-bg-panel;
 		}
 	}
+	.pill {
+		background-color:$color-border-color;
+		border-radius:100px;
+		padding:2px;
+	}
 }
 
 @media only screen and (max-width:1200px) {
@@ -84,7 +89,13 @@
 
 body.create {
 	.step:hover .hover { display:none; }
-	.steps { .create { font-weight:bold; } } }
+	.steps {
+		.create {
+			font-weight:bold;
+			.pill { background-color:$color-primary; }
+		}
+	}
+}
 
 body.big-idea {
 	.step {
@@ -92,7 +103,14 @@ body.big-idea {
 			.hover { display:none; }
 		}
 	}
-	.steps { .big-idea { font-weight:bold; } } }
+	.steps {
+		.big-idea {
+			font-weight:bold;
+			.pill { background-color:$color-primary; }
+			}
+		}
+		.create { .pill { background-color:$color-primary; } }
+	}
 
 body.validate {
 	.step {
@@ -100,7 +118,14 @@ body.validate {
 			.hover { display:none; }
 		}
 	}
-	.steps { .validate { font-weight:bold; } } }
+	.steps {
+		.validate {
+			font-weight:bold;
+			.pill { background-color:$color-primary; }
+		}
+		.create, .big-idea { .pill { background-color:$color-primary; } }
+	}
+}
 
 body.create-mvp {
 	.step {
@@ -108,7 +133,14 @@ body.create-mvp {
 			.hover { display:none; }
 		}
 	}
-	.steps { .create-mvp { font-weight:bold; } } }
+	.steps {
+		.create-mvp {
+			font-weight:bold;
+			.pill { background-color:$color-primary; }
+		}
+		.create, .big-idea, .validate { .pill { background-color:$color-primary; } }
+	}
+}
 
 body.minify-mvp {
 	.step {
@@ -116,13 +148,38 @@ body.minify-mvp {
 			.hover { display:none; }
 		}
 	}
-	.steps { .minify-mvp { font-weight:bold; } } }
+	.steps {
+		.minify-mvp {
+			font-weight:bold;
+			.pill { background-color:$color-primary; }
+		}
+		.create, .big-idea, .validate, .create-mvp { .pill { background-color:$color-primary; } }
+	}
+}
 
-body.breakdown-mvp { .steps { .breakdown-mvp { font-weight:bold; } } }
+body.breakdown-mvp {
+	.steps {
+		.breakdown-mvp {
+			font-weight:bold;
+			.pill { background-color:$color-primary; }
+		}
+		.create, .big-idea, .validate, .create-mvp, .minify-mvp { .pill { background-color:$color-primary; } }
+	}
+}
 
-body.gravity-board { .steps { .gravity-board { font-weight:bold; } } }
+body.gravity-board {
+	.steps {
+		.gravity-board {
+			font-weight:bold;
+			.pill { background-color:$color-primary; }
+		}
+		.create, .big-idea, .validate, .create-mvp, .minify-mvp, .breakdown-mvp { .pill { background-color:$color-primary; } }
+	}
+}
 
-
+.hack-tn-logo {
+	margin:60px 0;
+}
 
 
 
@@ -256,6 +313,12 @@ button[type="submit"] {
 	margin-bottom:40px;
 	&.btn {
 		border-radius:0;
+	}
+	&.ready {
+		float:none;
+		font-size:18px;
+		margin-top:20px;
+		margin-bottom:0;
 	}
 }
 

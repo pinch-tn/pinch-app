@@ -4,6 +4,9 @@ from django_extensions.db.fields import AutoSlugField
 from randomslugfield import RandomSlugField
 from django.core.mail import send_mail
 from string import Template
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Project(models.Model):
@@ -11,6 +14,7 @@ class Project(models.Model):
     key = RandomSlugField(length=6, exclude_upper=True)
     slug = AutoSlugField(populate_from=["name", "key"], unique=True)
     event = models.CharField(max_length=200, default="")
+    email_sent = models.BooleanField(default=False)
 
     created = models.DateTimeField(auto_now_add=True)
     started = models.DateTimeField(blank=True, null=True, editable=False)
@@ -39,14 +43,20 @@ class Project(models.Model):
         return self.has_mvp and self.mvp.workstream_set
 
     def send_created_email(self, project_url):
-        message_template = Template("""
-            You are a member of the project '${name}', newly created at pinch.tn! You can get back to this project using
-            the link ${project_url}
-        """)
-        message = message_template.substitute(name=self.name, project_url=project_url)
-        recipients = [member.email for member in self.members.all()]
-        send_mail("You are now pinching '%s'!" % self.name, message,
-                  "noreply@pinch.tn", recipients, fail_silently=False)
+        if self.email_sent:
+            logger.debug("Project %s has already sent an email, so another one will not be sent.", self.slug)
+            return
+        else:
+            message_template = Template("""
+                You are a member of the project '${name}', newly created at pinch.tn! You can get back to this project using
+                the link ${project_url}
+            """)
+            message = message_template.substitute(name=self.name, project_url=project_url)
+            recipients = [member.email for member in self.members.all()]
+            send_mail("You are now pinching '%s'!" % self.name, message,
+                      "noreply@pinch.tn", recipients, fail_silently=False)
+            self.email_sent = True
+            self.save()
 
 
 
