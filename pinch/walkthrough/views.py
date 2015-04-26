@@ -77,22 +77,6 @@ class BigIdeaView(TemplateView):
         return redirect("validate", slug=project_slug)
 
 
-class SelectToolsView(TemplateView):
-    template_name = "select_tools.html"
-
-    def get_context_data(self, **kwargs):
-        return {
-            "project": Project.objects.get(slug=kwargs["slug"])
-        }
-
-    def post(self, request, *args, **kwargs):
-        project_slug = kwargs["slug"]
-        project = Project.objects.get(slug=project_slug)
-        project.tools = request.POST.get("tools", "")
-        project.save()
-        return redirect("gravity_board", slug=project_slug)
-
-
 class ValidateView(TemplateView):
     template_name = "validate.html"
 
@@ -207,6 +191,31 @@ class BreakdownMvpView(TemplateView):
         # add "select tech" workstream
         tech_ws = Workstream.objects.create(mvp=mvp,name="Tools & Technology", line=0, statement_start=0, statement_end=0)
         tech_ws.save()
+        return redirect("select_tools", slug=project_slug)
+
+
+class SelectToolsView(TemplateView):
+    template_name = "select_tools.html"
+
+    def get_context_data(self, **kwargs):
+        return {
+            "project": Project.objects.get(slug=kwargs["slug"])
+        }
+
+    def post(self, request, *args, **kwargs):
+        project_slug = kwargs["slug"]
+        project = Project.objects.get(slug=project_slug)
+        tools = request.POST.getlist("tool")
+        ws = Workstream.objects.get(mvp=project.mvp, name="Tools & Technology")
+        tools_text = ""
+        for tool in tools:
+            if tool:
+                ticket = Ticket.objects.create(mvp=project.mvp, workstream=ws, content=tool, status='ready')
+                ticket.save()
+                tools_text += "\n" + tool if tools_text else tool
+        if tools_text:
+            project.tools = tools_text
+            project.save()
         return create_gravity_board(request, project)
 
 

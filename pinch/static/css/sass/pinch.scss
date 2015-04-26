@@ -158,12 +158,22 @@ body.minify-mvp {
 }
 
 body.breakdown-mvp {
+  .steps {
+	.breakdown-mvp {
+	  font-weight:bold;
+	  .pill { background-color:$color-primary; }
+	}
+	.create, .big-idea, .validate, .create-mvp, .minify-mvp { .pill { background-color:$color-primary; } }
+  }
+}
+
+body.select-tools {
 	.steps {
-		.breakdown-mvp {
+		.select-tools {
 			font-weight:bold;
 			.pill { background-color:$color-primary; }
 		}
-		.create, .big-idea, .validate, .create-mvp, .minify-mvp { .pill { background-color:$color-primary; } }
+		.create, .big-idea, .validate, .create-mvp, .minify-mvp, .breakdown-mvp { .pill { background-color:$color-primary; } }
 	}
 }
 
@@ -173,7 +183,7 @@ body.gravity-board {
 			font-weight:bold;
 			.pill { background-color:$color-primary; }
 		}
-		.create, .big-idea, .validate, .create-mvp, .minify-mvp, .breakdown-mvp { .pill { background-color:$color-primary; } }
+		.create, .big-idea, .validate, .create-mvp, .minify-mvp, .breakdown-mvp, .select-tools { .pill { background-color:$color-primary; } }
 	}
 }
 

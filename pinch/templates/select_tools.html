@@ -1,35 +1,72 @@
 {% extends "base.html" %}
+{% block step %}tech-and-tools{% endblock step %}
+{% block content %}
 
-  {% block content %}
-      <div class="row">
+<div class="row">
 
-        <div class="col-md-1">Icon</div>
+    <div class="col-md-1 step-icon">
+        <div class="tech-and-tools"></div>
+    </div>
 
-        <div class="col-md-8">
-          <small>{{ project.name }}</small>
+    <div class="col-md-8">
+        <h1>{% block page_title %}Technology and Tools{% endblock page_title %} <span>5-15 Minutes</span></h1>
+        <h2><span>"How are we doing this?"</span> Everything is shaping up with the plan, now we need to look at what we are building and make the best decisions possible about the technology and tools we will use based off of what's available to us, the teams experience with popular tools/languages, and what's best for our product.</h2>
+    </div>
 
-          <h1>{% block page_title %}Technology and Tools{% endblock page_title %} <span>5-15 Minutes</span></h1>
-          <h2><span>"How are we doing this?"</span> Everything is shaping up with the plan, now we need to look at what we are building and make the best decisions possible about the technology and tools we will use based off of what's available to us, the teams experience with popular tools/languages, and what's best for our product.</h2>
-          <form role="form" method="post">
+    <div class="col-md-3"></div>
+
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-1"></div>
+
+    <div class="col-md-8">
+        <form role="form" method="post">
             {% csrf_token %}
             <div class="form-group">
-              <textarea class="form-control" rows="3" name="tools" id="tools" placeholder="I want to build my product on...">{{ project.tools }}</textarea>
+                <div class="tools">
+                </div>
+                <button class="btn btn-default square add-tool-button">+ Add another tool</button>
             </div>
-            <button type="submit" class="btn btn-default">Next</button>
-          </form>
+            <div class="clearfix">
+                <button type="submit" class="btn btn-default">Next</button>
+            </div>
+        </form>
 
+    </div>
+
+    <div class="col-md-3">
+        <div class="info-panel">
+            <h3>5-15 Minutes</h3>
+            <p>What technology will the team use to deliver this work? What languages? Libraries? Repositories? Where will you host it? What domain might it have? Let's agree on our tools up front and list them here so we have a checklist of things to setup after we get started.</p>
         </div>
+    </div>
 
-        <div class="col-md-3">
-          <div class="info-panel">
-            <p>Placeholder</p>
-              <p>Placeholder 2</p>
-            <ul>
-              <li>2-10 Working Days is the recommended timebox for Pinch. Longer projects will benefit from more robust planning.</li>
-            </ul>
-            <p>Choose some tools!</p>
-          </div>
-        </div>
+</div>
+{% endblock content %}
+{% block extra_js %}
 
-      </div>
-  {% endblock content %}
+<script>
+    $(document).ready(function() {
+        var wrapper = $(".tools");
+        var add_button = $(".add-tool-button");
+
+        var m = 0;
+        $(add_button).click(function (e) {
+            e.preventDefault();
+            $(wrapper).append("<label>Tool</label><input type='text' class='form-control' name='tool' id='tool" + m + "' placeholder='A tool that you will leverage'>");
+            m++;
+        });
+
+        // add the default rows -- these are there without any clicking
+        var default_rows = 4;
+        for (var i = 0; i < default_rows; i++)
+        {
+            $(add_button).trigger("click");
+        }
+    })
+</script>
+
+{% endblock extra_js %}
