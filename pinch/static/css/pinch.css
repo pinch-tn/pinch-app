@@ -10,11 +10,16 @@
 }
 /* line 13, sass/_gravity_board.scss */
 #gravity-board .lane {
+  background-color: #fff;
   width: 100%;
   overflow: visible;
   white-space: nowrap;
 }
-/* line 17, sass/_gravity_board.scss */
+/* line 18, sass/_gravity_board.scss */
+#gravity-board .lane.ready h4 {
+  width: 89%;
+}
+/* line 21, sass/_gravity_board.scss */
 #gravity-board .lane .header {
   background-color: #dddfe0;
   border-bottom: 1px solid #dddfe0;
@@ -22,12 +27,12 @@
   padding: 5px 5px 5px 15px;
   text-transform: uppercase;
 }
-/* line 23, sass/_gravity_board.scss */
+/* line 27, sass/_gravity_board.scss */
 #gravity-board .lane .header h3 {
   margin: 0;
   padding: 0;
 }
-/* line 26, sass/_gravity_board.scss */
+/* line 30, sass/_gravity_board.scss */
 #gravity-board .lane .header h3 a {
   background-color: #333;
   color: #fff;
@@ -36,35 +41,36 @@
   font-size: 15px;
   padding: 0 5px 0 5px;
 }
-/* line 36, sass/_gravity_board.scss */
+/* line 40, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns {
   margin: 0;
   padding: 0 10px;
 }
-/* line 39, sass/_gravity_board.scss */
+/* line 43, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns .drag_list {
   list-style-type: none;
   padding: 0;
   min-width: 100px;
   min-height: 75px;
 }
-/* line 45, sass/_gravity_board.scss */
+/* line 49, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li {
   border-left: 1px solid #dddfe0;
   display: table-cell;
   padding: 10px 0;
+  vertical-align: top;
   width: 350px;
 }
-/* line 50, sass/_gravity_board.scss */
+/* line 55, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li:first-child {
   border-left: 0;
 }
-/* line 51, sass/_gravity_board.scss */
+/* line 56, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li .task-header {
   padding: 5px;
   text-transform: uppercase;
 }
-/* line 54, sass/_gravity_board.scss */
+/* line 59, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li .task-header button {
   background-color: #f8bf51;
   border: 0;
@@ -75,13 +81,14 @@
   padding: 3px 8px;
   margin-right: 10px;
 }
-/* line 64, sass/_gravity_board.scss */
+/* line 69, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li .task-header h4 {
   display: inline-block;
   margin: 0;
   padding: 2px 0 0 0;
+  white-space: normal;
 }
-/* line 70, sass/_gravity_board.scss */
+/* line 76, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li .ticket {
   background: url("/static/images/page-curl.png") no-repeat right bottom;
   background-color: #feebc5;
@@ -99,13 +106,14 @@
   float: left;
   line-height: 15px;
   margin: 5px;
+  overflow: hidden;
   padding: 5px;
   white-space: normal;
   width: 100px;
   height: 75px;
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  /* line 70, sass/_gravity_board.scss */
+  /* line 76, sass/_gravity_board.scss */
   #gravity-board .lane .task-columns > li .ticket {
     background: url("/static/images/page-curl@2x.png") no-repeat bottom right;
     background-size: 13px 12px;
@@ -113,18 +121,18 @@
   }
 }
 @media (min-resolution: 192dpi) {
-  /* line 70, sass/_gravity_board.scss */
+  /* line 76, sass/_gravity_board.scss */
   #gravity-board .lane .task-columns > li .ticket {
     background: url("/static/images/page-curl@2x.png") no-repeat bottom right;
     background-size: 13px 12px;
     background-color: #feebc5;
   }
 }
-/* line 85, sass/_gravity_board.scss */
+/* line 92, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li .ticket:hover .trash {
   display: block;
 }
-/* line 88, sass/_gravity_board.scss */
+/* line 95, sass/_gravity_board.scss */
 #gravity-board .lane .task-columns > li .ticket .trash {
   background-color: #f6b1ae;
   border-radius: 100px;
@@ -137,17 +145,17 @@
   text-align: center;
 }
 @media only screen and (max-width: 700px) {
-  /* line 102, sass/_gravity_board.scss */
+  /* line 109, sass/_gravity_board.scss */
   #gravity-board .lane .task-columns > li {
     display: block;
   }
 }
 
-/* line 108, sass/_gravity_board.scss */
+/* line 115, sass/_gravity_board.scss */
 .modal-dialog {
   left: 0 !important;
 }
-/* line 110, sass/_gravity_board.scss */
+/* line 117, sass/_gravity_board.scss */
 .modal-dialog .ticket-input {
   font-size: 21px;
   padding: 10px 5px;
