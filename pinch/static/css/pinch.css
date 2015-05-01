@@ -8532,3 +8532,5 @@ button[type="submit"].ready {
 .venn .validate-action {
   margin-top: 100px;
 }
+
+.validate_tooltip { display: block; margin: 5px; padding: 5px; background: #FFCCCC; border-radius: 5px; border: 1px solid #ff6666; font-weight: bold; }
