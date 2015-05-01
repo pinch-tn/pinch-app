@@ -74,15 +74,15 @@
         fields: {
           '#projectName': {
             required: true,
-            message: "You're going to have to name the project."
+            message: "I bet even Sharknado had a working title."
           },
           '#ownerName': {
             required: true,
-            message: "I need to know who you are."
+            message: "Just in case you ever get famous and need to look back on all of this."
           },
           '#ownerEmail': {
             required: true,
-            message: "Please provide a valid email address.",
+            message: "No marketing spam, just a quick message about your project.",
             test: function(value) {
               return /.+?@.+?\..+/.test(value);
             }
