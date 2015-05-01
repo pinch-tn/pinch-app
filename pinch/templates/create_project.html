@@ -23,7 +23,7 @@
         <div class="col-md-1"></div>
 
         <div class="col-md-8">
-          <form role="form" method="post">
+          <form role="form" method="post" class="info-form">
             {% csrf_token %}
             <div class="form-group">
               <input type="text" class="form-control" name="projectName" id="projectName" placeholder="Your great project name">
@@ -39,7 +39,7 @@
               <button class="btn btn-default square add-member-button">+ Add a project member</button>
             </div>
             <div class="clearfix">
-              <button type="submit" class="btn btn-default square">get started</button>
+              <button type="submit" class="btn btn-default square submit-button">get started</button>
             </div>
           </form>
 
@@ -69,6 +69,26 @@
         $(wrapper).append("<label>Project member's email</label><input type='email' class='form-control' name='memberEmail' id='memberEmail" + m + "' placeholder='member" + (m+1) + "@domain.com'>");
         m++;
       });
+
+      $(".info-form").isHappy({
+        fields: {
+          '#projectName': {
+            required: true,
+            message: "You're going to have to name the project."
+          },
+          '#ownerName': {
+            required: true,
+            message: "I need to know who you are."
+          },
+          '#ownerEmail': {
+            required: true,
+            message: "Please provide a valid email address.",
+            test: function(value) {
+              return /.+?@.+?\..+/.test(value);
+            }
+          }
+        }
+      })
     })
   </script>
 

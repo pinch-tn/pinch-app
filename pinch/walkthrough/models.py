@@ -1,4 +1,5 @@
 import datetime
+import re
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
 from randomslugfield import RandomSlugField
@@ -7,6 +8,8 @@ from string import Template
 import logging
 
 logger = logging.getLogger(__name__)
+
+email_regex = re.compile(r".+?@.+?\..+")
 
 
 class Project(models.Model):
@@ -52,7 +55,7 @@ class Project(models.Model):
                 the link ${project_url}
             """)
             message = message_template.substitute(name=self.name, project_url=project_url)
-            recipients = [member.email for member in self.members.all()]
+            recipients = [member.email for member in self.members.all() if member.email and email_regex.match(member.email)]
             send_mail("You are now pinching '%s'!" % self.name, message,
                       "noreply@pinch.tn", recipients, fail_silently=False)
             self.email_sent = True
