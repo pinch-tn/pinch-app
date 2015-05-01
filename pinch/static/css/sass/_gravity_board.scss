@@ -11,9 +11,13 @@
 	overflow:auto;
 	position:absolute;
 	.lane {
+		background-color:#fff;
 		width:100%;
 		overflow:visible;
 		white-space:nowrap;
+		&.ready h4 {
+			width:89%;
+		}
 		.header {
 			background-color:lighten($color-button-border, 30%);
 			border-bottom:1px solid $color-border-color;
@@ -46,6 +50,7 @@
 				border-left:1px solid $color-border-color;
 				display:table-cell;
 				padding:10px 0;
+				vertical-align:top;
 				width:350px;
 				&:first-child { border-left:0; }
 				.task-header {
@@ -65,6 +70,7 @@
 						display:inline-block;
 						margin:0;
 						padding:2px 0 0 0;
+						white-space:normal;
 					}
 				}
 				.ticket {
@@ -78,6 +84,7 @@
 					float:left;
 					line-height:15px;
 					margin:5px;
+					overflow:hidden;
 					padding:5px;
 					white-space:normal;
 					width:100px;
